@@ -5,7 +5,7 @@ import Title from "../Utils/Title";
 import Loader from "../Utils/Loader";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button } from "../Utils/Button";
+import { Button } from "../Utils/button";
 
 // auth
 import {
@@ -59,6 +59,7 @@ export default function SignInPanel({ auth }) {
           type="mail"
           placeholder="Enter your email"
           setValue={setEmail}
+          borderColor="lightInput"
         />
         <FormInput
           label="Password"
@@ -66,9 +67,10 @@ export default function SignInPanel({ auth }) {
           type="password"
           placeholder="Enter your password"
           setValue={setPassword}
+          borderColor="lightInput"
         />
         <Button
-          background="primary"
+          background="#0E94D7"
           color="white"
           method={() => signInWithEmailAndPassword(email, password)}
           text="Sign in"
