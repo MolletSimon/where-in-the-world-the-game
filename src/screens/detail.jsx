@@ -21,6 +21,7 @@ function Infos(props) {
         <img
           src={props.countryDetail.flags.png}
           className="w-1/2 md:w-3/4 max-h-72"
+          alt="flag"
         />
       </div>
       <div>

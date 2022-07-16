@@ -1,4 +1,3 @@
-import { Link, Outlet } from "react-router-dom";
 import commafy from "../../utils/commafy";
 
 function Card({ country, setDetail, setCountryDetail }) {
@@ -15,6 +14,7 @@ function Card({ country, setDetail, setCountryDetail }) {
       <img
         src={country.flags.png}
         className=" max-h-50 h-48 object-cover rounded-md"
+        alt="flag"
         width="500"
         height="200"
       />

@@ -11,7 +11,7 @@ export function Button({ method, background, icon, color, text, disabled }) {
       justify-center items-center`}
       onClick={() => method()}
     >
-      {icon && <img src={icon} width="20" className="mr-3" />}
+      {icon && <img src={icon} width="20" className="mr-3" alt="google-icon" />}
       {text}
     </button>
   );

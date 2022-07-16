@@ -16,6 +16,7 @@ import Terms from "./screens/terms";
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+// eslint-disable-next-line no-unused-vars
 const analytics = getAnalytics(app);
 
 function App() {

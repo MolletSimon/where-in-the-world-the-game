@@ -1,27 +1,31 @@
-import Filters from "../components/Home/Filters/filters";
-import CardsView from "../components/Home/cardsView";
+// import Filters from "../components/Home/Filters/filters";
+// import CardsView from "../components/Home/cardsView";
 import Header from "../components/Layout/header";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Navigate, Outlet } from "react-router-dom";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { MutatingDots, ThreeDots } from "react-loader-spinner";
+import { MutatingDots } from "react-loader-spinner";
 
 function Home({ auth }) {
   const [user, loading, error] = useAuthState(auth);
 
   if (!loading) {
-    if (!auth.currentUser) return <Navigate to="/login" />;
+    if (!user) return <Navigate to="/login" />;
   } else {
-    return (
-      <MutatingDots
-        height="100"
-        width="100"
-        ariaLabel="loading"
-        color="#0E94D7"
-        wrapperClass="justify-center items-center h-screen"
-      />
-    );
+    if (!error) {
+      return (
+        <MutatingDots
+          height="100"
+          width="100"
+          ariaLabel="loading"
+          color="#0E94D7"
+          wrapperClass="justify-center items-center h-screen"
+        />
+      );
+    } else {
+      console.error(error);
+    }
   }
 
   return (

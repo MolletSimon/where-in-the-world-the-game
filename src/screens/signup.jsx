@@ -29,7 +29,7 @@ export default function SignUp({ auth }) {
   const navigate = useNavigate();
 
   const verifyPassword = (confirm) => {
-    if (password != confirm) setPasswordConfirmed(false);
+    if (password !== confirm) setPasswordConfirmed(false);
     else setPasswordConfirmed(true);
   };
 

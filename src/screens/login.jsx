@@ -13,6 +13,10 @@ export default function Login({ auth }) {
   if (!currentLoading) {
     if (currentUser) {
       navigate("/");
+    } else {
+      if (authStateError) {
+        console.error(authStateError.message);
+      }
     }
   }
 
