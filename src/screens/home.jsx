@@ -14,19 +14,15 @@ function Home({ auth }) {
     if (!auth.currentUser) return <Navigate to="/login" />;
   } else {
     return (
-      <ThreeDots height="100" width="100" color="grey" ariaLabel="loading" />
+      <MutatingDots
+        height="100"
+        width="100"
+        ariaLabel="loading"
+        color="#0E94D7"
+        wrapperClass="justify-center items-center h-screen"
+      />
     );
   }
-
-  return (
-    <MutatingDots
-      height="100"
-      width="100"
-      color="blue"
-      ariaLabel="loading"
-      wrapperClass="justify-center items-center h-screen"
-    />
-  );
 
   return (
     <>

@@ -1,17 +1,10 @@
-import {
-  useSignInWithGoogle,
-  useSignInWithEmailAndPassword,
-} from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import LeftPanel from "../components/SignIn/LeftPanel";
+import RightPanel from "../components/SignIn/RightPanel";
 
 export default function Login({ auth }) {
-  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const [signInWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
-    useSignInWithEmailAndPassword(auth);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [currentUser, currentLoading, authStateError] = useAuthState(auth);
   const navigate = useNavigate();
 
@@ -22,13 +15,9 @@ export default function Login({ auth }) {
   });
 
   return (
-    <div>
-      <input type="text" onChange={(e) => setEmail(e.target.value)} />
-      <input type="password" onChange={(e) => setPassword(e.target.value)} />
-      <button onClick={() => signInWithEmailAndPassword(email, password)}>
-        Sign in
-      </button>
-      <button onClick={() => signInWithGoogle()}>Sign in with Google</button>
+    <div className="min-h-screen min-w-full grid grid-cols-2">
+      <LeftPanel></LeftPanel>
+      <RightPanel auth={auth}></RightPanel>
     </div>
   );
 }
