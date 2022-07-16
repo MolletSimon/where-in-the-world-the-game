@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Navigate, Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { ThreeDots } from "react-loader-spinner";
+import { MutatingDots, ThreeDots } from "react-loader-spinner";
 
 function Home({ auth }) {
   const [user, loading, error] = useAuthState(auth);
@@ -19,7 +19,13 @@ function Home({ auth }) {
   }
 
   return (
-    <ThreeDots height="100" width="100" color="grey" ariaLabel="loading" />
+    <MutatingDots
+      height="100"
+      width="100"
+      color="blue"
+      ariaLabel="loading"
+      wrapperClass="justify-center items-center h-screen"
+    />
   );
 
   return (
