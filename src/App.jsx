@@ -1,58 +1,42 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import Header from "./components/header";
+import Header from "./components/Layout/header";
 import Home from "./screens/home";
 import Detail from "./screens/detail";
+import { Navigate, Routes } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import Login from "./screens/login";
+import { getAuth } from "firebase/auth";
+import { firebaseConfig } from "./firebase-config";
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const analytics = getAnalytics(app);
 
 function App() {
   const [darkMode, setDarkmode] = useState(false);
-  const [detail, setDetail] = useState(false);
-  const [countryDetail, setCountryDetail] = useState({});
-
-  const [countries, setCountries] = useState([]);
-  const [countriesDisplayed, setCountriesdisplayed] = useState([]);
-
-  useEffect(() => {
-    fetch("https://restcountries.com/v3.1/all")
-      .then((res) => res.json())
-      .then((json) => {
-        const countriesSorted = json.sort((a, b) =>
-          a.name.common > b.name.common
-            ? 1
-            : b.name.common > a.name.common
-            ? -1
-            : 0
-        );
-        setCountries(countriesSorted);
-        setCountriesdisplayed(countriesSorted);
-      });
-  }, []);
+  const [user, loading, error] = useAuthState(auth);
 
   return (
-    <div className={darkMode ? "dark" : ""}>
-      <div className="bg-lightBackground min-h-screen dark:bg-darkBackground">
-        <Header darkMode={darkMode} setDarkmode={setDarkmode} />
-        {detail ? (
-          countryDetail && (
-            <Detail
-              countries={countries}
-              countryDetail={countryDetail}
-              setDetail={setDetail}
-              setCountryDetail={setCountryDetail}
-            />
-          )
-        ) : (
-          <Home
-            countries={countries}
-            countriesDisplayed={countriesDisplayed}
-            setCountriesDisplayed={setCountriesdisplayed}
-            setCountryDetail={setCountryDetail}
-            setDetail={setDetail}
-          />
-        )}
-        {/* <Outlet /> */}
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home auth={auth} />}>
+        <Route path="test" element={<Test />} />
+      </Route>
+      <Route path="/login" element={<Login auth={auth} />} />
+    </Routes>
+  );
+}
+
+function Test() {
+  return (
+    <>
+      <h1>test</h1>
+    </>
   );
 }
 
