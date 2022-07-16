@@ -5,7 +5,12 @@ import {
   useSignInWithGoogle,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
+import { MutatingDots } from "react-loader-spinner";
+import Loader from "../Utils/Loader";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RightPanel({ auth }) {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
@@ -13,8 +18,22 @@ export default function RightPanel({ auth }) {
     useSignInWithEmailAndPassword(auth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  console.log(user);
+  useEffect(() => {
+    if (error || errorEmail) {
+      toast.error(
+        "Woups ! 😭 it seems that the authentication has failed, please check your credentials and try again"
+      );
+    }
+  }, [error, errorEmail]);
+
+  if (loading || loadingEmail) {
+    return <Loader />;
+  }
+  if (user || userEmail) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="m-5">
@@ -27,14 +46,14 @@ export default function RightPanel({ auth }) {
           name="Email"
           type="mail"
           placeholder="Enter your email"
-          setValue={(e) => setEmail(e.target.value)}
+          setValue={setEmail}
         />
         <FormInput
           label="Password"
           name="Password"
           type="password"
           placeholder="Enter your password"
-          setValue={(e) => setPassword(e.target.value)}
+          setValue={setPassword}
         />
         <button
           className="border-2 w-full p-2 rounded-md bg-primary text-white mb-3"
@@ -50,6 +69,27 @@ export default function RightPanel({ auth }) {
           Sign in with Google
         </button>
       </form>
+
+      <h4 className="font-normal text-center mt-8">
+        Don't have an account ?{" "}
+        <span
+          className="font-semibold text-primary cursor-pointer"
+          onClick={() => navigate("/signup")}
+        >
+          Sign up
+        </span>
+      </h4>
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

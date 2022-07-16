@@ -8,11 +8,11 @@ export default function Login({ auth }) {
   const [currentUser, currentLoading, authStateError] = useAuthState(auth);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  if (!currentLoading) {
     if (currentUser) {
       navigate("/");
     }
-  });
+  }
 
   return (
     <div className="min-h-screen min-w-full grid grid-cols-2">

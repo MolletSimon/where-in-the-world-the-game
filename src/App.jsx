@@ -12,6 +12,7 @@ import { getAnalytics } from "firebase/analytics";
 import Login from "./screens/login";
 import { getAuth } from "firebase/auth";
 import { firebaseConfig } from "./firebase-config";
+import SignUp from "./screens/signup";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -28,6 +29,7 @@ function App() {
         <Route path="test" element={<Test />} />
       </Route>
       <Route path="/login" element={<Login auth={auth} />} />
+      <Route path="/signup" element={<SignUp auth={auth} />} />
     </Routes>
   );
 }
