@@ -12,7 +12,8 @@ export default function FormInput({
         {label}
       </label>
       <input
-        className={`border-2 rounded-md p-3 w-full border-${borderColor}`}
+        style={{ border: `2px solid ${borderColor}` }}
+        className={`border-2 rounded-md p-3 w-full`}
         type={type}
         name={name}
         placeholder={placeholder}

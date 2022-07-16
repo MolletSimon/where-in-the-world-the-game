@@ -1,7 +1,12 @@
-export function Button({ method, background, icon, color, text }) {
+export function Button({ method, background, icon, color, text, disabled }) {
   return (
     <button
-      style={{ backgroundColor: background, color: color }}
+      disabled={disabled}
+      style={{
+        backgroundColor: disabled ? `#858585` : background,
+        cursor: disabled ? "not-allowed" : "pointer",
+        color: color,
+      }}
       className={`border-2 w-full p-2 rounded-md mb-3 flex 
       justify-center items-center`}
       onClick={() => method()}
