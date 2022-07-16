@@ -1,23 +1,35 @@
+// components
 import FormInput from "../Utils/FormInput";
 import Subtitle from "../Utils/Subtitle";
 import Title from "../Utils/Title";
+import Loader from "../Utils/Loader";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Button } from "../Utils/Button";
+
+// auth
 import {
   useSignInWithGoogle,
   useSignInWithEmailAndPassword,
 } from "react-firebase-hooks/auth";
-import { useState, useEffect } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-import { MutatingDots } from "react-loader-spinner";
-import Loader from "../Utils/Loader";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
-export default function RightPanel({ auth }) {
+// react
+import { useState, useEffect } from "react";
+
+// router
+import { Navigate, useNavigate } from "react-router-dom";
+
+export default function SignInPanel({ auth }) {
+  // auth
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
     useSignInWithEmailAndPassword(auth);
+
+  //form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // router
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,19 +67,19 @@ export default function RightPanel({ auth }) {
           placeholder="Enter your password"
           setValue={setPassword}
         />
-        <button
-          className="border-2 w-full p-2 rounded-md bg-primary text-white mb-3"
-          onClick={() => signInWithEmailAndPassword(email, password)}
-        >
-          Sign in
-        </button>
-        <button
-          className="border-2 w-full p-2 rounded-md flex justify-center items-center"
-          onClick={() => signInWithGoogle()}
-        >
-          <img src="icons/google.png" width="20" className="mr-3" />
-          Sign in with Google
-        </button>
+        <Button
+          background="primary"
+          color="white"
+          method={() => signInWithEmailAndPassword(email, password)}
+          text="Sign in"
+        ></Button>
+        <Button
+          background="white"
+          color="black"
+          method={() => signInWithGoogle()}
+          text="Sign in with google"
+          icon="icons/google.png"
+        ></Button>
       </form>
 
       <h4 className="font-normal text-center mt-8">
