@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import EarthPanel from "../components/SignIn/EarthPanel";
-import { Button } from "../components/Utils/button";
+import { Button } from "../components/Utils/Button";
 import FormInput from "../components/Utils/FormInput";
 import Title from "../components/Utils/Title";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";

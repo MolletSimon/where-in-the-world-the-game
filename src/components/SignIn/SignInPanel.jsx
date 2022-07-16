@@ -5,7 +5,7 @@ import Title from "../Utils/Title";
 import Loader from "../Utils/Loader";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Button } from "../Utils/button";
+import { Button } from "../Utils/Button";
 
 // auth
 import {
