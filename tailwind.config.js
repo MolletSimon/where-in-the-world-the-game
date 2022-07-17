@@ -3,7 +3,6 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./src/**/**/*.{js,jsx,ts,tsx}"],
   theme: {
     fontFamily: {
-      Nunito: "Nunito Sans",
       Oakes: "Oakes",
     },
     extend: {

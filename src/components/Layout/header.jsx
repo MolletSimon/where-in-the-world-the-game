@@ -1,4 +1,6 @@
 import { signOut } from "firebase/auth";
+import { Link } from "react-router-dom";
+import { ClickableIcon } from "./ClickableIcon";
 
 function Header({ darkMode, setDarkmode, auth }) {
   const switchDarkMode = () => {
@@ -11,54 +13,48 @@ function Header({ darkMode, setDarkmode, auth }) {
 
   return (
     <header
-      className="bg-lightBackground dark:bg-darkBackground flex justify-between 
+      className="bg-lightBackground dark:bg-darkBackground flex justify-between
       md:p-10 p-6 drop-shadow-lg items-center"
     >
-      <h1
-        className="text-xl md:text-3xl font-extrabold text-lightText dark:text-darkText
-      font-Nunito ml-3"
-      >
-        Where in the world ?
-      </h1>
+      <HeaderTitle></HeaderTitle>
       <div className="mr-3 cursor-pointer flex items-center">
-        {darkMode ? (
-          <span
-            className="material-symbols-outlined mr-3 dark:text-darkText"
-            onClick={switchDarkMode}
-          >
-            dark_mode
-          </span>
-        ) : (
-          <span
-            className="material-symbols-outlined mr-3"
-            onClick={switchDarkMode}
-          >
-            dark_mode
-          </span>
-        )}
-        {/* 
-        <h3 className="font-Nunito font-semibold text-md md:text-xl dark:text-darkText">
-          {darkMode ? "Light Mode" : "Dark Mode"}
-        </h3> */}
+        <Link to="/terms" className="flex items-center">
+          <ClickableIcon
+            switchDarkMode={switchDarkMode}
+            icon="import_contacts"
+            label="Wiki"
+            darkMode={darkMode}
+          />
+        </Link>
+        <ClickableIcon
+          switchDarkMode={switchDarkMode}
+          icon={darkMode ? "light_mode" : "dark_mode"}
+          label={darkMode ? "Light mode" : "Dark mode"}
+          darkMode={darkMode}
+        />
 
-        {darkMode ? (
-          <span
-            className="material-symbols-outlined mr-3 dark:text-darkText"
-            onClick={logout}
-          >
-            logout
-          </span>
-        ) : (
-          <span className="material-symbols-outlined mr-3" onClick={logout}>
-            logout
-          </span>
-        )}
-
-        {/* <h3 className="font-Nunito font-semibold text-md md:text-xl dark:text-darkText">
-          Logout
-        </h3> */}
+        <ClickableIcon
+          switchDarkMode={logout}
+          icon="logout"
+          label="Logout"
+          darkMode={darkMode}
+        />
       </div>
     </header>
+  );
+}
+
+function HeaderTitle() {
+  return (
+    <div className="flex items-center">
+      <img src="images/earth.png" className="mr-12" alt="earth" width="60" />
+      <h1
+        className="text-xl md:text-3xl font-semibold text-lightText dark:text-darkText
+       ml-3"
+      >
+        Where in the world !
+      </h1>
+    </div>
   );
 }
 

@@ -5,7 +5,7 @@ function ButtonBack(props) {
   return (
     <button
       onClick={props.onClickBack}
-      className="p-4 pl-6 pr-6 rounded-md shadow-md m-10 font-Nunito font-semibold 
+      className="p-4 pl-6 pr-6 rounded-md shadow-md m-10  font-semibold 
         flex items-center w-40 justify-center dark:bg-darkInput dark:text-white"
     >
       <span className="material-symbols-outlined">arrow_back_ios</span>
