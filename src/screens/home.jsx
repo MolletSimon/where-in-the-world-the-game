@@ -1,51 +1,45 @@
-// import Filters from "../components/Home/Filters/filters";
-// import CardsView from "../components/Home/cardsView";
+// components
 import Header from "../components/Layout/header";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { Link, Navigate, Outlet } from "react-router-dom";
-// import { useEffect } from "react";
+import Loader from "../components/Utils/Loader";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { MutatingDots } from "react-loader-spinner";
+import { getLevels, PlayerCard } from "../components/Home/playerCard";
 
-function Home({ auth }) {
+// auth
+import { useAuthState } from "react-firebase-hooks/auth";
+
+// router
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
+
+// react
+import { useState, useEffect } from "react";
+
+function Home({ auth, db }) {
   const [user, loading, error] = useAuthState(auth);
+  const [darkMode, setDarkmode] = useState(false);
+  const [level, setLevel] = useState(0);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  if (!loading) {
-    if (!user) return <Navigate to="/login" />;
-  } else {
-    if (!error) {
-      return (
-        <MutatingDots
-          height="100"
-          width="100"
-          ariaLabel="loading"
-          color="#0E94D7"
-          wrapperClass="justify-center items-center h-screen"
-        />
-      );
-    } else {
-      console.error(error);
+  useEffect(() => {
+    if (!loading) {
+      if (!user) navigate("/login");
+      else {
+        getLevels(db, user.uid).then((res) => {
+          setLevel(res.data());
+        });
+        navigate(location.pathname === "/" ? "select-game" : location.pathname);
+      }
     }
-  }
+  }, [user]);
 
   return (
-    <>
-      <Header auth={auth} />
-      <Link to="/test">Go to test mon reuf</Link>
+    <div className={`${darkMode && "dark"}`}>
+      <Header auth={auth} darkMode={darkMode} setDarkmode={setDarkmode} />
       <Outlet />
-    </>
-    //   <Filters
-    //     countries={countries}
-    //     setCountriesDisplayed={setCountriesDisplayed}
-    //   />
-    //   {countriesDisplayed && (
-    //     <CardsView
-    //       setCountryDetail={setCountryDetail}
-    //       setDetail={setDetail}
-    //       countriesDisplayed={countriesDisplayed}
-    //     />
-    //   )}
-    // </>
+      <PlayerCard user={user} level={level}></PlayerCard>
+
+      {loading && !error && !user ? <Loader /> : <></>}
+    </div>
   );
 }
 

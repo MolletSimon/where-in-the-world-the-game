@@ -20,18 +20,18 @@ function Card({ country, setDetail, setCountryDetail }) {
       />
 
       <div className="ml-5 mt-4 mb-14 dark:text-white">
-        <h2 className="font-Nunito text-xl font-extrabold mb-4 mt-8">
+        <h2 className=" text-xl font-extrabold mb-4 mt-8">
           {country.name.common}
         </h2>
-        <p className="font-Nunito mb-1">
+        <p className=" mb-1">
           <span className="font-semibold">Population: </span>
           {commafy(parseInt(country.population))}
         </p>
-        <p className="font-Nunito mb-1">
+        <p className=" mb-1">
           <span className="font-semibold">Region: </span>
           {country.region}
         </p>
-        <p className="font-Nunito">
+        <p className="">
           <span className="font-semibold">Capital: </span>
           {country.capital}
         </p>

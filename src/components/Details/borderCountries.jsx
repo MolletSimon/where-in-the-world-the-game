@@ -30,7 +30,7 @@ function Country({ country, countries, setCountryDetail }) {
     rounded-md cursor-pointer w-auto shadow-lg"
       onClick={onClickDetail}
     >
-      <span className="whitespace-nowrap font-Nunito dark:text-white">
+      <span className="whitespace-nowrap  dark:text-white">
         {nameCountry && nameCountry}
       </span>
     </div>

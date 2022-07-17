@@ -11,7 +11,7 @@ function Search({ setCountriesDisplayed, countries }) {
       <input
         type="text"
         className="w-[90vw] p-5 md:w-[600px] md:ml-20 bg-white dark:bg-darkInput 
-        dark:text-darkText drop-shadow-lg font-Nunito 
+        dark:text-darkText drop-shadow-lg  
         rounded-lg text-ligthInput font-semibold"
         placeholder="🔍    Search for a country..."
         onChange={(event) => search(event)}
