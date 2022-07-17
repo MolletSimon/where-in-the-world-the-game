@@ -1,13 +1,15 @@
+import { Link } from "react-router-dom";
 import Title from "../components/Utils/Title";
 
 function SelectGameCard({ icon, text, border }) {
   return (
-    <div
+    <Link
+      to="game"
       className={`cursor-pointer hover:shadow-2xl p-4 border ${border} flex justify-center items-center`}
     >
       <img width="100" src={`images/${icon}.png`} className="ml-8" alt="flag" />
       <p className="m-6 whitespace-normal">{text}</p>
-    </div>
+    </Link>
   );
 }
 
