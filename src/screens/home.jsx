@@ -8,7 +8,7 @@ import { getLevels, PlayerCard } from "../components/Home/playerCard";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 // router
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 // react
 import { useState, useEffect } from "react";
@@ -18,6 +18,7 @@ function Home({ auth, db }) {
   const [darkMode, setDarkmode] = useState(false);
   const [level, setLevel] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     if (!loading) {
@@ -26,7 +27,7 @@ function Home({ auth, db }) {
         getLevels(db, user.uid).then((res) => {
           setLevel(res.data());
         });
-        navigate("/select-game");
+        navigate(location.pathname === "/" ? "select-game" : location.pathname);
       }
     }
   }, [user]);
