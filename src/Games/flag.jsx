@@ -3,8 +3,42 @@ import { toast, ToastContainer } from "react-toastify";
 import { Button } from "../components/Utils/Button";
 import Loader from "../components/Utils/Loader";
 import ReactStopwatch from "react-stopwatch";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+
+function AnswerCard(props) {
+  return (
+    <>
+      {props.submitted ? (
+        <div
+          style={{
+            background: props.p.right ? "#3AB795" : "white",
+            color: props.p.right ? "white" : "red",
+          }}
+          className={`border-2 p-4 w-full rounded-2xl mb-4 cursor-pointer 
+                        flex justify-center items-center h-full"
+                        }`}
+        >
+          {props.p.value}
+        </div>
+      ) : (
+        <div
+          onClick={() => props.select(props.index)}
+          style={{
+            background: props.index === props.selected ? "#0E94D7" : "white",
+            color: props.index === props.selected ? "white" : "black",
+          }}
+          className={`border-2 p-4 w-full rounded-2xl mb-4 cursor-pointer 
+                        flex justify-center items-center h-full"
+                        }`}
+          key={"nsubmitted" + props.index}
+        >
+          {props.p.value}
+        </div>
+      )}
+    </>
+  );
+}
 
 export default function FlagGame() {
   const [loading, setLoading] = useState(true);
@@ -13,6 +47,8 @@ export default function FlagGame() {
   const [countriesInGame, setCountriesInGame] = useState([]);
   const [round, setRound] = useState(0);
   const [time, setTime] = useState({ seconds: 0, minutes: 0, hours: 0 });
+  const [good, setGood] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   const numberRound = 10;
   const numberPropositions = 4;
@@ -52,14 +88,22 @@ export default function FlagGame() {
   };
 
   const submit = () => {
+    setSubmitted(true);
     if (
       countriesInGame[round].propositions.findIndex((p) => p.right) === selected
     ) {
-      toast.success("Bonne réponse !");
+      toast.success("Good answer !");
+      setGood(true);
     } else {
-      toast.error("Mauvaise réponse 😔");
+      toast.error("Wrong answer 😔");
+      setGood(false);
     }
     setSelected(null);
+  };
+
+  const next = () => {
+    setSubmitted(false);
+    setGood(false);
     if (round < numberRound - 1) setRound(round + 1);
   };
 
@@ -82,7 +126,7 @@ export default function FlagGame() {
         <div>
           {countriesInGame.length > 0 && (
             <div className="flex justify-center flex-col items-center mt-16">
-              <div className="w-3/5 justify-around flex flex-row items-center">
+              <div className="w-3/5 justify-around flex flex-row items-center mb-8">
                 <div>
                   <ReactStopwatch
                     seconds={time.seconds}
@@ -95,7 +139,16 @@ export default function FlagGame() {
                           <CircularProgressbar
                             value={seconds}
                             maxValue={60}
-                            text={formatted}
+                            strokeWidth={3}
+                            styles={buildStyles({
+                              pathColor: "#0E94D7",
+                              textColor: "#0E94D7",
+                            })}
+                            text={
+                              formatted.split(":")[1] +
+                              ":" +
+                              formatted.split(":")[2]
+                            }
                             backgroundPadding={10}
                             className="text-xs"
                           />
@@ -116,25 +169,24 @@ export default function FlagGame() {
                   </h2>
                 </div>
               </div>
-              <div className="grid grid-cols-2 grid-rows-2 w-2/5 h-60 gap-4">
+              <div className="grid grid-cols-2 grid-rows-2 w-2/5 h-60 gap-4 mb-4">
                 {countriesInGame[round].propositions.map((p, index) => (
-                  <div
-                    onClick={() => select(index)}
-                    className={`border-2 p-4 w-full rounded-2xl mb-4 cursor-pointer flex justify-center items-center ${
-                      selected == index && "bg-primary text-white"
-                    }`}
+                  <AnswerCard
                     key={index}
-                  >
-                    {p.value}
-                  </div>
+                    selected={selected}
+                    submitted={submitted}
+                    select={select}
+                    p={p}
+                    index={index}
+                  ></AnswerCard>
                 ))}
               </div>
               <div className="w-1/3">
                 <Button
                   background="#0E94D7"
                   color="white"
-                  method={submit}
-                  text="Next"
+                  method={submitted ? next : submit}
+                  text={submitted ? "Next" : "Submit"}
                 />
               </div>
             </div>
