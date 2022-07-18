@@ -1,8 +1,9 @@
 import { signOut } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { PlayerCard } from "../Home/playerCard";
 import { ClickableIcon } from "./ClickableIcon";
 
-function Header({ darkMode, setDarkmode, auth }) {
+function Header({ darkMode, setDarkmode, auth, user, level }) {
   const switchDarkMode = () => {
     setDarkmode(!darkMode);
   };
@@ -13,8 +14,8 @@ function Header({ darkMode, setDarkmode, auth }) {
 
   return (
     <header
-      className="bg-lightBackground dark:bg-darkBackground flex justify-between
-      md:p-10 p-6 drop-shadow-lg items-center"
+      className="bg-lightBackground dark:bg-darkBackground flex justify-between 
+    p-6 drop-shadow-lg items-center"
     >
       <HeaderTitle></HeaderTitle>
       <div className="mr-3 cursor-pointer flex items-center">
@@ -22,23 +23,21 @@ function Header({ darkMode, setDarkmode, auth }) {
           <ClickableIcon
             switchDarkMode={switchDarkMode}
             icon="import_contacts"
-            label="Wiki"
             darkMode={darkMode}
           />
         </Link>
         <ClickableIcon
           switchDarkMode={switchDarkMode}
           icon={darkMode ? "light_mode" : "dark_mode"}
-          label={darkMode ? "Light mode" : "Dark mode"}
           darkMode={darkMode}
         />
 
         <ClickableIcon
           switchDarkMode={logout}
           icon="logout"
-          label="Logout"
           darkMode={darkMode}
         />
+        <PlayerCard user={user} level={level} />
       </div>
     </header>
   );
@@ -46,14 +45,16 @@ function Header({ darkMode, setDarkmode, auth }) {
 
 function HeaderTitle() {
   return (
-    <div className="flex items-center">
-      <img src="images/earth.png" className="mr-12" alt="earth" width="60" />
-      <h1
-        className="text-xl md:text-3xl font-semibold text-lightText dark:text-darkText
-       ml-3"
-      >
-        Where in the world !
-      </h1>
+    <div>
+      <Link to="/select-game" className="flex items-center">
+        <img src="images/earth.png" className="mr-12" alt="earth" width="60" />
+        <h1
+          className="text-xl md:text-3xl font-semibold text-lightText dark:text-darkText
+      ml-3"
+        >
+          Where in the world !
+        </h1>
+      </Link>
     </div>
   );
 }

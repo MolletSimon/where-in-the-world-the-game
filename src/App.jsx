@@ -14,7 +14,7 @@ import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./firebase-config";
 import Terms from "./screens/terms";
 import SelectGame from "./screens/selectGame";
-import FlagGame from "./components/Games/flag";
+import FlagGame from "./Games/flag";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
