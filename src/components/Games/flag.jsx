@@ -67,7 +67,7 @@ export default function FlagGame() {
   }, []);
 
   return (
-    <div>
+    <div className="max-h-[95%]">
       {loading ? (
         <Loader label="The game is loading.." />
       ) : (
@@ -75,10 +75,10 @@ export default function FlagGame() {
           {countriesInGame.length > 0 && (
             <div className="flex justify-center flex-col items-center mt-16">
               <img
-                className="rounded-lg mb-8"
+                className="rounded-lg mb-8 border-2"
                 src={countriesInGame[round].flags.png}
                 alt="flag"
-                width={300}
+                width={250}
               />
               {countriesInGame[round].propositions.map((p, index) => (
                 <div

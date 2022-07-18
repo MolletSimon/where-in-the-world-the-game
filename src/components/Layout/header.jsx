@@ -13,8 +13,8 @@ function Header({ darkMode, setDarkmode, auth }) {
 
   return (
     <header
-      className="bg-lightBackground dark:bg-darkBackground flex justify-between
-      md:p-10 p-6 drop-shadow-lg items-center"
+      className="bg-lightBackground dark:bg-darkBackground flex justify-between 
+    p-6 drop-shadow-lg items-center"
     >
       <HeaderTitle></HeaderTitle>
       <div className="mr-3 cursor-pointer flex items-center">
