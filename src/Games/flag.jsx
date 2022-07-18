@@ -3,6 +3,8 @@ import { toast, ToastContainer } from "react-toastify";
 import { Button } from "../components/Utils/Button";
 import Loader from "../components/Utils/Loader";
 import ReactStopwatch from "react-stopwatch";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function FlagGame() {
   const [loading, setLoading] = useState(true);
@@ -88,7 +90,17 @@ export default function FlagGame() {
                     hours={time.hours}
                     onCallback={() => console.log("Finish")}
                     render={({ formatted, hours, minutes, seconds }) => {
-                      return <div>{formatted}</div>;
+                      return (
+                        <div className="w-32 h-32">
+                          <CircularProgressbar
+                            value={seconds}
+                            maxValue={60}
+                            text={formatted}
+                            backgroundPadding={10}
+                            className="text-xs"
+                          />
+                        </div>
+                      );
                     }}
                   />
                 </div>
@@ -104,17 +116,19 @@ export default function FlagGame() {
                   </h2>
                 </div>
               </div>
-              {countriesInGame[round].propositions.map((p, index) => (
-                <div
-                  onClick={() => select(index)}
-                  className={`border-2 p-4 w-1/2 rounded-md mb-4 cursor-pointer ${
-                    selected == index && "bg-primary text-white"
-                  }`}
-                  key={index}
-                >
-                  {p.value}
-                </div>
-              ))}
+              <div className="grid grid-cols-2 grid-rows-2 w-2/5 h-60 gap-4">
+                {countriesInGame[round].propositions.map((p, index) => (
+                  <div
+                    onClick={() => select(index)}
+                    className={`border-2 p-4 w-full rounded-2xl mb-4 cursor-pointer flex justify-center items-center ${
+                      selected == index && "bg-primary text-white"
+                    }`}
+                    key={index}
+                  >
+                    {p.value}
+                  </div>
+                ))}
+              </div>
               <div className="w-1/3">
                 <Button
                   background="#0E94D7"
