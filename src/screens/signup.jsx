@@ -11,19 +11,25 @@ import { ToastContainer } from "react-toastify";
 import { toast } from "react-toastify";
 
 // auth
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { Navigate, useNavigate } from "react-router-dom";
+import Subtitle from "../components/Utils/Subtitle";
 
 export default function SignUp({ auth }) {
   //form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [passwordConfirmed, setPasswordConfirmed] = useState(false);
 
   // auth
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, errorUpdate] = useUpdateProfile(auth);
 
   // router
   const navigate = useNavigate();
@@ -32,6 +38,12 @@ export default function SignUp({ auth }) {
     if (password !== confirm) setPasswordConfirmed(false);
     else setPasswordConfirmed(true);
   };
+
+  useEffect(() => {
+    if (user) {
+      updateProfile({ displayName: username });
+    }
+  }, [user]);
 
   useEffect(() => {
     if (error) {
@@ -46,7 +58,7 @@ export default function SignUp({ auth }) {
   }
   if (user) {
     toast.success("Yay ! 😍 Your account has been created");
-    return <Navigate to="/home" />;
+    return <Navigate to="/" />;
   }
 
   return (
@@ -60,6 +72,13 @@ export default function SignUp({ auth }) {
             name="Email"
             placeholder="Enter your email"
             setValue={setEmail}
+          />
+          <FormInput
+            label="Username"
+            type="text"
+            name="username"
+            placeholder="Enter a username"
+            setValue={setUsername}
           />
           <FormInput
             label="Password"

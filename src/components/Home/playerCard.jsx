@@ -1,4 +1,4 @@
-import { doc, getDoc } from "firebase/firestore";
+import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 export function PlayerCard(props) {
@@ -38,5 +38,16 @@ export function PlayerCard(props) {
 }
 
 export async function getLevels(db, uid) {
-  return await getDoc(doc(db, "levels", uid));
+  if ((await getDoc(doc(db, "levels", uid))).exists()) {
+    return await getDoc(doc(db, "levels", uid));
+  } else {
+    const levelRef = collection(db, "levels");
+    await setDoc(doc(levelRef, uid), {
+      level: 1,
+      userId: uid,
+      xp: 1,
+      xpToNextLevel: 100,
+    });
+    return await getDoc(doc(db, "levels", uid));
+  }
 }
