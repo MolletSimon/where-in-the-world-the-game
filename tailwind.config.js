@@ -16,6 +16,8 @@ module.exports = {
         darkText: "#FFFFFF",
         red: "#ffe5de",
         lightGray: "#F2F4F8",
+        validGreen: "#3AB795",
+        wrongRed: "#A40606",
       },
     },
   },

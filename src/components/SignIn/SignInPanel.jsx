@@ -48,7 +48,7 @@ export default function SignInPanel({ auth }) {
   }
 
   return (
-    <div className="m-5">
+    <div className="m-5 flex flex-col justify-center">
       <Title text="Hello there !" />
       <Subtitle text="Please enter your details" />
 
