@@ -5,7 +5,7 @@ export function PlayerCard(props) {
   return (
     <>
       {props.user && props.level && (
-        <div className="mt-28 mr-16 w-full flex justify-end items-center">
+        <div className="ml-6 flex justify-end items-center">
           <img
             src={
               props.user.photoURL ? props.user.photoURL : "images/avatar.png"

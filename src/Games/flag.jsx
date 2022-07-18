@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { Button } from "../Utils/Button";
-import Loader from "../Utils/Loader";
+import { Button } from "../components/Utils/Button";
+import Loader from "../components/Utils/Loader";
+import ReactStopwatch from "react-stopwatch";
 
 export default function FlagGame() {
   const [loading, setLoading] = useState(true);
@@ -9,6 +10,7 @@ export default function FlagGame() {
   const [selected, setSelected] = useState(null);
   const [countriesInGame, setCountriesInGame] = useState([]);
   const [round, setRound] = useState(0);
+  const [time, setTime] = useState({ seconds: 0, minutes: 0, hours: 0 });
 
   const numberRound = 10;
   const numberPropositions = 4;
@@ -26,8 +28,12 @@ export default function FlagGame() {
           if (i === rightAnswer) {
             answers.push({ value: data[r].name.common, right: true });
           } else {
+            let value = data[Math.floor(Math.random() * 249) + 1].name.common;
             answers.push({
-              value: data[Math.floor(Math.random() * 249) + 1].name.common,
+              value:
+                value == data[r].name.common
+                  ? data[Math.floor(Math.random() * 249) + 1].name.common
+                  : value,
               right: false,
             });
           }
@@ -74,12 +80,30 @@ export default function FlagGame() {
         <div>
           {countriesInGame.length > 0 && (
             <div className="flex justify-center flex-col items-center mt-16">
-              <img
-                className="rounded-lg mb-8 border-2"
-                src={countriesInGame[round].flags.png}
-                alt="flag"
-                width={250}
-              />
+              <div className="w-3/5 justify-around flex flex-row items-center">
+                <div>
+                  <ReactStopwatch
+                    seconds={time.seconds}
+                    minutes={time.minutes}
+                    hours={time.hours}
+                    onCallback={() => console.log("Finish")}
+                    render={({ formatted, hours, minutes, seconds }) => {
+                      return <div>{formatted}</div>;
+                    }}
+                  />
+                </div>
+                <img
+                  className="rounded-lg mb-8 border-2"
+                  src={countriesInGame[round].flags.png}
+                  alt="flag"
+                  width={250}
+                />
+                <div>
+                  <h2 className="font-bold text-primary text-3xl">
+                    {round}/{numberRound}
+                  </h2>
+                </div>
+              </div>
               {countriesInGame[round].propositions.map((p, index) => (
                 <div
                   onClick={() => select(index)}

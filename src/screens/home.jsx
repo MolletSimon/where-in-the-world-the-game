@@ -34,9 +34,15 @@ function Home({ auth, db }) {
 
   return (
     <div className={`${darkMode && "dark"}`}>
-      <Header auth={auth} darkMode={darkMode} setDarkmode={setDarkmode} />
+      <Header
+        auth={auth}
+        darkMode={darkMode}
+        setDarkmode={setDarkmode}
+        user={user}
+        level={level}
+      />
       <Outlet />
-      <PlayerCard user={user} level={level}></PlayerCard>
+      {/* <PlayerCard user={user} level={level}></PlayerCard> */}
 
       {loading && !error && !user ? <Loader /> : <></>}
     </div>
