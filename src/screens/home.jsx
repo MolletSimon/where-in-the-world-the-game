@@ -30,7 +30,7 @@ function Home({ auth, db }) {
         navigate(location.pathname === "/" ? "select-game" : location.pathname);
       }
     }
-  }, [user]);
+  }, [user, loading]);
 
   return (
     <div className={`${darkMode && "dark"}`}>
