@@ -2,7 +2,7 @@
 import Header from "../components/Layout/header";
 import Loader from "../components/Utils/Loader";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { getLevels, PlayerCard } from "../components/Home/playerCard";
+import { PlayerCard } from "../components/Home/playerCard";
 
 // auth
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -12,6 +12,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 // react
 import { useState, useEffect } from "react";
+import { getLevels } from "../services/levels/getLevels";
 
 function Home({ auth, db }) {
   const [user, loading, error] = useAuthState(auth);
@@ -24,7 +25,7 @@ function Home({ auth, db }) {
     if (!loading) {
       if (!user) navigate("/login");
       else {
-        getLevels(db, user.uid).then((res) => {
+        getLevels(user.uid).then((res) => {
           setLevel(res.data());
         });
         navigate(location.pathname === "/" ? "select-game" : location.pathname);

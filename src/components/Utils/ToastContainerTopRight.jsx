@@ -4,7 +4,7 @@ export default function ToastContainerTopRight() {
   return (
     <ToastContainer
       position="top-right"
-      autoClose={4000}
+      autoClose={1000}
       hideProgressBar
       newestOnTop={false}
       closeOnClick
