@@ -1,47 +1,18 @@
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { Button } from "../components/Utils/Button";
-import Loader from "../components/Utils/Loader";
+import { Button } from "../../../components/Utils/Button";
+import Loader from "../../../components/Utils/Loader";
 import ReactStopwatch from "react-stopwatch";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-
-function AnswerCard(props) {
-  return (
-    <>
-      {props.submitted ? (
-        <div
-          style={{
-            background: props.p.right ? "#3AB795" : "white",
-            color: props.p.right ? "white" : "red",
-          }}
-          className={`border-2 p-4 w-full rounded-2xl mb-4 cursor-pointer 
-                        flex justify-center items-center h-full"
-                        }`}
-        >
-          {props.p.value}
-        </div>
-      ) : (
-        <div
-          onClick={() => props.select(props.index)}
-          style={{
-            background: props.index === props.selected ? "#0E94D7" : "white",
-            color: props.index === props.selected ? "white" : "black",
-          }}
-          className={`border-2 p-4 w-full rounded-2xl mb-4 cursor-pointer 
-                        flex justify-center items-center h-full"
-                        }`}
-          key={"nsubmitted" + props.index}
-        >
-          {props.p.value}
-        </div>
-      )}
-    </>
-  );
-}
+import { AnswerCard } from "../components/AnswerCard";
+import { Navigate } from "react-router-dom";
+import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
 
 export default function FlagGame() {
   const [loading, setLoading] = useState(true);
+  const [difficultySelected, setDifficultySelected] = useState(false);
+  const [started, setStarted] = useState(false);
   const [countries, setCountries] = useState([]);
   const [selected, setSelected] = useState(null);
   const [countriesInGame, setCountriesInGame] = useState([]);
@@ -50,8 +21,8 @@ export default function FlagGame() {
   const [good, setGood] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const numberRound = 10;
-  const numberPropositions = 4;
+  const [numberRound, setNumberRound] = useState(10);
+  const [numberPropositions, setNumberPropositions] = useState(4);
 
   const initGame = (data) => {
     let arr = [];
@@ -126,13 +97,12 @@ export default function FlagGame() {
         <div>
           {countriesInGame.length > 0 && (
             <div className="flex justify-center flex-col items-center mt-16">
-              <div className="w-3/5 justify-around flex flex-row items-center mb-8">
-                <div>
+              <div className="w-3/5 justify-around grid grid-cols-3 mb-8">
+                <div className="flex justify-center items-center">
                   <ReactStopwatch
                     seconds={time.seconds}
                     minutes={time.minutes}
                     hours={time.hours}
-                    onCallback={() => console.log("Finish")}
                     render={({ formatted, hours, minutes, seconds }) => {
                       return (
                         <div className="w-32 h-32">
@@ -157,13 +127,15 @@ export default function FlagGame() {
                     }}
                   />
                 </div>
-                <img
-                  className="rounded-lg mb-8 border-2"
-                  src={countriesInGame[round].flags.png}
-                  alt="flag"
-                  width={250}
-                />
-                <div>
+                <div className="flex justify-center items-center">
+                  <img
+                    className="rounded-lg mb-8 border-2"
+                    src={countriesInGame[round].flags.png}
+                    alt="flag"
+                    width={250}
+                  />
+                </div>
+                <div className="flex justify-center items-center">
                   <h2 className="font-bold text-primary text-3xl">
                     {round}/{numberRound}
                   </h2>
@@ -193,17 +165,7 @@ export default function FlagGame() {
           )}
         </div>
       )}
-      <ToastContainer
-        position="top-right"
-        autoClose={4000}
-        hideProgressBar
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainerTopRight />
     </div>
   );
 }
