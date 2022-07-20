@@ -15,6 +15,7 @@ import { firebaseConfig } from "./firebase-config";
 import Terms from "./screens/terms";
 import SelectGame from "./screens/selectGame";
 import FlagGame from "./Games/flag/screens/flag";
+import SelectDifficultyFlag from "./Games/flag/screens/selectDifficultyFlag";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -28,7 +29,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home app={app} db={db} auth={auth} />}>
         <Route path="/select-game" element={<SelectGame />} />
-        <Route path="/flag" element={<FlagGame />} />
+        <Route path="/flag" element={<SelectDifficultyFlag />}></Route>
+        <Route path="flag/:difficulty" element={<FlagGame />} />
         <Route path="/capital" element={<h1>Work in progress..</h1>} />
         <Route path="/population" element={<h1>Work in progress..</h1>} />
         <Route path="/borders" element={<h1>Work in progress..</h1>} />

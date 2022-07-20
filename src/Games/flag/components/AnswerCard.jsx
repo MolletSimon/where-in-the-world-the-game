@@ -5,7 +5,7 @@ export function AnswerCard(props) {
         <div
           style={{
             background: props.p.right ? "#3AB795" : "white",
-            color: props.p.right ? "white" : "red",
+            color: props.p.right ? "white" : "black",
           }}
           className={`border-2 p-4 w-full rounded-2xl mb-4 cursor-pointer 
                         flex justify-center items-center h-full"

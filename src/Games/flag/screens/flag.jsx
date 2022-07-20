@@ -6,12 +6,12 @@ import ReactStopwatch from "react-stopwatch";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { AnswerCard } from "../components/AnswerCard";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
 
 export default function FlagGame() {
+  const difficulty = useParams().difficulty;
   const [loading, setLoading] = useState(true);
-  const [difficultySelected, setDifficultySelected] = useState(false);
   const [started, setStarted] = useState(false);
   const [countries, setCountries] = useState([]);
   const [selected, setSelected] = useState(null);
@@ -25,6 +25,8 @@ export default function FlagGame() {
   const [numberPropositions, setNumberPropositions] = useState(4);
 
   const initGame = (data) => {
+    console.log(data.filter((d) => d.population > 10000000));
+    console.log(difficulty);
     let arr = [];
     let countriesArray = [];
     while (arr.length < numberRound) {
