@@ -1,4 +1,3 @@
-import { collection, doc, getDoc, setDoc } from "firebase/firestore";
 import ProgressBar from "@ramonak/react-progress-bar";
 
 export function PlayerCard(props) {
@@ -21,33 +20,18 @@ export function PlayerCard(props) {
               <span className="font-normal"> - Level {props.level.level}</span>
             </p>
             <ProgressBar
-              completed={props.level.xp / props.level.xpToNextLevel}
+              completed={(props.level.xp / props.level.xpToNextLevel) * 100}
               bgColor="#0E94D7"
               className="w-full"
               height="3px"
               customLabel=" "
             />
             <p className="italic text-primary font-normal text-xs mt-2">
-              {props.level.xpToNextLevel}xp until next level
+              {props.level.xpToNextLevel - props.level.xp}xp until next level
             </p>
           </div>
         </div>
       )}
     </>
   );
-}
-
-export async function getLevels(db, uid) {
-  if ((await getDoc(doc(db, "levels", uid))).exists()) {
-    return await getDoc(doc(db, "levels", uid));
-  } else {
-    const levelRef = collection(db, "levels");
-    await setDoc(doc(levelRef, uid), {
-      level: 1,
-      userId: uid,
-      xp: 1,
-      xpToNextLevel: 100,
-    });
-    return await getDoc(doc(db, "levels", uid));
-  }
 }
