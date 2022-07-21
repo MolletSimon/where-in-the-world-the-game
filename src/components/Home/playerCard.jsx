@@ -27,7 +27,8 @@ export function PlayerCard(props) {
               customLabel=" "
             />
             <p className="italic text-primary font-normal text-xs mt-2">
-              {props.level.xpToNextLevel - props.level.xp}xp until next level
+              {Math.floor(props.level.xpToNextLevel - props.level.xp)}xp until
+              next level
             </p>
           </div>
         </div>

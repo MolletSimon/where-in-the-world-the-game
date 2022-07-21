@@ -6,10 +6,14 @@ import {
   getFirestore,
 } from "firebase/firestore";
 import { getApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-export async function getLevels(uid) {
+export async function getLevels() {
   const app = getApp();
   const db = getFirestore(app);
+  const auth = getAuth(app);
+  const uid = auth.currentUser.uid;
+
   if ((await getDoc(doc(db, "levels", uid))).exists()) {
     return await getDoc(doc(db, "levels", uid));
   } else {

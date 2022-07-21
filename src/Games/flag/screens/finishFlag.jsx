@@ -1,10 +1,10 @@
-import ProgressBar from "@ramonak/react-progress-bar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../components/Utils/Button";
 import Subtitle from "../../../components/Utils/Subtitle";
 import Title from "../../../components/Utils/Title";
 import { getLevels } from "../../../services/levels/getLevels";
+import ActualLevel from "../components/finishFlag/actualLevel";
+import { Buttons } from "../components/finishFlag/Buttons";
 
 export default function EndScreenFlag({
   score,
@@ -16,7 +16,7 @@ export default function EndScreenFlag({
   const navigate = useNavigate();
 
   useEffect(() => {
-    getLevels("ith5eKBws9U93nVOmzUsl0I1viM2").then((res) => {
+    getLevels().then((res) => {
       setLevel(res.data());
     });
   }, []);
@@ -32,40 +32,9 @@ export default function EndScreenFlag({
       <Title text="Game over !" />
       <div className="w-1/2">
         <Subtitle text={`Your score is ${score}/10`} />
-        <div className="">
-          {level && (
-            <>
-              {" "}
-              <Subtitle text={`Level ${level.level}`} />{" "}
-              <ProgressBar
-                completed={(level.xp / level.xpToNextLevel) * 100}
-                bgColor="#0E94D7"
-                className="w-full mt-2"
-                height="25px"
-                customLabel={`${Math.floor(level.xp)}xp`}
-                animateOnRender={true}
-              />
-              <h3 className="text-center text-primary mt-2">
-                {Math.floor(level.xpToNextLevel - level.xp)}xp until next level
-              </h3>{" "}
-            </>
-          )}
-        </div>
+        <ActualLevel level={level}></ActualLevel>
       </div>
-      <div className="mt-24 w-1/3 h-full justify-end">
-        <Button
-          background="#0E94D7"
-          color="white"
-          text="Play new game"
-          method={newGame}
-        />
-        <Button
-          background="white"
-          color="black"
-          text="Return to home page"
-          method={() => navigate("/select-game")}
-        />
-      </div>
+      <Buttons navigate={navigate} newGame={newGame}></Buttons>
     </div>
   );
 }
