@@ -7,10 +7,13 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { getApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
-export async function setLevel(uid, xpWon) {
+export async function updateLevel(xpWon) {
   const app = getApp();
   const db = getFirestore(app);
+  const auth = getAuth(app);
+  const uid = auth.currentUser.uid;
 
   await getDoc(doc(db, "levels", uid)).then((res) => {
     let level = res.data();

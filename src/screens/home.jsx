@@ -13,6 +13,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 // react
 import { useState, useEffect } from "react";
 import { getLevels } from "../services/levels/getLevels";
+import Footer from "../components/Layout/footer";
 
 function Home({ auth, db }) {
   const [user, loading, error] = useAuthState(auth);
@@ -25,7 +26,7 @@ function Home({ auth, db }) {
     if (!loading) {
       if (!user) navigate("/login");
       else {
-        getLevels(user.uid).then((res) => {
+        getLevels().then((res) => {
           setLevel(res.data());
         });
         navigate(location.pathname === "/" ? "select-game" : location.pathname);
@@ -46,6 +47,7 @@ function Home({ auth, db }) {
       {/* <PlayerCard user={user} level={level}></PlayerCard> */}
 
       {loading && !error && !user ? <Loader /> : <></>}
+      <Footer />
     </div>
   );
 }
