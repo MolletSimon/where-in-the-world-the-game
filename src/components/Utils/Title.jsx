@@ -1,5 +1,3 @@
-import { PhoneMultiFactorGenerator } from "firebase/auth";
-
 export default function Title({ text, margin }) {
   return (
     <h1

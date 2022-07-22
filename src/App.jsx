@@ -14,8 +14,6 @@ import { getFirestore } from "firebase/firestore";
 import { firebaseConfig } from "./firebase-config";
 import Terms from "./screens/terms";
 import SelectGame from "./screens/selectGame";
-import FlagGame from "./Games/flag/screens/game";
-import SelectDifficultyFlag from "./Games/flag/screens/startFlag";
 import Flag from "./Games/flag/screens/flag";
 
 // Initialize Firebase

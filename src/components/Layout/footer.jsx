@@ -1,5 +1,3 @@
-import { PlayerCard } from "../Home/playerCard";
-
 export default function Footer() {
   return (
     <footer className="hidden sm:fixed bottom-0 w-full bg-slate-50 p-5 text-center">
