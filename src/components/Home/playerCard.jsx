@@ -9,7 +9,7 @@ export function PlayerCard(props) {
             src={
               props.user.photoURL ? props.user.photoURL : "images/avatar.png"
             }
-            alt="photo"
+            alt="avatar"
             className="rounded-full mr-8"
             width="50"
           />

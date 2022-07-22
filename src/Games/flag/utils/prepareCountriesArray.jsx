@@ -19,7 +19,7 @@ export default function prepareCountriesArray(
             data[Math.floor(Math.random() * data.length - 1) + 1].name.common;
           answers.push({
             value:
-              value == data[r].name.common
+              value === data[r].name.common
                 ? data[Math.floor(Math.random() * data.length - 1) + 1].name
                     .common
                 : value,

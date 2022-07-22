@@ -16,7 +16,6 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { Navigate, useNavigate } from "react-router-dom";
-import Subtitle from "../components/Utils/Subtitle";
 
 export default function SignUp({ auth }) {
   //form
@@ -29,7 +28,7 @@ export default function SignUp({ auth }) {
   // auth
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-  const [updateProfile, updating, errorUpdate] = useUpdateProfile(auth);
+  const [updateProfile, _, __] = useUpdateProfile(auth);
 
   // router
   const navigate = useNavigate();
