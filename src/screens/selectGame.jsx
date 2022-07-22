@@ -5,19 +5,36 @@ function SelectGameCard({ icon, text, border, game }) {
   return (
     <Link
       to={`/${game}`}
-      className={`cursor-pointer hover:shadow-2xl p-4 border ${border} flex justify-center items-center`}
+      className={`cursor-pointer w-full hover:shadow-2xl lg:p-4 border ${border} flex lg:flex-row flex-col 
+      justify-center items-center`}
     >
-      <img width="100" src={`images/${icon}.png`} className="ml-8" alt="flag" />
-      <p className="m-6 whitespace-normal">{text}</p>
+      <img
+        width="100"
+        src={`images/${icon}.png`}
+        className="xl:ml-8 xl:block hidden"
+        alt="flag"
+      />
+      <img
+        width="70"
+        src={`images/${icon}.png`}
+        className="xl:hidden block"
+        alt="flag"
+      />
+      <p
+        className="lg:m-0 lg:ml-3 mt-4 md:text-md text-xs lg:text-lg lg:mt-0 xl:text-start 
+      text-center whitespace-normal"
+      >
+        {text}
+      </p>
     </Link>
   );
 }
 
 export default function SelectGame() {
   return (
-    <div className="m-2 flex justify-center items-center flex-col">
+    <div className="m-2 min-h-[70vh] flex justify-evenly items-center flex-col">
       <Title margin="10" text="Select the game !" />
-      <div className="mt-10 w-3/5 border-2 rounded-3xl h-96 grid grid-cols-2 grid-rows-2">
+      <div className="mt-10 w-full sm:w-4/5 xl:w-3/5 border-2 rounded-3xl h-96 grid grid-cols-2 grid-rows-2">
         <SelectGameCard
           icon="olympic-games"
           text="Guess which country the flag belongs to"
