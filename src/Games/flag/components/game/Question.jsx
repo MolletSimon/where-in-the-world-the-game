@@ -1,20 +1,43 @@
 import ReactStopwatch from "react-stopwatch";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import ProgressBar from "@ramonak/react-progress-bar";
 
-export function Question({ time, countriesInGame, round, numberRound }) {
+export function Question({
+  time,
+  countriesInGame,
+  round,
+  numberRound,
+  secondsLeft,
+}) {
   return (
-    <div className="w-3/5 justify-around grid grid-cols-3 mb-8">
-      <Timer time={time} />
-      <Flag countriesInGame={countriesInGame} round={round} />
-      <Round round={round} numberRound={numberRound}></Round>
+    <div className="md:w-4/5 w-full xl:justify-center grid xl:grid-cols-3 mb-8">
+      <div className="flex justify-center items-center mb-4">
+        <ProgressBar
+          completed={secondsLeft}
+          maxCompleted={60}
+          className="w-[250px] md:w-3/5 xl:hidden"
+          bgColor="#0E94D7"
+          customLabel=" "
+          height="6px"
+        />
+
+        <Timer secondsLeft={secondsLeft} />
+      </div>
+      <div className="flex justify-center items-center">
+        <Flag countriesInGame={countriesInGame} round={round} />
+      </div>
+      <div className="flex justify-center items-center">
+        <Round round={round} numberRound={numberRound}></Round>
+      </div>
     </div>
   );
 }
 
 function Round(props) {
   return (
-    <div className="flex justify-center items-center">
-      <h2 className="font-bold text-primary text-3xl">
+    <div className="hidden xl:flex justify-center items-center border-2 shadow-lg border-primary shadow-primary -skew-x-6   h-20 w-28 text-primary font-bold">
+      <h2 className="font-bold text-primary lg:text-2xl">
         {props.round + 1}/{props.numberRound}
       </h2>
     </div>
@@ -34,32 +57,25 @@ function Flag({ countriesInGame, round }) {
   );
 }
 
-function Timer({ time }) {
+const renderTime = ({ remainingTime }) => {
+  return <p className="text-xl">{remainingTime}</p>;
+};
+
+function Timer({ secondsLeft }) {
   return (
-    <div className="flex justify-center items-center">
-      <ReactStopwatch
-        seconds={time.seconds}
-        minutes={time.minutes}
-        hours={time.hours}
-        render={({ formatted, hours, minutes, seconds }) => {
-          return (
-            <div className="w-32 h-32">
-              <CircularProgressbar
-                value={seconds}
-                maxValue={60}
-                strokeWidth={3}
-                styles={buildStyles({
-                  pathColor: "#0E94D7",
-                  textColor: "#0E94D7",
-                })}
-                text={formatted.split(":")[1] + ":" + formatted.split(":")[2]}
-                backgroundPadding={10}
-                className="text-xs"
-              />
-            </div>
-          );
-        }}
-      />
+    <div
+      className="hidden xl:flex justify-center items-center
+    text-primary font-bold text-lg w-20"
+    >
+      <CountdownCircleTimer
+        isPlaying
+        duration={60}
+        colorsTime={[15, 10, 5, 0]}
+        size={120}
+        colors={["#0E94D7", "#F7B801", "#A30000", "#A30000"]}
+      >
+        {renderTime}
+      </CountdownCircleTimer>
     </div>
   );
 }

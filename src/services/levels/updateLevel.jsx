@@ -21,7 +21,7 @@ export async function updateLevel(xpWon) {
 
     if (xpWon >= level.xpToNextLevel - level.xp) {
       // update level
-      data.xpToNextLevel = level.xpToNextLevel * 2 * 1.3;
+      data.xpToNextLevel = level.xpToNextLevel * 2 * 1.2;
       data.xp = level.xp + xpWon;
       data.level = level.level + 1;
     } else {

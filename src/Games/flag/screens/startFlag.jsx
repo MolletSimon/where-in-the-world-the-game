@@ -16,7 +16,7 @@ export default function StartScreenFlag({
   };
 
   return (
-    <div className="w-full flex justify-center flex-col">
+    <div className="w-full flex justify-center flex-col items-center min-h-[80vh]">
       <TitleFlag></TitleFlag>
       <Subtitle text="You will have to guess which country correspond to the flag that will be presented to you" />
       <Subtitle text="Select the difficulty !" />

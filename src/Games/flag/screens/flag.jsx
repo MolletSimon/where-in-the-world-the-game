@@ -8,6 +8,7 @@ export default function Flag() {
   const [difficulty, setDifficulty] = useState(1);
   const [finished, setFinished] = useState(false);
   const [score, setScore] = useState(0);
+  const [xpWon, setXpWon] = useState(0);
 
   return (
     <>
@@ -17,6 +18,8 @@ export default function Flag() {
           setFinished={setFinished}
           setDifficultySelected={setDifficultySelected}
           setScore={setScore}
+          setXpWon={setXpWon}
+          xpWon={xpWon}
         />
       )}
       {!finished && difficultySelected && (
@@ -25,6 +28,8 @@ export default function Flag() {
           setScore={setScore}
           difficulty={difficulty}
           setFinished={setFinished}
+          setXpWon={setXpWon}
+          xpWon={xpWon}
         />
       )}
       {!finished && !difficultySelected && (
