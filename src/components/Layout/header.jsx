@@ -15,10 +15,11 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
   return (
     <header
       className="bg-lightBackground dark:bg-darkBackground flex justify-between 
-    p-6 drop-shadow-lg items-center"
+    md:p-6 p-4 drop-shadow-lg items-center"
     >
       <HeaderTitle></HeaderTitle>
-      <div className="mr-3 cursor-pointer flex items-center">
+
+      <div className="mr-3 cursor-pointer flex md:w-auto  items-center">
         <Link to="/terms" className="flex items-center">
           <ClickableIcon
             switchDarkMode={switchDarkMode}
@@ -37,7 +38,9 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
           icon="logout"
           darkMode={darkMode}
         />
-        <PlayerCard user={user} level={level} />
+        <div className="hidden lg:block">
+          <PlayerCard user={user} level={level} />
+        </div>
       </div>
     </header>
   );
@@ -49,8 +52,8 @@ function HeaderTitle() {
       <Link to="/select-game" className="flex items-center">
         <img src="images/earth.png" className="mr-12" alt="earth" width="60" />
         <h1
-          className="text-xl md:text-3xl font-semibold text-lightText dark:text-darkText
-      ml-3"
+          className="hidden sm:block text-md sm:text-xl md:text-3xl font-semibold 
+          text-lightText dark:text-darkText ml-3"
         >
           Where in the world !
         </h1>

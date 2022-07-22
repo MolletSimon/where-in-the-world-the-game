@@ -14,8 +14,8 @@ export function PlayerCard(props) {
             width="50"
           />
 
-          <div className="flex justify-center items-center mr-8 flex-col">
-            <p className="text-end">
+          <div className="flex justify-center items-center mr-8 md:flex-col">
+            <p className=" text-end">
               <span className="font-semibold">{props.user.displayName}</span>
               <span className="font-normal"> - Level {props.level.level}</span>
             </p>
