@@ -1,5 +1,3 @@
-import ReactStopwatch from "react-stopwatch";
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import ProgressBar from "@ramonak/react-progress-bar";
 
