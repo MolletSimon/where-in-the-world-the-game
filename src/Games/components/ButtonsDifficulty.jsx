@@ -1,4 +1,4 @@
-import { Button } from "../../../../components/Utils/Button";
+import { Button } from "../../components/Utils/Button";
 
 export function ButtonsDifficulty(props) {
   return (

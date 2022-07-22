@@ -1,8 +1,8 @@
 import Subtitle from "../../../components/Utils/Subtitle";
-import { TitleFlag, TitleStartScreen } from "../../components/TitleStartScreen";
 import { ButtonsDifficulty } from "../../components/ButtonsDifficulty";
+import { TitleStartScreen } from "../../components/TitleStartScreen";
 
-export default function StartScreenFlag({
+export default function StartPopulation({
   setDifficulty,
   setDifficultySelected,
 }) {
@@ -14,15 +14,13 @@ export default function StartScreenFlag({
   return (
     <div className="w-full flex justify-center flex-col items-center min-h-[80vh]">
       <TitleStartScreen
-        alt="flag"
-        title="Welcome to the flag !"
-        image="images/olympic-games.png"
+        alt="population"
+        image="images/people.png"
+        title="Welcome to the population game !"
       />
-      <Subtitle text="You will have to guess which country correspond to the flag that will be presented to you" />
+      <Subtitle text="You will have to guess which of the two countries has the largest population" />
       <Subtitle text="Select the difficulty !" />
-      <ButtonsDifficulty
-        selectDifficulty={selectDifficulty}
-      ></ButtonsDifficulty>
+      <ButtonsDifficulty selectDifficulty={selectDifficulty} />
     </div>
   );
 }

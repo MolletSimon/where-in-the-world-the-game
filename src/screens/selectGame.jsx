@@ -21,7 +21,7 @@ function SelectGameCard({ icon, text, border, game }) {
         alt="flag"
       />
       <p
-        className="lg:m-0 lg:ml-3 mt-4 md:text-md text-xs lg:text-lg lg:mt-0 xl:text-start 
+        className="lg:m-0 lg:ml-10 mt-4 md:text-md text-xs lg:text-lg lg:mt-0 xl:text-start 
       text-center whitespace-normal"
       >
         {text}

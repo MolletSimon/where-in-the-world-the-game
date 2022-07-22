@@ -45,7 +45,8 @@ export default function FlagGame({
     let countriesArray = prepareCountriesArray(
       data,
       numberRound,
-      numberPropositions
+      numberPropositions,
+      "flag"
     );
     setCountriesInGame(countriesArray);
   };
