@@ -3,7 +3,6 @@ import { useInterval } from "../../../utils/hooks/useInterval";
 import { toast } from "react-toastify";
 import { Button } from "../../../components/Utils/Button";
 import Loader from "../../../components/Utils/Loader";
-import "react-circular-progressbar/dist/styles.css";
 import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
 import { updateLevel } from "../../../services/levels/updateLevel";
 import getDataByDifficulty from "../utils/getDataByDifficulty";
