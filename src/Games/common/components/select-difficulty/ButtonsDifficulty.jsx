@@ -1,4 +1,4 @@
-import { Button } from "../../components/Utils/Button";
+import { Button } from "../../../../components/Utils/Button";
 import HeadShake from "react-reveal/HeadShake";
 
 export function ButtonsDifficulty(props) {

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SelectDifficultyScreen from "../../components/SelectDifficulty";
-import EndScreenFlag from "./finishFlag";
+import SelectDifficultyScreen from "../../common/screens/SelectDifficulty";
+import EndScreenFlag from "../../common/screens/endScreen";
 import FlagGame from "./game";
 
 export default function Flag() {

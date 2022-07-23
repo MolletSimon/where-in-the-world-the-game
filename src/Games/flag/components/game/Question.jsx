@@ -1,6 +1,6 @@
 import ProgressBar from "@ramonak/react-progress-bar";
-import { Round } from "../../../components/Round";
-import { Timer } from "../../../components/Timer";
+import { Round } from "../../../common/components/game/Round";
+import { Timer } from "../../../common/components/game/Timer";
 
 export function Question({
   time,

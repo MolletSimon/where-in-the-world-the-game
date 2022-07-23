@@ -1,6 +1,6 @@
-import Subtitle from "../../components/Utils/Subtitle";
-import { ButtonsDifficulty } from "./ButtonsDifficulty";
-import { TitleStartScreen } from "./TitleStartScreen";
+import Subtitle from "../../../components/Utils/Subtitle";
+import { ButtonsDifficulty } from "../components/select-difficulty/ButtonsDifficulty";
+import { TitleStartScreen } from "../components/select-difficulty/TitleStartScreen";
 import Pulse from "react-reveal/Pulse";
 
 export default function SelectDifficultyScreen({
