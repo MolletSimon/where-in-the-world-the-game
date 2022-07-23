@@ -1,7 +1,8 @@
 import { useState } from "react";
+import SelectDifficultyScreen from "../../components/SelectDifficulty";
+import EndScreenFlag from "../../flag/screens/finishFlag";
 import EndScreenPopulation from "./finishPopulation";
 import PopulationGame from "./game";
-import StartPopulation from "./startPopulation";
 
 export default function Population() {
   const [difficultySelected, setDifficultySelected] = useState(false);
@@ -13,9 +14,13 @@ export default function Population() {
   return (
     <div>
       {!finished && !difficultySelected && (
-        <StartPopulation
+        <SelectDifficultyScreen
           setDifficulty={setDifficulty}
           setDifficultySelected={setDifficultySelected}
+          alt="population"
+          image="people"
+          title="Welcome to the population game !"
+          subtitle="You will have to guess which of the two countries has the largest population"
         />
       )}
       {!finished && difficultySelected && (
@@ -23,9 +28,21 @@ export default function Population() {
           score={score}
           setScore={setScore}
           setFinished={setFinished}
+          difficulty={difficulty}
+          xpWon={xpWon}
+          setXpWon={setXpWon}
         />
       )}
-      {finished && <EndScreenPopulation score={score} />}
+      {finished && (
+        <EndScreenFlag
+          setDifficultySelected={setDifficultySelected}
+          setFinished={setFinished}
+          setScore={setScore}
+          setXpWon={setXpWon}
+          xpWon={xpWon}
+          score={score}
+        />
+      )}
     </div>
   );
 }
