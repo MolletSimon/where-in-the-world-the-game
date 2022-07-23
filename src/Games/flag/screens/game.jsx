@@ -134,6 +134,11 @@ export default function FlagGame({
                   text={submitted ? "Next" : "Submit"}
                 />
               </div>
+              <div className="xl:hidden mt-6 w-full flex justify-center items-center">
+                <p className="font-bold text-2xl text-primary">
+                  {round + 1}/{numberRound}
+                </p>
+              </div>
             </div>
           )}
         </div>

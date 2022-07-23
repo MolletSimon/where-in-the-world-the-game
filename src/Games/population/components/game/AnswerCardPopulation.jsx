@@ -21,10 +21,16 @@ export function AnswerCardPopulation(props) {
           src={props.c.flags.png}
           alt="flag"
           width={200}
-          className="rounded-2xl"
+          className="hidden md:block rounded-2xl"
+        />
+        <img
+          src={props.c.flags.png}
+          alt="flag"
+          width={100}
+          className="block md:hidden rounded-lg"
         />
         <p
-          className="mt-6 text-xl"
+          className="mt-6 md:text-xl text-lg text-center"
           style={{
             color:
               props.answered && props.isTheRightAnswer(props.index)
@@ -36,14 +42,14 @@ export function AnswerCardPopulation(props) {
         </p>
       </Fade>
       {!props.answered && (
-        <p className="mt-2 text-lg font-normal italic">
+        <p className="mt-2 md:text-lg text-md font-normal italic">
           Region: {props.c.region}
         </p>
       )}
       {props.answered && (
         <Tada>
           <p
-            className="text-2xl mt-3"
+            className="text-lg md:text-2xl mt-3 text-center"
             style={{
               color: props.isTheRightAnswer(props.index) && "white",
             }}

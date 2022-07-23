@@ -10,6 +10,7 @@ import { Round } from "../../components/Round";
 import { updateLevel } from "../../../services/levels/updateLevel";
 import { useInterval } from "../../../utils/hooks/useInterval";
 import { AnswerCardPopulation } from "../components/game/AnswerCardPopulation";
+import ProgressBar from "@ramonak/react-progress-bar";
 
 export default function PopulationGame({
   score,
@@ -130,6 +131,14 @@ export default function PopulationGame({
 
       <div className="mt-4 flex justify-evenly w-full items-center">
         <Timer seconds={seconds} />
+        <ProgressBar
+          completed={secondsLeft}
+          maxCompleted={seconds}
+          className="w-[250px] md:w-3/5 xl:hidden"
+          bgColor="#0E94D7"
+          customLabel=" "
+          height="6px"
+        />
         <div className="w-1/3">
           <Button
             background="#0E94D7"
@@ -139,6 +148,11 @@ export default function PopulationGame({
           />
         </div>
         <Round round={round} numberRound={numberRound} />
+      </div>
+      <div className="xl:hidden w-full flex justify-center items-center">
+        <p className="font-bold text-primary">
+          {round + 1}/{numberRound}
+        </p>
       </div>
     </div>
   );
