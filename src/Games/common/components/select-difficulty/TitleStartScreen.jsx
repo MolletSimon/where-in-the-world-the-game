@@ -1,4 +1,4 @@
-import Title from "../../components/Utils/Title";
+import Title from "../../../../components/Utils/Title";
 import Pulse from "react-reveal/Pulse";
 
 export function TitleStartScreen({ image, alt, title }) {

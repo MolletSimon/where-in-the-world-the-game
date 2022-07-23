@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Subtitle from "../../../components/Utils/Subtitle";
 import Title from "../../../components/Utils/Title";
 import { getLevels } from "../../../services/levels/getLevels";
-import ActualLevel from "../components/finishFlag/actualLevel";
-import { Buttons } from "../components/finishFlag/Buttons";
+import ActualLevel from "../components/finish/actualLevel";
+import { Buttons } from "../components/finish/Buttons";
 
-export default function EndScreenFlag({
+export default function EndScreen({
   score,
   setFinished,
   setDifficultySelected,

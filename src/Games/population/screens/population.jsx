@@ -1,7 +1,6 @@
 import { useState } from "react";
-import SelectDifficultyScreen from "../../components/SelectDifficulty";
-import EndScreenFlag from "../../flag/screens/finishFlag";
-import EndScreenPopulation from "./finishPopulation";
+import SelectDifficultyScreen from "../../common/screens/SelectDifficulty";
+import EndScreenFlag from "../../common/screens/endScreen";
 import PopulationGame from "./game";
 
 export default function Population() {

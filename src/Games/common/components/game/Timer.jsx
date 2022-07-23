@@ -1,5 +1,5 @@
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
-import { renderTime } from "../flag/components/game/Question";
+import { renderTime } from "../../../flag/components/game/Question";
 
 export function Timer({ seconds }) {
   return (
