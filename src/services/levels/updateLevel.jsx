@@ -3,6 +3,7 @@ import { getApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 export async function updateLevel(xpWon) {
+  console.log(xpWon);
   const app = getApp();
   const db = getFirestore(app);
   const auth = getAuth(app);
@@ -10,6 +11,7 @@ export async function updateLevel(xpWon) {
 
   await getDoc(doc(db, "levels", uid)).then((res) => {
     let level = res.data();
+    console.log(level);
     let data = {};
 
     if (xpWon >= level.xpToNextLevel - level.xp) {

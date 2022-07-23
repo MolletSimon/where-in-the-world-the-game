@@ -15,6 +15,7 @@ import { firebaseConfig } from "./firebase-config";
 import Terms from "./screens/terms";
 import SelectGame from "./screens/selectGame";
 import Flag from "./Games/flag/screens/flag";
+import Population from "./Games/population/screens/population";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -30,7 +31,7 @@ function App() {
         <Route path="/select-game" element={<SelectGame />} />
         <Route path="/flag" element={<Flag />} />
         <Route path="/capital" element={<h1>Work in progress..</h1>} />
-        <Route path="/population" element={<h1>Work in progress..</h1>} />
+        <Route path="/population" element={<Population />} />
         <Route path="/borders" element={<h1>Work in progress..</h1>} />
       </Route>
       <Route path="/login" element={<Login auth={auth} />} />

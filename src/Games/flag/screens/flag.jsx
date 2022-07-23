@@ -1,7 +1,7 @@
 import { useState } from "react";
+import SelectDifficultyScreen from "../../components/SelectDifficulty";
 import EndScreenFlag from "./finishFlag";
 import FlagGame from "./game";
-import SelectDifficultyFlag from "./startFlag";
 
 export default function Flag() {
   const [difficultySelected, setDifficultySelected] = useState(false);
@@ -33,9 +33,13 @@ export default function Flag() {
         />
       )}
       {!finished && !difficultySelected && (
-        <SelectDifficultyFlag
-          setDifficultySelected={setDifficultySelected}
+        <SelectDifficultyScreen
+          alt="flag"
+          image="olympic-games"
+          title="Welcome to the flag !"
           setDifficulty={setDifficulty}
+          setDifficultySelected={setDifficultySelected}
+          subtitle="You will have to guess which country correspond to the flag that will be presented to you"
         />
       )}
     </>

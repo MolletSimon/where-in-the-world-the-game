@@ -26,6 +26,7 @@ export default function FlagGame({
   const [submitted, setSubmitted] = useState(false);
   const [numberRound, setNumberRound] = useState(10);
   const [secondsLeft, setSecondsLeft] = useState(60);
+  const [seconds, setSeconds] = useState(0);
   const [numberPropositions, setNumberPropositions] = useState(4);
 
   const initGame = (data) => {
@@ -34,18 +35,22 @@ export default function FlagGame({
     switch (difficulty) {
       case 2:
         setSecondsLeft(45);
+        setSeconds(45);
         break;
       case 3:
         setSecondsLeft(30);
+        setSeconds(30);
         break;
       default:
         setSecondsLeft(60);
+        setSeconds(60);
         break;
     }
     let countriesArray = prepareCountriesArray(
       data,
       numberRound,
-      numberPropositions
+      numberPropositions,
+      "flag"
     );
     setCountriesInGame(countriesArray);
   };
@@ -76,8 +81,11 @@ export default function FlagGame({
   };
 
   const finish = () => {
-    setXpWon(score * (difficulty / 1.1));
-    updateLevel(xpWon);
+    setXpWon((state) => {
+      state = score * (difficulty * 2);
+      updateLevel(state);
+      return state;
+    });
     setFinished(true);
   };
 
@@ -105,6 +113,7 @@ export default function FlagGame({
             <div className="flex justify-center flex-col items-center mt-16">
               <Question
                 secondsLeft={secondsLeft}
+                seconds={seconds}
                 countriesInGame={countriesInGame}
                 numberRound={numberRound}
                 round={round}
