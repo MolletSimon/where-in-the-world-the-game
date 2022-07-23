@@ -6,6 +6,7 @@ export default function prepareCountriesArray(
 ) {
   let arr = [];
   let countriesArray = [];
+
   while (arr.length < numberRound) {
     if (game === "flag") {
       var r = Math.floor(Math.random() * data.length - 1) + 1;
@@ -40,21 +41,36 @@ export default function prepareCountriesArray(
         countriesArray.push(data[r]);
       }
     }
-
-    if (game === "population") {
-      // Shuffle array
-      const shuffled = data.sort(() => 0.5 - Math.random());
-      arr.push(shuffled.slice(0, 4));
-      console.log(arr);
-
-      arr.forEach((c) => {});
-      console.log();
-    }
   }
-
-  console.log(arr);
 
   return countriesArray;
 }
 
-function prepareFlagCountry() {}
+export function prepareCountriesPopulationArray(
+  data,
+  numberRound,
+  numberPropositions
+) {
+  let countriesArray = [];
+
+  for (let i = 0; i < numberRound; i++) {
+    let answers = [...getRandom(data, 4)];
+    countriesArray.push(answers);
+  }
+
+  return countriesArray;
+}
+
+function getRandom(arr, n) {
+  var result = new Array(n),
+    len = arr.length,
+    taken = new Array(len);
+  if (n > len)
+    throw new RangeError("getRandom: more elements taken than available");
+  while (n--) {
+    var x = Math.floor(Math.random() * len);
+    result[n] = arr[x in taken ? taken[x] : x];
+    taken[x] = --len in taken ? taken[len] : len;
+  }
+  return result;
+}

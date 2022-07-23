@@ -18,8 +18,14 @@ export default function Population() {
           setDifficultySelected={setDifficultySelected}
         />
       )}
-      {!finished && difficultySelected && <PopulationGame />}
-      {finished && <EndScreenPopulation />};
+      {!finished && difficultySelected && (
+        <PopulationGame
+          score={score}
+          setScore={setScore}
+          setFinished={setFinished}
+        />
+      )}
+      {finished && <EndScreenPopulation score={score} />}
     </div>
   );
 }

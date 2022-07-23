@@ -1,7 +1,7 @@
-export default function EndScreenPopulation() {
+export default function EndScreenPopulation({ score }) {
   return (
     <div>
-      <h1>End screen</h1>
+      <h1>{score}</h1>
     </div>
   );
 }
