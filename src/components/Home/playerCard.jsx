@@ -1,10 +1,11 @@
 import ProgressBar from "@ramonak/react-progress-bar";
+import { Link } from "react-router-dom";
 
 export function PlayerCard(props) {
   return (
     <>
       {props.user && props.level && (
-        <div className="ml-6 flex justify-end items-center">
+        <Link to="/user" className="ml-6 flex justify-end items-center">
           <img
             src={
               props.user.photoURL ? props.user.photoURL : "images/avatar.png"
@@ -31,7 +32,7 @@ export function PlayerCard(props) {
               next level
             </p>
           </div>
-        </div>
+        </Link>
       )}
     </>
   );
