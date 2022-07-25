@@ -28,13 +28,13 @@ const analytics = getAnalytics(app);
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home app={app} db={db} auth={auth} />}>
+      <Route path="/" element={<Home auth={auth} />}>
         <Route path="/select-game" element={<SelectGame />} />
         <Route path="/flag" element={<Flag />} />
         <Route path="/capital" element={<h1>Work in progress..</h1>} />
         <Route path="/population" element={<Population />} />
         <Route path="/borders" element={<h1>Work in progress..</h1>} />
-        <Route path="/user" element={<User />} />
+        <Route path="/user" element={<User auth={auth} />} />
       </Route>
       <Route path="/login" element={<Login auth={auth} />} />
       <Route path="/signup" element={<SignUp auth={auth} />} />

@@ -14,7 +14,7 @@ import { useState, useEffect } from "react";
 import { getLevels } from "../services/levels/getLevels";
 import Footer from "../components/Layout/footer";
 
-function Home({ auth, db }) {
+function Home({ auth }) {
   const [user, loading, error] = useAuthState(auth);
   const [darkMode, setDarkmode] = useState(false);
   const [level, setLevel] = useState(0);
