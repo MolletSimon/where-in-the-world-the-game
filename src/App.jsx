@@ -16,6 +16,7 @@ import Terms from "./screens/terms";
 import SelectGame from "./screens/selectGame";
 import Flag from "./Games/flag/screens/flag";
 import Population from "./Games/population/screens/population";
+import User from "./screens/user";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -33,6 +34,7 @@ function App() {
         <Route path="/capital" element={<h1>Work in progress..</h1>} />
         <Route path="/population" element={<Population />} />
         <Route path="/borders" element={<h1>Work in progress..</h1>} />
+        <Route path="/user" element={<User />} />
       </Route>
       <Route path="/login" element={<Login auth={auth} />} />
       <Route path="/signup" element={<SignUp auth={auth} />} />

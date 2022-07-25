@@ -11,6 +11,7 @@ import { updateLevel } from "../../../services/levels/updateLevel";
 import { useInterval } from "../../../utils/hooks/useInterval";
 import { AnswerCardPopulation } from "../components/game/AnswerCardPopulation";
 import ProgressBar from "@ramonak/react-progress-bar";
+import { saveGame } from "../../../services/user/saveGame";
 
 export default function PopulationGame({
   score,
@@ -72,7 +73,15 @@ export default function PopulationGame({
 
   const finish = () => {
     setXpWon((state) => {
-      state = score * (difficulty * 2);
+      state = score * (difficulty * 2.6);
+      const game = {
+        game: "Population",
+        score: score,
+        difficulty: difficulty,
+        time: seconds - secondsLeft,
+        xpWon: state,
+      };
+      saveGame(game);
       updateLevel(state);
       return state;
     });

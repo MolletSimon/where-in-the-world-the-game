@@ -10,6 +10,7 @@ import prepareCountriesArray from "../../common/utils/prepareCountriesArray";
 import { getCountries } from "../../../services/countries/getCountries";
 import { Answers } from "../components/game/Answers";
 import { Question } from "../components/game/Question";
+import { saveGame } from "../../../services/user/saveGame";
 
 export default function FlagGame({
   setFinished,
@@ -84,6 +85,14 @@ export default function FlagGame({
     setXpWon((state) => {
       state = score * (difficulty * 2);
       updateLevel(state);
+      const game = {
+        game: "Flag",
+        score: score,
+        difficulty: difficulty,
+        time: seconds - secondsLeft,
+        xpWon: state,
+      };
+      saveGame(game);
       return state;
     });
     setFinished(true);
