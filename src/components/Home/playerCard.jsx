@@ -30,7 +30,7 @@ export function PlayerCard({ user, level }) {
             </p>
           </div>
           <img
-            src={`icons/ranks/${level.rank}.png`}
+            src={`images/icons/ranks/${level.rank}.png`}
             alt={level.rank}
             width={40}
             title={level.rank}
