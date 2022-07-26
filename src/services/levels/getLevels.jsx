@@ -23,6 +23,9 @@ export async function getLevels() {
       userId: uid,
       xp: 1,
       xpToNextLevel: 100,
+      xpToPreviousLevel: 1,
+      percentageLevel: 1,
+      rank: "newbie",
     });
     return await getDoc(doc(db, "levels", uid));
   }

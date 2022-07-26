@@ -8,7 +8,7 @@ export default function ActualLevel(props) {
         <>
           <Subtitle text={`Level ${props.level.level}`} />{" "}
           <ProgressBar
-            completed={(props.level.xp / props.level.xpToNextLevel) * 100}
+            completed={props.level.percentageLevel}
             bgColor="#0E94D7"
             className="w-full mt-2"
             height="25px"

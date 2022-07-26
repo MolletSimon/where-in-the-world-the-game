@@ -12,7 +12,7 @@ export async function getSavedGames() {
   const app = getApp();
   const db = getFirestore(app);
   const auth = getAuth(app);
-  const uid = auth.currentUser.uid;
+  const uid = auth.currentUser?.uid;
 
   const q = query(collection(db, "games"), where("userId", "==", uid));
   return await getDocs(q);

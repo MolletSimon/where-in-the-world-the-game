@@ -19,7 +19,7 @@ export function PlayerCard({ user, level }) {
               <span className="font-normal"> - Level {level.level}</span>
             </p>
             <ProgressBar
-              completed={(level.xp / level.xpToNextLevel) * 100}
+              completed={level.percentageLevel}
               bgColor="#0E94D7"
               className="w-full"
               height="3px"
