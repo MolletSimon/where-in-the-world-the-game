@@ -17,6 +17,30 @@ export async function updateLevel(xpWon) {
       data.xpToNextLevel = level.xpToNextLevel * 2 * 1.2;
       data.xp = level.xp + xpWon;
       data.level = level.level + 1;
+
+      switch (data.level) {
+        case data.level <= 3:
+          data.rank = "newbie";
+          break;
+        case data.level <= 7 && data.level > 3:
+          data.rank = "rookie";
+          break;
+        case data.level <= 10 && data.level > 7:
+          data.rank = "geostudent";
+          break;
+        case data.level <= 15 && data.level > 10:
+          data.rank = "teacher";
+          break;
+        case data.level <= 20 && data.level > 15:
+          data.rank = "globetrotter";
+          break;
+        case data.level > 20:
+          data.rank = "master";
+          break;
+        default:
+          data.rank = "newbie";
+          break;
+      }
     } else {
       data.xp = level.xp + xpWon;
     }
