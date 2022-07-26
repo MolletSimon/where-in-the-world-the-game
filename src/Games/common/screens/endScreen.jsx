@@ -96,7 +96,7 @@ export default function EndScreen({
                   <Subtitle text={`Your are now a ${level.rank}`} />
                   <div className="flex justify-center w-full mt-6">
                     <img
-                      src={`icons/ranks/${level.rank}.png`}
+                      src={`images/icons/ranks/${level.rank}.png`}
                       alt={level.rank}
                       width={75}
                     />
