@@ -10,6 +10,7 @@ export default function SelectDifficultyScreen({
   image,
   alt,
   subtitle,
+  ...props
 }) {
   const selectDifficulty = (dif) => {
     setDifficulty(dif);
@@ -24,7 +25,12 @@ export default function SelectDifficultyScreen({
         <Subtitle text="Select the difficulty !" />
       </Pulse>
 
-      <ButtonsDifficulty selectDifficulty={selectDifficulty} />
+      <ButtonsDifficulty
+        easyText={props.easyText}
+        mediumText={props.mediumText}
+        hardText={props.hardText}
+        selectDifficulty={selectDifficulty}
+      />
     </div>
   );
 }
