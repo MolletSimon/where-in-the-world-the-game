@@ -64,7 +64,7 @@ export default function User({ auth }) {
                 {level.rank} -{" "}
               </h2>
               <img
-                src={`images/icons/ranks/${level.rank}.png`}
+                src={`icons/Ranks/${level.rank}.png`}
                 alt={level.rank}
                 width={100}
               />

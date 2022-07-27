@@ -11,6 +11,7 @@ export function PlayerCard({ user, level }) {
             alt="avatar"
             className="rounded-full mr-8"
             width="50"
+            referrerPolicy="no-referrer"
           />
 
           <div className="flex justify-center items-center mr-8 md:flex-col">
@@ -30,7 +31,7 @@ export function PlayerCard({ user, level }) {
             </p>
           </div>
           <img
-            src={`images/icons/ranks/${level.rank}.png`}
+            src={`icons/Ranks/${level.rank}.png`}
             alt={level.rank}
             width={40}
             title={level.rank}
