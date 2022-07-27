@@ -29,17 +29,20 @@ export default function User({ auth }) {
   }, [user, loading]);
 
   useEffect(() => {
-    let gamesFromDb = [];
-    getSavedGames().then((res) => {
-      res.forEach((doc) => {
-        gamesFromDb.push(doc.data());
+    if (user) {
+      let gamesFromDb = [];
+      getSavedGames(user.uid).then((res) => {
+        res.forEach((doc) => {
+          gamesFromDb.push(doc.data());
+        });
+        setGames(gamesFromDb);
       });
-      setGames(gamesFromDb);
-    });
-  }, []);
+    }
+  }, [user]);
+
   return (
     <div className="flex flex-col items-center">
-      <Title text="User info" />
+      <Title text="Saved games" />
       <GamesSaved games={games}></GamesSaved>
       {user && level && (
         <div className="flex mt-20 justify-center items-center mr-8 md:flex-col w-4/5">

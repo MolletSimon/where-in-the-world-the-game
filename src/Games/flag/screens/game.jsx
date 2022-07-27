@@ -11,6 +11,7 @@ import { getCountries } from "../../../services/countries/getCountries";
 import { Answers } from "../components/game/Answers";
 import { Question } from "../components/game/Question";
 import { saveGame } from "../../../services/user/saveGame";
+import { serverTimestamp } from "firebase/firestore";
 
 export default function FlagGame({
   setFinished,
@@ -66,14 +67,20 @@ export default function FlagGame({
       countriesInGame[round].propositions.findIndex((p) => p.right) === selected
     ) {
       toast.success("Good answer !");
-      setScore(score + 1);
+      setScore((state) => {
+        state = score + 1;
+        if (round >= numberRound - 1) {
+          finish(state);
+        }
+        return state;
+      });
     } else {
       toast.error("Wrong answer 😔");
+      if (round >= numberRound - 1) {
+        finish(score);
+      }
     }
     setSelected(null);
-    if (round >= numberRound - 1) {
-      finish();
-    }
   };
 
   const next = () => {
@@ -81,16 +88,17 @@ export default function FlagGame({
     if (round < numberRound - 1) setRound(round + 1);
   };
 
-  const finish = () => {
+  const finish = (_score) => {
     setXpWon((state) => {
-      state = score * (difficulty * 2);
+      state = _score * (difficulty * 2);
       updateLevel(state);
       const game = {
         game: "Flag",
-        score: score,
+        score: _score,
         difficulty: difficulty,
         time: seconds - secondsLeft,
         xpWon: state,
+        date: serverTimestamp(),
       };
       saveGame(game);
       return state;

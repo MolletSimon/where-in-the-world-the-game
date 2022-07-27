@@ -12,6 +12,7 @@ import { useInterval } from "../../../utils/hooks/useInterval";
 import { AnswerCardPopulation } from "../components/game/AnswerCardPopulation";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { saveGame } from "../../../services/user/saveGame";
+import { serverTimestamp } from "firebase/firestore";
 
 export default function PopulationGame({
   score,
@@ -80,6 +81,7 @@ export default function PopulationGame({
         difficulty: difficulty,
         time: seconds - secondsLeft,
         xpWon: state,
+        date: serverTimestamp(),
       };
       saveGame(game);
       updateLevel(state);

@@ -2,18 +2,20 @@ import {
   collection,
   getDocs,
   getFirestore,
+  orderBy,
   query,
   where,
 } from "firebase/firestore";
 import { getApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
 
-export async function getSavedGames() {
+export async function getSavedGames(uid) {
   const app = getApp();
   const db = getFirestore(app);
-  const auth = getAuth(app);
-  const uid = auth.currentUser?.uid;
 
-  const q = query(collection(db, "games"), where("userId", "==", uid));
+  const q = query(
+    collection(db, "games"),
+    where("userId", "==", uid),
+    orderBy("date", "desc")
+  );
   return await getDocs(q);
 }
