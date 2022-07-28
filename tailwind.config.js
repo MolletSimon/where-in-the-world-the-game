@@ -6,6 +6,9 @@ module.exports = {
       Oakes: "Oakes",
     },
     extend: {
+      backgroundImage: {
+        'note': "url('../public/images/note.png')"
+      },
       colors: {
         primary: "#0E94D7",
         darkInput: "#2B3945",
