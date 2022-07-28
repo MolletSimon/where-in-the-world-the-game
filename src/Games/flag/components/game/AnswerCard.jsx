@@ -8,7 +8,7 @@ export function AnswerCard(props) {
             color: props.p.right ? "white" : "black",
           }}
           className={`border-2 p-6 md:p-4 w-full rounded-2xl mb-4 cursor-pointer 
-                        flex justify-center items-center h-full"
+                        flex justify-center items-center h-full transition hover:scale-125"
                         }`}
         >
           {props.p.value}
@@ -20,9 +20,8 @@ export function AnswerCard(props) {
             background: props.index === props.selected ? "#0E94D7" : "white",
             color: props.index === props.selected ? "white" : "black",
           }}
-          className={`border-2 p-6 md:p-4 w-full rounded-2xl mb-4 cursor-pointer 
-                        flex justify-center items-center h-full"
-                        }`}
+          className="border-2 p-6 md:p-4 w-full rounded-2xl mb-4 cursor-pointer 
+                        flex justify-center items-center h-full transition hover:scale-110"
           key={"nsubmitted" + props.index}
         >
           {props.p.value}

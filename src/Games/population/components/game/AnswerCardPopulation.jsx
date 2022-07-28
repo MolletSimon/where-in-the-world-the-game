@@ -1,12 +1,11 @@
 import commafy from "../../../../utils/commafy";
 import Tada from "react-reveal/Tada";
-import ToastContainerTopRight from "../../../../components/Utils/ToastContainerTopRight";
 import { Fade } from "react-reveal";
 
 export function AnswerCardPopulation(props) {
   return (
     <div
-      className="flex justify-center items-center border-2 flex-col"
+      className="flex justify-center items-center border-2 flex-col transition hover:scale-110 hover:rounded-lg"
       style={{
         backgroundColor:
           props.answered && props.isTheRightAnswer(props.index)
@@ -59,8 +58,6 @@ export function AnswerCardPopulation(props) {
           </p>
         </Tada>
       )}
-
-      <ToastContainerTopRight />
     </div>
   );
 }

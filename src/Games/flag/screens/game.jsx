@@ -117,7 +117,7 @@ export default function FlagGame({
 
   useInterval(() => {
     if (secondsLeft > 0) setSecondsLeft(secondsLeft - 1);
-    else finish();
+    else finish(score);
   }, 1000);
 
   return (

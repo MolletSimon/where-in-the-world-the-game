@@ -26,7 +26,14 @@ export default function Investigation() {
         />
       )}
       {!finished && difficultySelected && (
-        <InvestigationGame difficulty={difficulty} />
+        <InvestigationGame
+          difficulty={difficulty}
+          score={score}
+          setFinished={setFinished}
+          setScore={setScore}
+          setXpWon={setXpWon}
+          xpWon={xpWon}
+        />
       )}
       {finished && (
         <EndScreen
