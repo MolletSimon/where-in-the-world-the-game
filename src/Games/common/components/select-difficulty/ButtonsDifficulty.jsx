@@ -9,7 +9,7 @@ export function ButtonsDifficulty(props) {
           <Button
             background="#22E97F"
             color="white"
-            text="Easy"
+            text={props.easyText ? props.easyText : "Easy"}
             padding={20}
             method={() => props.selectDifficulty(1)}
           />
@@ -18,7 +18,7 @@ export function ButtonsDifficulty(props) {
           <Button
             background="#F2CD60"
             color="white"
-            text="Medium"
+            text={props.mediumText ? props.mediumText : "Medium"}
             padding={20}
             method={() => props.selectDifficulty(2)}
           />
@@ -28,7 +28,7 @@ export function ButtonsDifficulty(props) {
             background="#F25757"
             padding={20}
             color="white"
-            text="Hard"
+            text={props.hardText ? props.hardText : "Hard"}
             method={() => props.selectDifficulty(3)}
           />
         </div>

@@ -19,10 +19,10 @@ export default function SelectGame() {
           game="flag"
         ></SelectGameCard>
         <SelectGameCard
-          icon="eiffel-tower"
+          icon="search"
           border="border-0 border-b-2"
-          text="Guess which country the capital city belongs to"
-          game="capital"
+          text="Guess the country from the clues given to you"
+          game="investigation"
         ></SelectGameCard>
         <SelectGameCard
           icon="people"

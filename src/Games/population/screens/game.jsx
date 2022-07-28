@@ -13,6 +13,7 @@ import { AnswerCardPopulation } from "../components/game/AnswerCardPopulation";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { saveGame } from "../../../services/user/saveGame";
 import { serverTimestamp } from "firebase/firestore";
+import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
 
 export default function PopulationGame({
   score,
@@ -122,6 +123,8 @@ export default function PopulationGame({
 
   return (
     <div className="flex flex-col justify-center items-center">
+      <ToastContainerTopRight />
+
       {loading ? (
         <Loader />
       ) : (
