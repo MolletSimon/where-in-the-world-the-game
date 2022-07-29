@@ -11,7 +11,7 @@ export function TitleStartScreen({ image, alt, title }) {
           width={80}
           className="hidden sm:block md:hidden"
         />
-        <img src={image} alt={alt} className="md:block hidden" />
+        <img src={image} alt={alt} className="md:block hidden" width={100} />
         <Title text={title} margin="0" />
         <img
           src={image}
@@ -19,7 +19,7 @@ export function TitleStartScreen({ image, alt, title }) {
           width={80}
           className="hidden sm:block md:hidden"
         />
-        <img src={image} alt={alt} className="md:block hidden" />
+        <img src={image} alt={alt} width={100} className="md:block hidden" />
       </Pulse>
     </div>
   );

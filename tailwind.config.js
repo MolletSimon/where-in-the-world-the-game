@@ -6,6 +6,12 @@ module.exports = {
       Oakes: "Oakes",
     },
     extend: {
+      backgroundImage: {
+        'note': "url('../public/images/note.png')"
+      },
+      animation: {
+        wiggle: 'wiggle 1s ease-in-out infinite',
+      },
       colors: {
         primary: "#0E94D7",
         darkInput: "#2B3945",
