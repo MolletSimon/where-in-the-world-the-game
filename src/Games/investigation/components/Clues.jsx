@@ -1,8 +1,12 @@
+// react
 import { useEffect, useState } from "react";
-import Jello from "react-reveal/Jello";
-import Loader from "../../../components/Utils/Loader";
-import commafy from "../../../utils/commafy";
+
+// utils
 import getDataClues from "../utils/getDataClues";
+import Pulse from "react-reveal/Pulse";
+
+// components
+import Loader from "../../../components/Utils/Loader";
 import { Clue } from "./Clue";
 
 export function Clues({ round, countriesInvestigation, difficulty }) {
@@ -17,7 +21,7 @@ export function Clues({ round, countriesInvestigation, difficulty }) {
       {datas.length == 0 && <Loader />}
 
       {datas.length > 0 && (
-        <Jello spy={round}>
+        <Pulse spy={round}>
           <Clue ml="m-16" image={datas[0].image} text={datas[0].text} />
           <Clue
             mt="mt-32"
@@ -38,7 +42,7 @@ export function Clues({ round, countriesInvestigation, difficulty }) {
             mt="mt-16"
             text={datas[3].text}
           />
-        </Jello>
+        </Pulse>
       )}
     </div>
   );

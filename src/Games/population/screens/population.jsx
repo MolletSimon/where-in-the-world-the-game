@@ -28,7 +28,6 @@ export default function Population() {
           setScore={setScore}
           setFinished={setFinished}
           difficulty={difficulty}
-          xpWon={xpWon}
           setXpWon={setXpWon}
         />
       )}

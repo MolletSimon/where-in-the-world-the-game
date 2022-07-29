@@ -1,6 +1,5 @@
 import { getCountries } from "../../../services/countries/getCountries";
 import { getRandom } from "../../common/utils/getRandom";
-import prepareCountriesArray from "../../common/utils/prepareCountriesArray";
 
 export default async function getCountriesInvestigation(numberRound) {
   let countriesInvestigation = [];
@@ -25,9 +24,6 @@ export default async function getCountriesInvestigation(numberRound) {
     getRandom(countries, numberRound),
     countriesFetch
   );
-
-  console.log(countriesInvestigation);
-
   return countriesInvestigation;
 }
 

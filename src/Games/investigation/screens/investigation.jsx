@@ -32,7 +32,6 @@ export default function Investigation() {
           setFinished={setFinished}
           setScore={setScore}
           setXpWon={setXpWon}
-          xpWon={xpWon}
         />
       )}
       {finished && (

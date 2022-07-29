@@ -1,18 +1,23 @@
+// react
 import { useEffect, useState } from "react";
+
+// services and utils
 import { toast } from "react-toastify";
-import { Button } from "../../../components/Utils/Button";
-import Loader from "../../../components/Utils/Loader";
 import { getCountries } from "../../../services/countries/getCountries";
 import getDataByDifficulty from "../../common/utils/getDataByDifficulty";
 import { prepareCountriesPopulationArray } from "../../common/utils/prepareCountriesArray";
-import { Timer } from "../../common/components/game/Timer";
-import { Round } from "../../common/components/game/Round";
 import { updateLevel } from "../../../services/levels/updateLevel";
 import { useInterval } from "../../../utils/hooks/useInterval";
-import { AnswerCardPopulation } from "../components/game/AnswerCardPopulation";
-import ProgressBar from "@ramonak/react-progress-bar";
 import { saveGame } from "../../../services/user/saveGame";
 import { serverTimestamp } from "firebase/firestore";
+
+// components
+import { Button } from "../../../components/Utils/Button";
+import Loader from "../../../components/Utils/Loader";
+import { Timer } from "../../common/components/game/Timer";
+import ProgressBar from "@ramonak/react-progress-bar";
+import { Round } from "../../common/components/game/Round";
+import { AnswerCardPopulation } from "../components/game/AnswerCardPopulation";
 import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
 
 export default function PopulationGame({
@@ -21,17 +26,18 @@ export default function PopulationGame({
   setFinished,
   difficulty,
   setXpWon,
-  xpWon,
 }) {
+  // game
   const [countriesInGame, setCountriesInGame] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [round, setRound] = useState(0);
-  const [answered, setAnswered] = useState(false);
   const [secondsLeft, setSecondsLeft] = useState(60);
   const [seconds, setSeconds] = useState(60);
-
   const numberRound = 10;
   const numberPropositions = 4;
+
+  // status
+  const [loading, setLoading] = useState(true);
+  const [answered, setAnswered] = useState(false);
 
   useEffect(() => {
     switch (difficulty) {
