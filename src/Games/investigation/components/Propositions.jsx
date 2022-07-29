@@ -16,10 +16,10 @@ export function Propositions({
                 background: answered && c.right ? "#3AB795" : "white",
                 color: answered && c.right ? "white" : "black",
               }}
-              className="border-2 ml-8 p-6 md:p-4 w-full rounded-2xl mb-4 cursor-pointer 
-flex justify-center items-center h-full transition hover:scale-125"
+              className="border-2 ml-8 p-6 md:p-4 w-full rounded-2xl mb-4 cursor-pointer h-20
+flex justify-center items-center text-center transition hover:scale-125"
             >
-              {c.value}
+              {c.name}
             </div>
           ))}
       </div>
