@@ -20,15 +20,15 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
       <HeaderTitle></HeaderTitle>
 
       <div className="mr-3 cursor-pointer flex md:w-auto  items-center">
-        <Link to="/terms" className="flex items-center">
-          <ClickableIcon
-            switchDarkMode={switchDarkMode}
-            icon="import_contacts"
-            darkMode={darkMode}
-          />
-        </Link>
+        <a
+          href="https://where-in-the-world-zeta-drab.vercel.app/"
+          target="_blank"
+          className="flex items-center"
+        >
+          <ClickableIcon icon="import_contacts" />
+        </a>
         <ClickableIcon
-          switchDarkMode={switchDarkMode}
+          method={switchDarkMode}
           icon={darkMode ? "light_mode" : "dark_mode"}
           darkMode={darkMode}
         />
@@ -41,6 +41,20 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
         <div className="hidden lg:block">
           <PlayerCard user={user} level={level} />
         </div>
+        {/* <div className="flex flex-col group">
+          <select name="" id="">
+            <option value="" className="bg-note">
+              English
+            </option>
+          </select>
+
+          <img
+            src="images/france.png"
+            alt="english"
+            width={30}
+            className="ml-8 hidden group-hover:block"
+          />
+        </div> */}
       </div>
     </header>
   );

@@ -1,6 +1,6 @@
-export function ClickableIcon({ switchDarkMode, icon, label, darkMode }) {
+export function ClickableIcon({ method, icon, label, darkMode }) {
   return (
-    <div className="flex ml-5 items-center mr-2" onClick={switchDarkMode}>
+    <div className="flex ml-5 items-center mr-2" onClick={method}>
       <span className="material-symbols-outlined mr-3 dark:text-darkText">
         {icon}
       </span>
