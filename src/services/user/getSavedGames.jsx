@@ -2,6 +2,7 @@ import {
   collection,
   getDocs,
   getFirestore,
+  limit,
   orderBy,
   query,
   where,
@@ -15,7 +16,8 @@ export async function getSavedGames(uid) {
   const q = query(
     collection(db, "games"),
     where("userId", "==", uid),
-    orderBy("date", "desc")
+    orderBy("date", "desc"),
+    limit(5)
   );
   return await getDocs(q);
 }
