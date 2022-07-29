@@ -7,12 +7,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'note': "url('../public/images/note.png')",
-        'postit': "url('../public/images/postit.png')",
         'paper': "url('../public/images/paper.png')"
-      },
-      animation: {
-        wiggle: 'wiggle 1s ease-in-out infinite',
       },
       colors: {
         primary: "#0E94D7",

@@ -1,14 +1,17 @@
+// react
 import { useEffect, useState } from "react";
-import Subtitle from "../../../components/Utils/Subtitle";
-import { Answers } from "../../flag/components/game/Answers";
-import getCountriesInvestigation from "../utils/getCountriesInvestigation";
-import Loader from "../../../components/Utils/Loader";
-import { toast } from "react-toastify";
-import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
-import { serverTimestamp } from "firebase/firestore";
+
+// services and utils
 import { saveGame } from "../../../services/user/saveGame";
+import getCountriesInvestigation from "../utils/getCountriesInvestigation";
+import { serverTimestamp } from "firebase/firestore";
 import { updateLevel } from "../../../services/levels/updateLevel";
 import { useInterval } from "../../../utils/hooks/useInterval";
+import { toast } from "react-toastify";
+
+// components
+import Loader from "../../../components/Utils/Loader";
+import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
 import { Clues } from "../components/Clues";
 import { Propositions } from "../components/Propositions";
 import { FooterInvestigation } from "../components/FooterInvestigation";
@@ -18,16 +21,20 @@ export default function InvestigationGame({
   difficulty,
   score,
   setScore,
-  xpWon,
   setXpWon,
 }) {
+  // datas
   const [countriesInvestigation, setCountriesInvestigation] = useState([]);
+
+  // game
+  const [round, setRound] = useState(0);
+  const seconds = 60;
+  const numberRound = 10;
+  const [secondsLeft, setSecondsLeft] = useState(60);
+
+  // status
   const [loading, setLoading] = useState(true);
   const [answered, setAnswered] = useState(false);
-  const [secondsLeft, setSecondsLeft] = useState(60);
-  const [numberRound, setNumberRound] = useState(10);
-  const [seconds, setSeconds] = useState(60);
-  const [round, setRound] = useState(0);
 
   useEffect(() => {
     getCountriesInvestigation(10).then((res) => {
