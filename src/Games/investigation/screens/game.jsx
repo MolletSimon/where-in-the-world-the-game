@@ -85,6 +85,7 @@ export default function InvestigationGame({
           <Clues
             countriesInvestigation={countriesInvestigation}
             round={round}
+            difficulty={difficulty}
           />
         )}
 
