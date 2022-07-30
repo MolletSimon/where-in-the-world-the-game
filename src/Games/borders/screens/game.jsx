@@ -31,7 +31,7 @@ export default function BorderGame() {
   const [goodAnswer, setGoodAnswer] = useState(false);
   const score = [];
   const [secondsLeft, setSecondsLeft] = useState(45);
-  const [seconds, setSeconds] = useState(45);
+  const [secondsRound, setSecondsRound] = useState(45);
   const [currentCountry, setCurrentCountry] = useState({});
   const [round, setRound] = useState(0);
   const mapChildRef = useRef();
@@ -75,7 +75,6 @@ export default function BorderGame() {
     });
     setRound((state) => {
       state = round + 1;
-      console.log(paths[state]);
       let newCountry = paths[state]?.start;
       setCurrentCountry(newCountry);
       mapChildRef.current.flyTo(newCountry.latlng[0], newCountry.latlng[1]);
@@ -83,12 +82,11 @@ export default function BorderGame() {
     });
     setNumberTurn(0);
     setSecondsLeft(45);
-    setSeconds(45);
     setRoundFinished(false);
   };
 
   const answer = (name) => {
-    let newCountry = countries.find((c) => c.name.common.includes(name));
+    let newCountry = countries.find((c) => c.name.common === name);
     setNumberTurn(numberTurn + 1);
     newCountry = addBorderNames(newCountry, countries);
     setCurrentCountry(newCountry);
@@ -96,6 +94,7 @@ export default function BorderGame() {
 
     if (newCountry.cca3 == paths[round].end.cca3) {
       setGoodAnswer(true);
+      setSecondsRound(45 - secondsLeft);
       setRoundFinished(true);
       finish();
     }
@@ -135,20 +134,18 @@ export default function BorderGame() {
                 className="mr-4 ml-4"
                 width={30}
                 alt=""
-                srcset=""
               />
               <p>{currentCountry?.name.common}</p>
             </div>
             <div className="flex justify-center align-center border-2 rounded-md p-4">
               <h1>TARGET :</h1>
               <img
-                src={paths[round]?.end.flags.png}
+                src={paths[round]?.end?.flags.png}
                 width={30}
                 className="mr-4 ml-4"
                 alt=""
-                srcset=""
               />
-              <p>{paths[round]?.end.name.common}</p>
+              <p>{paths[round]?.end?.name.common}</p>
             </div>
           </div>
           <Popup
@@ -173,9 +170,7 @@ export default function BorderGame() {
                 <Subtitle
                   text={
                     goodAnswer
-                      ? `You did it in ${numberTurn} tries and ${
-                          45 - secondsLeft
-                        } seconds`
+                      ? `You did it in ${numberTurn} tries and ${secondsRound} seconds`
                       : "You failed to find the country in 45sec !"
                   }
                 />
@@ -194,7 +189,6 @@ export default function BorderGame() {
             )}
           </Popup>
           <div className="flex justify-around items-center">
-            {/* <Timer seconds={seconds} /> */}
             <div className="p-4 rounded-full border-4 border-primary h-24 w-24 flex justify-center items-center">
               <h1 className="text-2xl font-bold text-primary">{secondsLeft}</h1>
             </div>
@@ -217,8 +211,9 @@ export default function BorderGame() {
           </div>
           {countries.length > 0 && currentCountry && (
             <div className="flex justify-center m-6">
-              {currentCountry.borderNames?.map((b) => (
+              {currentCountry.borderNames?.map((b, index) => (
                 <div
+                  key={index}
                   className="border-2 p-4 rounded-md ml-2 mr-2 cursor-pointer transition hover:scale-110 w-48 h16 justify-center flex items-center"
                   onClick={() => answer(b)}
                 >

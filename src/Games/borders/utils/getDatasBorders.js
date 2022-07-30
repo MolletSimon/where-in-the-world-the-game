@@ -4,21 +4,39 @@ import { getRandom } from "../../common/utils/getRandom";
 export default async function getDatasBorders() {
   let datas = [];
 
+  // get all countries
   let countries = await getCountries();
 
+  // get countries that have more than 2 borders
   let countriesInGame = [...countries.filter((c) => c.borders?.length > 2)];
 
-  countriesInGame = getRandom(countriesInGame, 10);
+  //take 50 countries
+  countriesInGame = getRandom(countriesInGame, 50);
 
   countriesInGame.forEach((co) => {
     datas.push(getPath(co, countries));
+  });
+
+  // only take the good ones (not one travel)
+  datas = datas.filter((d) => !d.oneTravel);
+
+  // take 10
+  datas = getRandom(datas, 10);
+
+  datas.forEach((d) => {
+    if (d.start.borders.includes(d.end.cca3)) console.log("one travel");
   });
 
   return datas;
 }
 
 function getPath(country, countries) {
-  console.log("path");
+  let duplicateCountries = [...countries];
+  let path = {
+    start: country,
+    path: [],
+  };
+
   // add borderNames to array
   let bNames = [];
   country.borders.forEach((b) => {
@@ -26,58 +44,31 @@ function getPath(country, countries) {
   });
   country.borderNames = bNames;
 
-  let path = {
-    start: country,
-    path: [],
-  };
-
-  let i = 0;
-  // the algo make 4 turn
-  while (i < 4) {
-    // get border of countries
-    let borders = country.borders.map((b) =>
-      countries.find((c) => c.cca3 == b)
+  for (let i = 0; i < 4; i++) {
+    // delete actual country from duplicate array to avoid loop
+    duplicateCountries = duplicateCountries.filter(
+      (d) => d.cca3 != country.cca3
     );
 
-    // verify that the new country has not already been add in path
-    path.path.length > 0 &&
-      path.path.forEach((p) => {
-        const index = borders.indexOf(borders.find((b) => b.cca3 == p.cca3));
-        if (index > -1) {
-          borders.splice(index, 1);
-        }
-      });
+    // select borders that have more than 2 borders
+    let borders = [];
+    country.borders.forEach((b) => {
+      let border = duplicateCountries.find((d) => d.cca3 === b);
+      if (border?.borders.length >= 2) borders.push(border);
+    });
 
-    // set new country from border
-    country = borders.find(
-      (b) =>
-        b.borders.length === Math.max(...borders.map((o) => o.borders.length))
-    );
+    let newCountry = borders[Math.floor(Math.random() * borders.length)];
 
-    if (i === 3) {
-      if (
-        country?.cca3 === path.start?.cca3 ||
-        path.start?.borders.includes(country?.cca3)
-      ) {
-        country = borders.find(
-          (b) =>
-            b.borders.length !=
-              Math.max(...borders.map((o) => o.borders.length)) &&
-            b.cca3 != path.start.cca3
-        );
-
-        i++;
-      } else {
-        path.path.push(country);
-        i++;
-      }
-    } else {
-      path.path.push(country);
-      i++;
+    if (!newCountry) {
+      break;
     }
+    country = newCountry;
+    path.path.push(country);
   }
 
   path.end = country;
+
+  if (path.start.borders.includes(path.end.cca3)) path.oneTravel = true;
 
   return path;
 }
