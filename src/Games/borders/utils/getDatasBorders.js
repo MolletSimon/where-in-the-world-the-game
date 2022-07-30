@@ -18,6 +18,7 @@ export default async function getDatasBorders() {
 }
 
 function getPath(country, countries) {
+  console.log("path");
   // add borderNames to array
   let bNames = [];
   country.borders.forEach((b) => {
@@ -53,8 +54,27 @@ function getPath(country, countries) {
         b.borders.length === Math.max(...borders.map((o) => o.borders.length))
     );
 
-    path.path.push(country);
-    i++;
+    if (i === 3) {
+      if (
+        country?.cca3 === path.start?.cca3 ||
+        path.start?.borders.includes(country?.cca3)
+      ) {
+        country = borders.find(
+          (b) =>
+            b.borders.length !=
+              Math.max(...borders.map((o) => o.borders.length)) &&
+            b.cca3 != path.start.cca3
+        );
+
+        i++;
+      } else {
+        path.path.push(country);
+        i++;
+      }
+    } else {
+      path.path.push(country);
+      i++;
+    }
   }
 
   path.end = country;
