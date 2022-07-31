@@ -45,7 +45,6 @@ export default function InvestigationGame({
 
   const finish = (_score) => {
     setXpWon((state) => {
-      console.log(_score);
       state = _score * (difficulty * 2);
       updateLevel(state);
       const game = {
