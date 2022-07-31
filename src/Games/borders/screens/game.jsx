@@ -21,21 +21,22 @@ import Subtitle from "../../../components/Utils/Subtitle";
 import { Timer } from "../../common/components/game/Timer";
 import { Round } from "../../common/components/game/Round";
 import { useInterval } from "../../../utils/hooks/useInterval";
+import { updateLevel } from "../../../services/levels/updateLevel";
+import { serverTimestamp } from "firebase/firestore";
+import { saveGame } from "../../../services/user/saveGame";
 
-export default function BorderGame() {
+export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
   const [paths, setPaths] = useState([]);
   const [loading, setLoading] = useState(true);
   const [countries, setCountries] = useState([]);
   const [numberTurn, setNumberTurn] = useState(0);
   const [roundFinished, setRoundFinished] = useState(false);
   const [goodAnswer, setGoodAnswer] = useState(false);
-  const score = [];
   const [secondsLeft, setSecondsLeft] = useState(45);
   const [secondsRound, setSecondsRound] = useState(45);
   const [currentCountry, setCurrentCountry] = useState({});
   const [round, setRound] = useState(0);
   const mapChildRef = useRef();
-  const triggerRef = useRef();
 
   useEffect(() => {
     getDatasBorders().then((data) => {
@@ -67,18 +68,16 @@ export default function BorderGame() {
   }, 1000);
 
   const next = () => {
-    score.push({
-      round: round + 1,
-      tries: numberTurn,
-      score: 20 - numberTurn,
-      time: 45 - secondsLeft,
-    });
     setRound((state) => {
-      state = round + 1;
-      let newCountry = paths[state]?.start;
-      setCurrentCountry(newCountry);
-      mapChildRef.current.flyTo(newCountry.latlng[0], newCountry.latlng[1]);
-      return state;
+      if (state === 9) {
+        finishGame();
+      } else {
+        state = round + 1;
+        let newCountry = paths[state]?.start;
+        setCurrentCountry(newCountry);
+        mapChildRef.current.flyTo(newCountry.latlng[0], newCountry.latlng[1]);
+        return state;
+      }
     });
     setNumberTurn(0);
     setSecondsLeft(45);
@@ -94,16 +93,35 @@ export default function BorderGame() {
 
     if (newCountry.cca3 == paths[round].end.cca3) {
       setGoodAnswer(true);
+      setScore(score + (20 - numberTurn));
       setSecondsRound(45 - secondsLeft);
       setRoundFinished(true);
       finish();
     }
 
-    if (numberTurn >= 20) {
+    if (numberTurn >= 19) {
       setGoodAnswer(false);
       setRoundFinished(true);
       finish();
     }
+  };
+
+  const finishGame = () => {
+    setXpWon((state) => {
+      state = score;
+      updateLevel(state);
+      const game = {
+        game: "Borders",
+        score: score,
+        difficulty: 1,
+        time: "No Time",
+        xpWon: state,
+        date: serverTimestamp(),
+      };
+      saveGame(game);
+      return state;
+    });
+    setFinished(true);
   };
 
   const finish = () => {
@@ -116,7 +134,7 @@ export default function BorderGame() {
         <Loader />
       ) : (
         <div className="overflow-x-hidden">
-          <div className="flex w-full justify-evenly m-6">
+          <div className="flex w-full justify-evenly mt-4">
             <div className="flex justify-center align-center border-2 rounded-md p-4">
               <h1>START :</h1>
               <img
@@ -148,6 +166,7 @@ export default function BorderGame() {
               <p>{paths[round]?.end?.name.common}</p>
             </div>
           </div>
+
           <Popup
             closeOnDocumentClick={false}
             trigger={<button id="trigger-button"></button>}
@@ -198,7 +217,7 @@ export default function BorderGame() {
               dragging={false}
               scrollWheelZoom={false}
               zoomControl={false}
-              style={{ height: "60vh", width: "70%" }}
+              style={{ height: "55vh", width: "70%" }}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -208,6 +227,9 @@ export default function BorderGame() {
               <MapChild ref={mapChildRef} />
             </MapContainer>
             <Round round={round} numberRound={10} />
+          </div>
+          <div className="flex w-full justify-center">
+            <Subtitle text={`Number of travel : ${numberTurn}`} />
           </div>
           {countries.length > 0 && currentCountry && (
             <div className="flex justify-center m-6">
@@ -222,7 +244,6 @@ export default function BorderGame() {
               ))}
             </div>
           )}
-          <h2>Nombre d'essais : {numberTurn}</h2>
         </div>
       )}
     </div>
