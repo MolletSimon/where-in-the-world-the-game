@@ -89,6 +89,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
     setNumberTurn(numberTurn + 1);
     newCountry = addBorderNames(newCountry, countries);
     setCurrentCountry(newCountry);
+    console.log(newCountry);
     mapChildRef.current.flyTo(newCountry.latlng[0], newCountry.latlng[1]);
 
     if (newCountry.cca3 == paths[round].end.cca3) {
@@ -214,6 +215,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
             <MapContainer
               center={[paths[0].start.latlng[0], paths[0].start.latlng[1]]}
               zoom={7}
+              maxZoom={7}
               dragging={false}
               scrollWheelZoom={false}
               zoomControl={false}
@@ -254,7 +256,7 @@ const MapChild = forwardRef((props, ref) => {
   const map = useMap();
   useImperativeHandle(ref, () => ({
     flyTo(lat, lng) {
-      map.flyTo([lat, lng]);
+      map.flyTo([lat, lng], 7, { duration: 0.5 });
     },
   }));
 });
