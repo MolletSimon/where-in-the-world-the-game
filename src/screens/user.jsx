@@ -43,12 +43,10 @@ export default function User({ auth }) {
   return (
     <div className="flex flex-col items-center">
       <Title text="Last games" />
-      <GamesSaved games={games}></GamesSaved>
       {user && level && (
         <div className="flex mt-20 justify-center items-center mr-8 md:flex-col w-4/5">
           <p className="mb-6 text-end flex">
-            <span className="font-semibold">{user.displayName}</span>
-            <span className="font-normal"> - Level {level.level}</span>
+            <span className="font-normal">Level {level.level}</span>
           </p>
           <ProgressBar
             completed={(level.xp / level.xpToNextLevel) * 100}
@@ -60,21 +58,22 @@ export default function User({ auth }) {
           <p className="italic text-primary font-normal text-xs mt-6">
             {Math.floor(level.xpToNextLevel - level.xp)}xp until next level
           </p>
-          <div className="mt-10 w-full justify-end items-center flex ">
-            <div className="p-4 border-2 rounded-2xl w-auto flex items-center">
-              <p className="italic font-regular mr-4">Rank: </p>
-              <h2 className="font-bold text-3xl first-letter:uppercase">
-                {level.rank} -{" "}
-              </h2>
-              <img
-                src={`icons/Ranks/${level.rank}.png`}
-                alt={level.rank}
-                width={100}
-              />
-            </div>
-          </div>
         </div>
       )}
+      <GamesSaved games={games}></GamesSaved>
+      <div className="mt-10 w-full justify-end items-center flex ">
+        <div className="p-4 border-2 rounded-2xl w-auto flex items-center">
+          <p className="italic font-regular mr-4">Rank: </p>
+          <h2 className="font-bold text-3xl first-letter:uppercase">
+            {level.rank} -{" "}
+          </h2>
+          <img
+            src={`icons/Ranks/${level.rank}.png`}
+            alt={level.rank}
+            width={100}
+          />
+        </div>
+      </div>
     </div>
   );
 }

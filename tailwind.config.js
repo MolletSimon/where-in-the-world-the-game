@@ -7,7 +7,7 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
-        'paper': "url('../public/images/paper.png')"
+        paper: "url('../public/images/paper.png')",
       },
       colors: {
         primary: "#0E94D7",
@@ -21,6 +21,8 @@ module.exports = {
         lightGray: "#F2F4F8",
         validGreen: "#3AB795",
         wrongRed: "#A40606",
+        mandarin: "#EF8354",
+        pink: "#EE4B6A",
       },
     },
   },
