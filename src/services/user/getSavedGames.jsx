@@ -16,8 +16,7 @@ export async function getSavedGames(uid) {
   const q = query(
     collection(db, "games"),
     where("userId", "==", uid),
-    orderBy("date", "desc"),
-    limit(5)
+    orderBy("date", "desc")
   );
   return await getDocs(q);
 }
