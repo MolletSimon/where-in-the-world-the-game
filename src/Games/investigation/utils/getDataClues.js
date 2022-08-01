@@ -9,18 +9,18 @@ export default function getDataClues(
 
   const firstClue = {
     image:
-      (difficulty == 1 && "population") ||
-      (difficulty == 2 && "currency") ||
+      (difficulty == 1 && "currency") ||
+      (difficulty == 2 && "population") ||
       (difficulty == 3 && "borders"),
     text:
-      (difficulty == 1 && commafy(country.population)) ||
-      (difficulty == 2 &&
+      (difficulty == 1 &&
         Object.values(country.currencies).map((c, i) => (
           <span key={i}>
             {i > 0 && ", "}
             {c.name}
           </span>
         ))) ||
+      (difficulty == 2 && commafy(country.population)) ||
       (difficulty == 3 &&
         Object.values(country.bordersName).map((c, i) => (
           <span key={i}>

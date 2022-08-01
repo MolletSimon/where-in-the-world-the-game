@@ -20,7 +20,7 @@ export function GamesSaved(props) {
                 src={getImageAndColorOfGame(game).image}
                 width={35}
                 alt="game"
-                className="self-start"
+                className="self-start ml-10"
               />
               <p className="text-center font-bold italic">{game.game}</p>
               <p className="text-center">
