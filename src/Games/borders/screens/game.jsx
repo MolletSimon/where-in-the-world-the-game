@@ -137,31 +137,31 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
         <div className="overflow-x-hidden">
           <div className="flex w-full justify-evenly mt-4">
             <div className="flex justify-center align-center border-2 rounded-md p-4">
-              <h1>START :</h1>
+              <h1 className="lg:block hidden">START :</h1>
               <img
                 src={paths[round]?.start.flags.png}
                 width={30}
                 alt="flag-start"
-                className="mr-4 ml-4"
+                className="mr-4 ml-4 sm:block hidden"
               />
               <p>{paths[round]?.start.name.common}</p>
             </div>
             <div className="flex justify-center align-center border-2 rounded-md p-4">
-              <h1>CURRENT :</h1>
+              <h1 className="lg:block hidden">CURRENT :</h1>
               <img
                 src={currentCountry?.flags.png}
-                className="mr-4 ml-4"
+                className="mr-4 ml-4 sm:block hidden"
                 width={30}
                 alt="flag-current"
               />
               <p>{currentCountry?.name.common}</p>
             </div>
             <div className="flex justify-center align-center border-2 rounded-md p-4">
-              <h1>TARGET :</h1>
+              <h1 className="lg:block hidden">TARGET :</h1>
               <img
                 src={paths[round]?.end?.flags.png}
                 width={30}
-                className="mr-4 ml-4"
+                className="mr-4 ml-4 sm:block hidden"
                 alt="flag-end"
               />
               <p>{paths[round]?.end?.name.common}</p>
@@ -177,7 +177,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
               background: "rgba(0,0,0,0.5)",
             }}
             contentStyle={{
-              padding: "30px 200px 30px 200px",
+              padding: "30px 50px 30px 50px",
               borderRadius: "20px",
               background: "white",
             }}
@@ -187,6 +187,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
                 <Title
                   text={goodAnswer ? "Congratulations ! 😍" : "Ow no 😭"}
                 />
+
                 <Subtitle
                   text={
                     goodAnswer
@@ -209,7 +210,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
             )}
           </Popup>
           <div className="flex justify-around items-center">
-            <div className="p-4 rounded-full border-4 border-primary h-24 w-24 flex justify-center items-center">
+            <div className="p-4 rounded-full border-4 border-primary h-24 w-24 hidden xl:flex justify-center items-center">
               <h1 className="text-2xl font-bold text-primary">{secondsLeft}</h1>
             </div>
             <MapContainer
@@ -234,7 +235,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
             <Subtitle text={`Number of travel : ${numberTurn}`} />
           </div>
           {countries.length > 0 && currentCountry && (
-            <div className="flex justify-center m-6">
+            <div className="flex justify-center m-6 w-full flex-wrap">
               {currentCountry.borderNames?.map((b, index) => (
                 <div
                   key={index}

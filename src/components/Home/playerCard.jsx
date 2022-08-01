@@ -9,12 +9,12 @@ export function PlayerCard({ user, level }) {
           <img
             src={user.photoURL ? user.photoURL : "images/avatar.png"}
             alt="avatar"
-            className="rounded-full mr-8"
+            className="rounded-full lg:mr-8"
             width="50"
             referrerPolicy="no-referrer"
           />
 
-          <div className="flex justify-center items-center mr-8 md:flex-col">
+          <div className="lg:flex hidden justify-center items-center mr-8 md:flex-col">
             <p className=" text-end">
               <span className="font-semibold">{user.displayName}</span>
               <span className="font-normal"> - Level {level.level}</span>
@@ -32,6 +32,7 @@ export function PlayerCard({ user, level }) {
           </div>
           <img
             src={`icons/Ranks/${level.rank}.png`}
+            className="lg:block hidden"
             alt={level.rank}
             width={40}
             title={level.rank}
