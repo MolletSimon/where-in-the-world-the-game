@@ -141,7 +141,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
               <img
                 src={paths[round]?.start.flags.png}
                 width={30}
-                alt=""
+                alt="flag-start"
                 className="mr-4 ml-4"
               />
               <p>{paths[round]?.start.name.common}</p>
@@ -152,7 +152,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
                 src={currentCountry?.flags.png}
                 className="mr-4 ml-4"
                 width={30}
-                alt=""
+                alt="flag-current"
               />
               <p>{currentCountry?.name.common}</p>
             </div>
@@ -162,7 +162,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
                 src={paths[round]?.end?.flags.png}
                 width={30}
                 className="mr-4 ml-4"
-                alt=""
+                alt="flag-end"
               />
               <p>{paths[round]?.end?.name.common}</p>
             </div>
