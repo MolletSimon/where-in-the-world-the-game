@@ -14,12 +14,28 @@ _The application has an all system of authentification with possibility to sign 
 ![Login](https://user-images.githubusercontent.com/43732526/180105368-937a43f3-50ab-4c48-8328-519ce1ee3d99.png)
 
 - **Possibility to choose between 4 games**
-![home](https://user-images.githubusercontent.com/43732526/180105377-a9e044f2-a0d1-4dc4-ada6-7024d94b423c.png)
+![home](https://user-images.githubusercontent.com/43732526/182243953-826d5a5a-ed97-4742-b8fa-1a634fc4a84f.png)
 
 - **Flag game**
 ![selectdifficulty](https://user-images.githubusercontent.com/43732526/180105369-0782272a-a890-4ce4-b5e1-58bf9935c7ca.png)
-![gameflag](https://user-images.githubusercontent.com/43732526/180105375-ab4f0680-317c-4145-b7b9-6b08cc90bdb2.png)
+![gameflag](https://user-images.githubusercontent.com/43732526/182243983-a1f9c4d3-0826-46e5-ae6f-ba18addd749b.png)
 ![endgame](https://user-images.githubusercontent.com/43732526/180105372-f5553616-2316-4165-b84f-3b501400af48.png)
+
+- **Investigation game** : Guess a country from 4 clues
+![InvestigationGame](https://user-images.githubusercontent.com/43732526/182244049-478892cc-4913-4d4e-b907-bde4b0020b69.png)
+
+- **Border games** : You have to find the path between 2 countries
+![BorderGames](https://user-images.githubusercontent.com/43732526/182244122-b51a3ad3-031c-4e90-84c1-94a16cf2be89.png)
+
+- **Population game** : Guess the country with highest population
+![PopulationGame](https://user-images.githubusercontent.com/43732526/182244222-7841f1d4-1813-4bbb-a830-4363a6b84f86.png)
+
+- **The possibility to see your last games**
+![user](https://user-images.githubusercontent.com/43732526/182244474-4506e598-d0a9-47bb-9f91-9c680e87b3df.png)
+
+- **Rank system**
+The more you play, the more you win xp and rank up
+![rank](https://user-images.githubusercontent.com/43732526/182244509-17a5dea6-1066-412b-b46f-e952493116c0.png)
 
 ## My process
 
@@ -27,7 +43,7 @@ _The application has an all system of authentification with possibility to sign 
 - [Figma](https://www.figma.com/) - I made the sketch from scratch with figma
 - [React](https://reactjs.org/) - JS library
 - [ReactRouter](https://reactrouter.com/docs/en/v6/getting-started/overview) - For routing
-- [Firebase](https://firebase.google.com) - For authentication and db
+- [Firebase](https://firebase.google.com) - For authentication, db, hosting
 - [TailwindCSS](https://tailwindcss.com/) - CSS Framework
 - [FlatIcons](https://www.flaticon.com/) - For Icons
 
