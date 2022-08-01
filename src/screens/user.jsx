@@ -44,7 +44,7 @@ export default function User({ auth }) {
     <div className="flex flex-col items-center">
       <Title text="Last games" />
       {user && level && (
-        <div className="flex mt-20 justify-center items-center mr-8 md:flex-col w-4/5">
+        <div className="flex mt-4 lg:mt-20 justify-center items-center lg:mr-8 flex-col w-4/5">
           <p className="mb-6 text-end flex">
             <span className="font-normal">Level {level.level}</span>
           </p>

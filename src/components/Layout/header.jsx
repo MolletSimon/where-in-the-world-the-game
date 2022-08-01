@@ -38,7 +38,7 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
           icon="logout"
           darkMode={darkMode}
         />
-        <div className="hidden lg:block">
+        <div className="">
           <PlayerCard user={user} level={level} />
         </div>
         {/* <div className="flex flex-col group">

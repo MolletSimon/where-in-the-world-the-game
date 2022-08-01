@@ -9,7 +9,7 @@ export default function SelectGame() {
         <Title margin="2" text="Select the game !" />
       </RubberBand>
       <div
-        className="mt-2 w-full h-full sm:w-4/5 xl:w-3/5 border-2 rounded-3xl 
+        className="mt-2 w-full h-full sm:w-4/5 xl:w-3/5 border-2 rounded-lg lg:rounded-3xl
       md:h-96 grid grid-rows-4 md:grid-cols-2 md:grid-rows-2 items-center"
       >
         <SelectGameCard

@@ -1,7 +1,7 @@
 export function GamesSaved(props) {
   return (
     <div className="w-full flex justify-center flex-col">
-      <div className="self-center w-2/3">
+      <div className="hidden md:block self-center w-2/3">
         <h3 className="text-end italic">
           Number of games played : {props.games.length}
         </h3>
@@ -12,7 +12,7 @@ export function GamesSaved(props) {
           props.games.map((game, index) => (
             <div
               key={index}
-              className={` rounded-md p-4 w-4/5 mt-6 grid grid-cols-5 grid-rows-1 items-center justify-items-cente bg-opacity-10 ${
+              className={` rounded-md p-4 w-4/5 mt-6 grid grid-cols-4 md:grid-cols-5 grid-rows-1 items-center justify-items-cente bg-opacity-10 ${
                 getImageAndColorOfGame(game).color
               }`}
             >
@@ -20,9 +20,11 @@ export function GamesSaved(props) {
                 src={getImageAndColorOfGame(game).image}
                 width={35}
                 alt="game"
-                className="self-start ml-10"
+                className="self-start md:ml-10"
               />
-              <p className="text-center font-bold italic">{game.game}</p>
+              <p className="text-center font-bold italic md:block hidden">
+                {game.game}
+              </p>
               <p className="text-center">
                 {game.score}
                 <span>{game.game != "Borders" ? "/10" : " pts"}</span>
