@@ -7,7 +7,7 @@ export default function FormInput({
   borderColor,
 }) {
   return (
-    <div className="mb-8 w-full">
+    <div className="mb-6 w-full">
       <label htmlFor={name} className={`self-start text-lg font-semibold mb-2`}>
         {label}
       </label>

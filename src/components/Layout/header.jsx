@@ -33,11 +33,7 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
           darkMode={darkMode}
         />
 
-        <ClickableIcon
-          switchDarkMode={logout}
-          icon="logout"
-          darkMode={darkMode}
-        />
+        <ClickableIcon method={logout} icon="logout" darkMode={darkMode} />
         <div className="">
           <PlayerCard user={user} level={level} />
         </div>

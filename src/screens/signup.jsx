@@ -20,7 +20,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 export default function SignUp({ auth }) {
   //form
   const [email, setEmail] = useState("");
+  const [emailValid, setEmailValid] = useState(false);
   const [password, setPassword] = useState("");
+  const [passwordValid, setPasswordValid] = useState(false);
   const [username, setUsername] = useState("");
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [passwordConfirmed, setPasswordConfirmed] = useState(false);
@@ -38,6 +40,30 @@ export default function SignUp({ auth }) {
     else setPasswordConfirmed(true);
   };
 
+  const checkPasswordValid = (_password) => {
+    setPassword(_password);
+    if (_password.length >= 8) {
+      setPasswordValid(true);
+    } else {
+      setPasswordValid(false);
+    }
+  };
+
+  const validateEmail = (_email) => {
+    setEmail(_email);
+    if (
+      String(_email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      setEmailValid(true);
+    } else {
+      setEmailValid(false);
+    }
+  };
+
   useEffect(() => {
     if (user) {
       updateProfile({ displayName: username });
@@ -47,7 +73,7 @@ export default function SignUp({ auth }) {
   useEffect(() => {
     if (error) {
       toast.error(
-        "Ow no 😔 it seems that we had trouble to create your account, try again !"
+        `Ow no 😔 it seems that we had trouble to create your account, try again ! Reason : ${error.message}`
       );
     }
   }, [error]);
@@ -66,14 +92,15 @@ export default function SignUp({ auth }) {
         <Title text="Welcome !" />
         <div className="m-20">
           <FormInput
-            label="Email"
+            label="Email*"
             type="mail"
             name="Email"
             placeholder="Enter your email"
-            setValue={setEmail}
+            borderColor={!emailValid && email ? `red` : "#e5e7eb"}
+            setValue={(e) => validateEmail(e)}
           />
           <FormInput
-            label="Username"
+            label="Username*"
             type="text"
             name="username"
             placeholder="Enter a username"
@@ -84,8 +111,14 @@ export default function SignUp({ auth }) {
             type="password"
             name="Password"
             placeholder="*****"
-            setValue={setPassword}
+            borderColor={!passwordValid && password ? `red` : "#e5e7eb"}
+            setValue={(e) => checkPasswordValid(e)}
           />
+          {!passwordValid && password && (
+            <p className="text-rose-600 mt-0">
+              password must contain at least 8 characters
+            </p>
+          )}
           <FormInput
             label="Confirm your password"
             type="password"
@@ -95,7 +128,7 @@ export default function SignUp({ auth }) {
             setValue={(e) => verifyPassword(e)}
           />
           {!passwordConfirmed && password ? (
-            <p className="text-rose-600">Password must be equals !</p>
+            <p className="text-rose-600 mt-0">Password must be equals !</p>
           ) : (
             <></>
           )}
@@ -109,7 +142,14 @@ export default function SignUp({ auth }) {
           <Button
             background="#0E94D7"
             color="white"
-            disabled={!termsAccepted || !passwordConfirmed}
+            disabled={
+              !termsAccepted ||
+              !passwordConfirmed ||
+              !passwordValid ||
+              !emailValid ||
+              email.length == 0 ||
+              username.length == 0
+            }
             text="Sign up"
             method={() => createUserWithEmailAndPassword(email, password)}
           ></Button>

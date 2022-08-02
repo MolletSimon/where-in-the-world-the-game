@@ -27,7 +27,7 @@ export default function SelectGame() {
         <SelectGameCard
           icon="people"
           border="border-0 border-b-2 md:border-b-0 md:border-r-2"
-          text="Guess which of the two countries has the largest population"
+          text="Guess which of the countries has the largest population"
           game="population"
         ></SelectGameCard>
         <SelectGameCard
