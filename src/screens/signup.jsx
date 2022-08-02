@@ -115,7 +115,7 @@ export default function SignUp({ auth }) {
             setValue={(e) => checkPasswordValid(e)}
           />
           {!passwordValid && password && (
-            <p className="text-rose-600 mt-0">
+            <p className="text-rose-600 mt-0 mb-6">
               password must contain at least 8 characters
             </p>
           )}
@@ -128,7 +128,7 @@ export default function SignUp({ auth }) {
             setValue={(e) => verifyPassword(e)}
           />
           {!passwordConfirmed && password ? (
-            <p className="text-rose-600 mt-0">Password must be equals !</p>
+            <p className="text-rose-600 mt-0 mb-6">Password must be equals !</p>
           ) : (
             <></>
           )}
