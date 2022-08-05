@@ -67,18 +67,24 @@ export default function InvestigationGame({
   }, 1000);
 
   const next = () => {
-    setAnswered(false);
-    if (round < numberRound - 1) setRound(round + 1);
-    else finish(score);
+    if (!answered) {
+      toast.error("Please select an answer ! 😬");
+    } else {
+      setAnswered(false);
+      if (round < numberRound - 1) setRound(round + 1);
+      else finish(score);
+    }
   };
 
   const submit = (answer) => {
-    setAnswered(true);
-    if (answer.right) {
-      setScore(score + 1);
-      toast.success("Good answer ! 😍");
-    } else {
-      toast.error("Wrong answer 😢");
+    if (!answered) {
+      setAnswered(true);
+      if (answer.right) {
+        setScore(score + 1);
+        toast.success("Good answer ! 😍");
+      } else {
+        toast.error("Wrong answer 😢");
+      }
     }
   };
 
