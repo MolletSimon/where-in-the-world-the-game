@@ -87,75 +87,79 @@ export default function SignUp({ auth }) {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 min-w-full min-h-screen">
-      <div className="mt-12 lg:mt-0">
-        <Title text="Welcome !" />
-        <div className="m-10 lg:m-20">
-          <FormInput
-            label="Email*"
-            type="mail"
-            name="Email"
-            placeholder="Enter your email"
-            borderColor={!emailValid && email ? `red` : "#e5e7eb"}
-            setValue={(e) => validateEmail(e)}
-          />
-          <FormInput
-            label="Username*"
-            type="text"
-            name="username"
-            placeholder="Enter a username"
-            setValue={setUsername}
-          />
-          <FormInput
-            label="Password"
-            type="password"
-            name="Password"
-            placeholder="*****"
-            borderColor={!passwordValid && password ? `red` : "#e5e7eb"}
-            setValue={(e) => checkPasswordValid(e)}
-          />
-          {!passwordValid && password && (
-            <p className="text-rose-600 mt-0 mb-6">
-              password must contain at least 8 characters
-            </p>
-          )}
-          <FormInput
-            label="Confirm your password"
-            type="password"
-            name="ConfirmPassword"
-            placeholder="*****"
-            borderColor={!passwordConfirmed && password ? `red` : "#e5e7eb"}
-            setValue={(e) => verifyPassword(e)}
-          />
-          {!passwordConfirmed && password ? (
-            <p className="text-rose-600 mt-0 mb-6">Password must be equals !</p>
-          ) : (
-            <></>
-          )}
+    <div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-w-full min-h-screen">
+        <div className="flex items-center flex-col justify-center">
+          <Title text="Welcome !" />
+          <div className="p-10 lg:p-20 w-full">
+            <FormInput
+              label="Email*"
+              type="mail"
+              name="Email"
+              placeholder="Enter your email"
+              borderColor={!emailValid && email ? `red` : "#e5e7eb"}
+              setValue={(e) => validateEmail(e)}
+            />
+            <FormInput
+              label="Username*"
+              type="text"
+              name="username"
+              placeholder="Enter a username"
+              setValue={setUsername}
+            />
+            <FormInput
+              label="Password"
+              type="password"
+              name="Password"
+              placeholder="*****"
+              borderColor={!passwordValid && password ? `red` : "#e5e7eb"}
+              setValue={(e) => checkPasswordValid(e)}
+            />
+            {!passwordValid && password && (
+              <p className="text-rose-600 mt-0 mb-6">
+                password must contain at least 8 characters
+              </p>
+            )}
+            <FormInput
+              label="Confirm your password"
+              type="password"
+              name="ConfirmPassword"
+              placeholder="*****"
+              borderColor={!passwordConfirmed && password ? `red` : "#e5e7eb"}
+              setValue={(e) => verifyPassword(e)}
+            />
+            {!passwordConfirmed && password ? (
+              <p className="text-rose-600 mt-0 mb-6">
+                Password must be equals !
+              </p>
+            ) : (
+              <></>
+            )}
 
-          <Terms
-            termsAccepted={termsAccepted}
-            setTermsAccepted={setTermsAccepted}
-            navigate={navigate}
-          ></Terms>
+            <Terms
+              termsAccepted={termsAccepted}
+              setTermsAccepted={setTermsAccepted}
+              navigate={navigate}
+            ></Terms>
 
-          <Button
-            background="#0E94D7"
-            color="white"
-            disabled={
-              !termsAccepted ||
-              !passwordConfirmed ||
-              !passwordValid ||
-              !emailValid ||
-              email.length == 0 ||
-              username.length == 0
-            }
-            text="Sign up"
-            method={() => createUserWithEmailAndPassword(email, password)}
-          ></Button>
+            <Button
+              background="#0E94D7"
+              color="white"
+              disabled={
+                !termsAccepted ||
+                !passwordConfirmed ||
+                !passwordValid ||
+                !emailValid ||
+                email.length == 0 ||
+                username.length == 0
+              }
+              text="Sign up"
+              method={() => createUserWithEmailAndPassword(email, password)}
+            ></Button>
+          </div>
         </div>
+        <EarthPanel />
       </div>
-      <EarthPanel />
       <ToastContainer
         position="top-right"
         autoClose={4000}
