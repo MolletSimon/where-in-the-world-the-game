@@ -24,7 +24,7 @@ export default function Login({ auth }) {
   }, [currentLoading, currentUser]);
 
   return (
-    <div className="min-h-screen min-w-full grid grid-cols-2">
+    <div className="min-h-screen min-w-full grid grid-cols-1 lg:grid-cols-2">
       <EarthPanel></EarthPanel>
       <SignInPanel auth={auth}></SignInPanel>
     </div>

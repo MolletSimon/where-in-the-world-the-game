@@ -87,10 +87,10 @@ export default function SignUp({ auth }) {
   }
 
   return (
-    <div className="grid grid-cols-2 min-w-full min-h-screen">
-      <div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 min-w-full min-h-screen">
+      <div className="mt-12 lg:mt-0">
         <Title text="Welcome !" />
-        <div className="m-20">
+        <div className="m-10 lg:m-20">
           <FormInput
             label="Email*"
             type="mail"
