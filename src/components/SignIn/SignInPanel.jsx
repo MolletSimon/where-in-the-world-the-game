@@ -48,11 +48,11 @@ export default function SignInPanel({ auth }) {
   }
 
   return (
-    <div className="m-5 flex flex-col justify-center">
+    <div className="xl:m-5 flex flex-col justify-center">
       <Title text="Hello there !" />
       <Subtitle text="Please enter your details" />
 
-      <form className="flex flex-col mt-10 ml-28 mr-28 justify-center items-center">
+      <form className="flex flex-col mt-10 xl:ml-28 xl:mr-28 ml-10 mr-10 justify-center items-center">
         <FormInput
           label="Email"
           name="Email"
