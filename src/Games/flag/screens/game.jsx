@@ -109,6 +109,7 @@ export default function FlagGame({
   useEffect(() => {
     getCountries()
       .then((data) => {
+        console.log(data);
         initGame(data);
         setLoading(false);
       })
@@ -121,46 +122,48 @@ export default function FlagGame({
   }, 1000);
 
   return (
-    <div className="max-h-[95%]">
-      {loading ? (
-        <Loader label="The game is loading.." />
-      ) : (
-        <div>
-          {countriesInGame.length > 0 && (
-            <div className="flex justify-center flex-col items-center mt-16">
-              <Question
-                secondsLeft={secondsLeft}
-                seconds={seconds}
-                countriesInGame={countriesInGame}
-                numberRound={numberRound}
-                round={round}
-              />
-
-              <Answers
-                countriesInGame={countriesInGame}
-                round={round}
-                select={select}
-                selected={selected}
-                submitted={submitted}
-              />
-              <div className="w-1/3 flex">
-                <Button
-                  background="#0E94D7"
-                  color="white"
-                  method={submitted ? next : submit}
-                  text={submitted ? "Next" : "Submit"}
+    <div className="min-h-[100vh] dark:bg-darkBackground">
+      <div className="max-h-[95%]">
+        {loading ? (
+          <Loader label="The game is loading.." />
+        ) : (
+          <div>
+            {countriesInGame.length > 0 && (
+              <div className="flex justify-center flex-col items-center pt-16">
+                <Question
+                  secondsLeft={secondsLeft}
+                  seconds={seconds}
+                  countriesInGame={countriesInGame}
+                  numberRound={numberRound}
+                  round={round}
                 />
+
+                <Answers
+                  countriesInGame={countriesInGame}
+                  round={round}
+                  select={select}
+                  selected={selected}
+                  submitted={submitted}
+                />
+                <div className="w-1/3 flex">
+                  <Button
+                    background="#0E94D7"
+                    color="white"
+                    method={submitted ? next : submit}
+                    text={submitted ? "Next" : "Submit"}
+                  />
+                </div>
+                <div className="xl:hidden mt-6 w-full flex justify-center items-center">
+                  <p className="font-bold text-2xl text-primary dark:text-cyan-800">
+                    {round + 1}/{numberRound}
+                  </p>
+                </div>
               </div>
-              <div className="xl:hidden mt-6 w-full flex justify-center items-center">
-                <p className="font-bold text-2xl text-primary">
-                  {round + 1}/{numberRound}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-      <ToastContainerTopRight />
+            )}
+          </div>
+        )}
+        <ToastContainerTopRight />
+      </div>
     </div>
   );
 }

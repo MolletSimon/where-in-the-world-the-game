@@ -18,19 +18,25 @@ export default function SelectDifficultyScreen({
   };
 
   return (
-    <div className="w-full flex justify-center flex-col items-center min-h-[80vh]">
-      <TitleStartScreen alt={alt} image={`images/${image}.png`} title={title} />
-      <Pulse>
-        <Subtitle text={subtitle} />
-        <Subtitle text="Select the difficulty !" />
-      </Pulse>
+    <div className="min-h-[100vh] dark:bg-darkBackground">
+      <div className="w-full flex justify-center flex-col items-center min-h-[80vh]">
+        <TitleStartScreen
+          alt={alt}
+          image={`images/${image}.png`}
+          title={title}
+        />
+        <Pulse>
+          <Subtitle text={subtitle} />
+          <Subtitle text="Select the difficulty !" />
+        </Pulse>
 
-      <ButtonsDifficulty
-        easyText={props.easyText}
-        mediumText={props.mediumText}
-        hardText={props.hardText}
-        selectDifficulty={selectDifficulty}
-      />
+        <ButtonsDifficulty
+          easyText={props.easyText}
+          mediumText={props.mediumText}
+          hardText={props.hardText}
+          selectDifficulty={selectDifficulty}
+        />
+      </div>
     </div>
   );
 }

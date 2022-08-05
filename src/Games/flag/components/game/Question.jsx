@@ -38,7 +38,7 @@ function Flag({ countriesInGame, round }) {
   return (
     <div className="flex justify-center items-center">
       <img
-        className="rounded-lg mb-8 border-2"
+        className="rounded-lg mb-8 border-2 dark:border-darkInput"
         src={countriesInGame[round].flags.png}
         alt="flag"
         width={250}

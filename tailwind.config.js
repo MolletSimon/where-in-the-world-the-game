@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         paper: "url('../public/images/paper.png')",
+        darkPaper: "url('../public/images/darkPaper.png')",
       },
       colors: {
         primary: "#0E94D7",
