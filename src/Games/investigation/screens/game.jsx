@@ -89,7 +89,7 @@ export default function InvestigationGame({
   };
 
   return (
-    <>
+    <div className="min-h-[100vh] bg-lightBackground dark:bg-darkBackground">
       {loading && <Loader />}
       <div>
         <ToastContainerTopRight />
@@ -110,6 +110,6 @@ export default function InvestigationGame({
 
         <FooterInvestigation next={next} seconds={seconds} round={round} />
       </div>
-    </>
+    </div>
   );
 }

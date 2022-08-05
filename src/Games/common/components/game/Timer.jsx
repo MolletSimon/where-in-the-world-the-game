@@ -5,7 +5,7 @@ export function Timer({ seconds }) {
   return (
     <div
       className="hidden xl:flex justify-center items-center
-    text-primary font-bold text-lg w-20"
+    text-primary dark:text-white font-bold text-lg w-20"
     >
       <CountdownCircleTimer
         isPlaying

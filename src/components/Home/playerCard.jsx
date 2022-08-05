@@ -9,15 +9,20 @@ export function PlayerCard({ user, level }) {
           <img
             src={user.photoURL ? user.photoURL : "images/avatar.png"}
             alt="avatar"
-            className="rounded-full lg:mr-8"
+            className="rounded-full lg:mr-8 dark:shadow-white dark:shadow-sm"
             width="50"
             referrerPolicy="no-referrer"
           />
 
           <div className="lg:flex hidden justify-center items-center mr-8 md:flex-col">
             <p className=" text-end">
-              <span className="font-semibold">{user.displayName}</span>
-              <span className="font-normal"> - Level {level.level}</span>
+              <span className="font-semibold dark:text-lightBackground">
+                {user.displayName}
+              </span>
+              <span className="font-normal dark:text-lightBackground">
+                {" "}
+                - Level {level.level}
+              </span>
             </p>
             <ProgressBar
               completed={level.percentageLevel}
@@ -32,7 +37,7 @@ export function PlayerCard({ user, level }) {
           </div>
           <img
             src={`icons/Ranks/${level.rank}.png`}
-            className="lg:block hidden"
+            className="lg:block hidden "
             alt={level.rank}
             width={40}
             title={level.rank}

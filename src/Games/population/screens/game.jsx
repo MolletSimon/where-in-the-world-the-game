@@ -128,51 +128,53 @@ export default function PopulationGame({
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <ToastContainerTopRight />
+    <div className="min-h-[100vh] bg-lightBackground dark:bg-darkBackground">
+      <div className="flex flex-col justify-center items-center">
+        <ToastContainerTopRight />
 
-      {loading ? (
-        <Loader />
-      ) : (
-        <div className="min-h-[70vh] grid grid-cols-2 grid-rows-2 justify-center w-full">
-          {countriesInGame.length > 0 &&
-            countriesInGame[round].map((c, index) => (
-              <AnswerCardPopulation
-                key={index}
-                answered={answered}
-                submit={submit}
-                isTheRightAnswer={isTheRightAnswer}
-                c={c}
-                index={index}
-              ></AnswerCardPopulation>
-            ))}
-        </div>
-      )}
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="min-h-[70vh] grid grid-cols-2 grid-rows-2 justify-center w-full">
+            {countriesInGame.length > 0 &&
+              countriesInGame[round].map((c, index) => (
+                <AnswerCardPopulation
+                  key={index}
+                  answered={answered}
+                  submit={submit}
+                  isTheRightAnswer={isTheRightAnswer}
+                  c={c}
+                  index={index}
+                ></AnswerCardPopulation>
+              ))}
+          </div>
+        )}
 
-      <div className="mt-4 flex justify-evenly w-full items-center">
-        <Timer seconds={seconds} />
-        <ProgressBar
-          completed={secondsLeft}
-          maxCompleted={seconds}
-          className="w-[250px] md:w-3/5 xl:hidden"
-          bgColor="#0E94D7"
-          customLabel=" "
-          height="6px"
-        />
-        <div className="w-1/3">
-          <Button
-            background="#0E94D7"
-            color="white"
-            method={next}
-            text={"Next"}
+        <div className="mt-4 flex justify-evenly w-full items-center">
+          <Timer seconds={seconds} />
+          <ProgressBar
+            completed={secondsLeft}
+            maxCompleted={seconds}
+            className="w-[250px] md:w-3/5 xl:hidden"
+            bgColor="#0E94D7"
+            customLabel=" "
+            height="6px"
           />
+          <div className="w-1/3">
+            <Button
+              background="#0E94D7"
+              color="white"
+              method={next}
+              text={"Next"}
+            />
+          </div>
+          <Round round={round} numberRound={numberRound} />
         </div>
-        <Round round={round} numberRound={numberRound} />
-      </div>
-      <div className="xl:hidden w-full flex justify-center items-center">
-        <p className="font-bold text-primary">
-          {round + 1}/{numberRound}
-        </p>
+        <div className="xl:hidden w-full flex justify-center items-center">
+          <p className="font-bold text-primary">
+            {round + 1}/{numberRound}
+          </p>
+        </div>
       </div>
     </div>
   );

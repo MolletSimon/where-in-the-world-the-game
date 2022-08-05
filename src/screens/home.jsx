@@ -13,6 +13,7 @@ import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getLevels } from "../services/levels/getLevels";
 import Footer from "../components/Layout/footer";
+import { isThemeDark } from "../utils/isThemeDark";
 
 function Home({ auth }) {
   const [user, loading, error] = useAuthState(auth);
@@ -22,6 +23,7 @@ function Home({ auth }) {
   const location = useLocation();
 
   useEffect(() => {
+    setDarkmode(isThemeDark());
     if (!loading) {
       if (!user) navigate("/login");
       else {
@@ -42,7 +44,9 @@ function Home({ auth }) {
         user={user}
         level={level}
       />
-      <Outlet />
+      <div className="dark:bg-darkBackground bg-lightBackground transition-colors duration-500">
+        <Outlet />
+      </div>
       {/* <PlayerCard user={user} level={level}></PlayerCard> */}
 
       {loading && !error && !user ? <Loader /> : <></>}

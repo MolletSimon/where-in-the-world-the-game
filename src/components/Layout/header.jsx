@@ -6,6 +6,7 @@ import { ClickableIcon } from "./ClickableIcon";
 function Header({ darkMode, setDarkmode, auth, user, level }) {
   const switchDarkMode = () => {
     setDarkmode(!darkMode);
+    localStorage.setItem("theme", darkMode);
   };
 
   const logout = () => {
@@ -15,7 +16,7 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
   return (
     <header
       className="bg-lightBackground dark:bg-darkBackground flex justify-between 
-    md:p-6 p-4 drop-shadow-lg items-center"
+    md:p-6 p-4 drop-shadow-lg items-center transition-colors duration-500"
     >
       <HeaderTitle></HeaderTitle>
 
