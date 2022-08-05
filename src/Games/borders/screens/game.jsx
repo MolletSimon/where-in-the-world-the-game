@@ -1,29 +1,24 @@
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from "react";
-import { MapContainer } from "react-leaflet/MapContainer";
-import { useMap, Pane, Circle } from "react-leaflet";
-import { TileLayer } from "react-leaflet/TileLayer";
+// react
+import { useEffect, useRef, useState } from "react";
+
+// components
 import Loader from "../../../components/Utils/Loader";
-import RubberBand from "react-reveal/RubberBand";
+import { Question } from "../components/Question";
+import { PopupBorders } from "../components/PopupBorders";
+import { Propositions } from "../components/Propositions";
+import { NumberTravel } from "../components/NumberTravel";
+
+// services and utils
 import { getCountries } from "../../../services/countries/getCountries";
-import getCountryFromCca from "../../common/utils/getCountryFromCca";
 import getDatasBorders from "../utils/getDatasBorders";
 import addBorderNames from "../utils/addBorderNames";
-import Popup from "reactjs-popup";
-import Title from "../../../components/Utils/Title";
-import { Button } from "../../../components/Utils/Button";
-import Subtitle from "../../../components/Utils/Subtitle";
-import { Timer } from "../../common/components/game/Timer";
-import { Round } from "../../common/components/game/Round";
 import { useInterval } from "../../../utils/hooks/useInterval";
 import { updateLevel } from "../../../services/levels/updateLevel";
-import { serverTimestamp } from "firebase/firestore";
 import { saveGame } from "../../../services/user/saveGame";
+
+// firebase
+import { serverTimestamp } from "firebase/firestore";
+import { Map } from "../components/Map";
 
 export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
   const [paths, setPaths] = useState([]);
@@ -32,7 +27,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
   const [numberTurn, setNumberTurn] = useState(0);
   const [roundFinished, setRoundFinished] = useState(false);
   const [goodAnswer, setGoodAnswer] = useState(false);
-  const [secondsLeft, setSecondsLeft] = useState(45);
+  const [secondsLeft, setSecondsLeft] = useState(5000);
   const [secondsRound, setSecondsRound] = useState(45);
   const [currentCountry, setCurrentCountry] = useState({});
   const [round, setRound] = useState(0);
@@ -130,134 +125,38 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
   };
 
   return (
-    <div>
+    <div className="min-h-[100vh] bg-lightBackground dark:bg-darkBackground">
       {loading && paths.length === 0 ? (
         <Loader />
       ) : (
         <div className="overflow-x-hidden">
-          <div className="flex w-full justify-evenly mt-4">
-            <div className="flex justify-center align-center border-2 rounded-md p-4">
-              <h1 className="lg:block hidden">START :</h1>
-              <img
-                src={paths[round]?.start.flags.png}
-                width={30}
-                alt="flag-start"
-                className="mr-4 ml-4 sm:block hidden"
-              />
-              <p>{paths[round]?.start.name.common}</p>
-            </div>
-            <div className="flex justify-center align-center border-2 rounded-md p-4">
-              <h1 className="lg:block hidden">CURRENT :</h1>
-              <img
-                src={currentCountry?.flags.png}
-                className="mr-4 ml-4 sm:block hidden"
-                width={30}
-                alt="flag-current"
-              />
-              <p>{currentCountry?.name.common}</p>
-            </div>
-            <div className="flex justify-center align-center border-2 rounded-md p-4">
-              <h1 className="lg:block hidden">TARGET :</h1>
-              <img
-                src={paths[round]?.end?.flags.png}
-                width={30}
-                className="mr-4 ml-4 sm:block hidden"
-                alt="flag-end"
-              />
-              <p>{paths[round]?.end?.name.common}</p>
-            </div>
-          </div>
+          <Question
+            currentCountry={currentCountry}
+            paths={paths}
+            round={round}
+          />
 
-          <Popup
-            closeOnDocumentClick={false}
-            trigger={<button id="trigger-button"></button>}
-            modal
-            nested
-            overlayStyle={{
-              background: "rgba(0,0,0,0.5)",
-            }}
-            contentStyle={{
-              padding: "30px 50px 30px 50px",
-              borderRadius: "20px",
-              background: "white",
-            }}
-          >
-            {(close) => (
-              <RubberBand className="w-full">
-                <Title
-                  text={goodAnswer ? "Congratulations ! 😍" : "Ow no 😭"}
-                />
+          <PopupBorders
+            numberTurn={numberTurn}
+            goodAnswer={goodAnswer}
+            secondsRound={secondsRound}
+            next={next}
+          ></PopupBorders>
 
-                <Subtitle
-                  text={
-                    goodAnswer
-                      ? `You did it in ${numberTurn} tries and ${secondsRound} seconds`
-                      : "You failed to find the country in 45sec !"
-                  }
-                />
-                <div className="mt-6">
-                  <Button
-                    background="#0E94D7"
-                    text="Next !"
-                    color="white"
-                    method={() => {
-                      close();
-                      next();
-                    }}
-                  />
-                </div>
-              </RubberBand>
-            )}
-          </Popup>
-          <div className="flex justify-around items-center">
-            <div className="p-4 rounded-full border-4 border-primary h-24 w-24 hidden xl:flex justify-center items-center">
-              <h1 className="text-2xl font-bold text-primary">{secondsLeft}</h1>
-            </div>
-            <MapContainer
-              center={[paths[0].start.latlng[0], paths[0].start.latlng[1]]}
-              zoom={7}
-              maxZoom={7}
-              dragging={false}
-              scrollWheelZoom={false}
-              zoomControl={false}
-              style={{ height: "55vh", width: "70%" }}
-            >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="http://mt2.google.com/vt?lyrs=m&x={x}&y={y}&z={z}"
-              />
-
-              <MapChild ref={mapChildRef} />
-            </MapContainer>
-            <Round round={round} numberRound={10} />
-          </div>
-          <div className="flex w-full justify-center">
-            <Subtitle text={`Number of travel : ${numberTurn}`} />
-          </div>
-          {countries.length > 0 && currentCountry && (
-            <div className="flex justify-center m-6 w-full flex-wrap">
-              {currentCountry.borderNames?.map((b, index) => (
-                <div
-                  key={index}
-                  className="border-2 p-4 rounded-md ml-2 mr-2 cursor-pointer transition hover:scale-110 w-48 h16 justify-center flex items-center"
-                  onClick={() => answer(b)}
-                >
-                  <span className="text-center">{b}</span>
-                </div>
-              ))}
-            </div>
-          )}
+          <Map
+            mapChildRef={mapChildRef}
+            paths={paths}
+            round={round}
+            secondsLeft={secondsLeft}
+          />
+          <NumberTravel numberTurn={numberTurn}></NumberTravel>
+          <Propositions
+            length={countries.length}
+            currentCountry={currentCountry}
+            answer={answer}
+          ></Propositions>
         </div>
       )}
     </div>
   );
 }
-
-const MapChild = forwardRef((props, ref) => {
-  const map = useMap();
-  useImperativeHandle(ref, () => ({
-    flyTo(lat, lng) {
-      map.flyTo([lat, lng], 7, { duration: 0.5 });
-    },
-  }));
-});
