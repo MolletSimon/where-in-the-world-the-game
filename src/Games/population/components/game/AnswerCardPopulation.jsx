@@ -56,7 +56,9 @@ export function AnswerCardPopulation(props) {
               color: color,
             }}
           >
-            <span className="italic font-bold text-white">Population : </span>
+            <span className="italic font-bold dark:text-white">
+              Population :{" "}
+            </span>
             {commafy(props.c.population)}
           </p>
         </Tada>

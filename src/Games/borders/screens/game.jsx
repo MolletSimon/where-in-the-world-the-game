@@ -27,7 +27,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
   const [numberTurn, setNumberTurn] = useState(0);
   const [roundFinished, setRoundFinished] = useState(false);
   const [goodAnswer, setGoodAnswer] = useState(false);
-  const [secondsLeft, setSecondsLeft] = useState(5000);
+  const [secondsLeft, setSecondsLeft] = useState(45);
   const [secondsRound, setSecondsRound] = useState(45);
   const [currentCountry, setCurrentCountry] = useState({});
   const [round, setRound] = useState(0);
