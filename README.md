@@ -1,11 +1,7 @@
 # Where in the world the game
 
 ## Preprod
-This project is currently in alpha 0.1.1, you already can access to the game at this address : "https://where-in-the-world-game.web.app/" but only the flag game is available for the moment. Capital city game will come in version 0.2.0 and population game will come in 0.3.0.
-
-## Will arrive soon 
-- Dark mode 
-- Mobile responsive
+This project is currently in beta 0.5.0, you already can access to the game at this address : "https://whereintheworld.online"
 
 ## Features 🗒
 - **Authentification** 🔐
