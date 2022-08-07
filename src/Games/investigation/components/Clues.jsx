@@ -17,7 +17,7 @@ export function Clues({ round, countriesInvestigation, difficulty }) {
   }, [round]);
 
   return (
-    <div className="xl:flex xl:justify-center grid grid-cols-2 grid-rows-2 place-items-center">
+    <div className="xl:flex xl:justify-evenly grid grid-cols-2 grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 place-items-center">
       {datas.length == 0 && <Loader />}
 
       {datas.length > 0 && (

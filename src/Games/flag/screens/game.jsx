@@ -36,12 +36,12 @@ export default function FlagGame({
 
     switch (difficulty) {
       case 2:
-        setSecondsLeft(45);
-        setSeconds(45);
+        setSecondsLeft(60);
+        setSeconds(60);
         break;
       case 3:
-        setSecondsLeft(30);
-        setSeconds(30);
+        setSecondsLeft(50);
+        setSeconds(50);
         break;
       default:
         setSecondsLeft(60);

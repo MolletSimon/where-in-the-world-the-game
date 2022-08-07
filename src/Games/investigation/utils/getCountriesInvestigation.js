@@ -17,7 +17,8 @@ export default async function getCountriesInvestigation(numberRound) {
       c.tld.length > 0 &&
       c.area &&
       c.borders?.length > 0 &&
-      c.languages
+      c.languages &&
+      c.idd?.suffixes.length < 10
   );
 
   countriesInvestigation = getPropositions(

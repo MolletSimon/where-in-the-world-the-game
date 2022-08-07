@@ -43,7 +43,7 @@ export default function getDataClues(
     image:
       (difficulty == 1 && "subregion") ||
       (difficulty == 2 && "time") ||
-      (difficulty == 3 && "web"),
+      (difficulty == 3 && "road"),
     text:
       (difficulty == 1 && country.subregion) ||
       (difficulty == 2 &&
@@ -53,13 +53,13 @@ export default function getDataClues(
             {c}
           </span>
         ))) ||
-      (difficulty == 3 &&
-        country.tld.map((c, i) => (
-          <span key={i}>
-            {i > 0 && ", "}
-            {c}
-          </span>
-        ))),
+      (difficulty == 3 && `Drive on the ${country.car?.side}`),
+    // country.tld.map((c, i) => (
+    //   <span key={i}>
+    //     {i > 0 && ", "}
+    //     {c}
+    //   </span>
+    // ))),
   };
   const forthClue = {
     image:

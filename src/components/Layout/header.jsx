@@ -26,15 +26,21 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
           target="_blank"
           className="flex items-center"
         >
-          <ClickableIcon icon="import_contacts" />
+          <ClickableIcon icon="import_contacts" title="Wiki" />
         </a>
         <ClickableIcon
           method={switchDarkMode}
           icon={darkMode ? "light_mode" : "dark_mode"}
           darkMode={darkMode}
+          title="Switch mode"
         />
 
-        <ClickableIcon method={logout} icon="logout" darkMode={darkMode} />
+        <ClickableIcon
+          method={logout}
+          icon="logout"
+          darkMode={darkMode}
+          title="Logout"
+        />
         <div className="">
           <PlayerCard user={user} level={level} />
         </div>

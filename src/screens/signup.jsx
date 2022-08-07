@@ -16,6 +16,8 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import { Navigate, useNavigate } from "react-router-dom";
+import Popup from "reactjs-popup";
+import Terms from "./terms";
 
 export default function SignUp({ auth }) {
   //form
@@ -136,11 +138,10 @@ export default function SignUp({ auth }) {
               <></>
             )}
 
-            <Terms
+            <TermsCheckbox
               termsAccepted={termsAccepted}
               setTermsAccepted={setTermsAccepted}
-              navigate={navigate}
-            ></Terms>
+            ></TermsCheckbox>
 
             <Button
               background="#0E94D7"
@@ -160,6 +161,7 @@ export default function SignUp({ auth }) {
         </div>
         <EarthPanel />
       </div>
+
       <ToastContainer
         position="top-right"
         autoClose={4000}
@@ -175,11 +177,16 @@ export default function SignUp({ auth }) {
   );
 }
 
-function Terms(props) {
+function TermsCheckbox(props) {
+  const accept = (close) => {
+    props.setTermsAccepted(true);
+    close();
+  };
   return (
     <div className="flex items-center mb-4">
       <input
         type="checkbox"
+        checked={props.termsAccepted}
         className="mr-2 checked:bg-primary"
         name="terms"
         onChange={(e) => props.setTermsAccepted(!props.termsAccepted)}
@@ -187,12 +194,40 @@ function Terms(props) {
       />
       <h3>
         by clicking on Sign Up you agree{" "}
-        <span
-          className="text-primary cursor-pointer"
-          onClick={() => props.navigate("/terms")}
+        <Popup
+          defaultOpen={true}
+          trigger={
+            <span className="text-primary cursor-pointer">
+              to the terms and conditions
+            </span>
+          }
+          modal
+          nested
+          overlayStyle={{
+            background: "rgba(0,0,0,0.5)",
+          }}
+          contentStyle={{
+            overflow: "auto",
+            padding: "30px",
+            borderRadius: "20px",
+            margin: "60px",
+            background: "white",
+          }}
         >
-          to the terms and conditions
-        </span>
+          {(close) => (
+            <>
+              <h1>
+                <Terms />
+              </h1>
+              <Button
+                background="#0E94D7"
+                color="white"
+                text="I accept !"
+                method={() => accept(close)}
+              />
+            </>
+          )}
+        </Popup>
       </h3>
     </div>
   );
