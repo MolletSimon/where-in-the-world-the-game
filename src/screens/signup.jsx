@@ -195,7 +195,7 @@ function TermsCheckbox(props) {
       <h3>
         by clicking on Sign Up you agree{" "}
         <Popup
-          defaultOpen={true}
+          defaultOpen={false}
           trigger={
             <span className="text-primary cursor-pointer">
               to the terms and conditions
