@@ -5,7 +5,7 @@ _*Current Version*_ : 0.5.2
 ## 0.5.2
 ### Bug fix : 
 - Fix modal terms already opened 
-- 
+
 ## 0.5.1
 ### Bug fixes :
 - Investigation game responsivity
