@@ -64,7 +64,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
 
   const next = () => {
     setRound((state) => {
-      if (state === 9) {
+      if (state === 4) {
         finishGame();
       } else {
         state = round + 1;

@@ -28,7 +28,7 @@ export default function InvestigationGame({
 
   // game
   const [round, setRound] = useState(0);
-  const seconds = 100000;
+  const seconds = 50;
   const numberRound = 10;
   const [secondsLeft, setSecondsLeft] = useState(60);
 

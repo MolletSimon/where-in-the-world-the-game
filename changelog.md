@@ -1,6 +1,15 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.5.2
+_*Current Version*_ : 0.5.3
+
+## 0.5.3
+### Bug fixes :
+- set time of investigation game to 50sec instead of 500000
+- Design fix for investigation game
+
+### Improvements :
+- Set 5 rounds instead of 10 for borders game
+- Rebalance investigation game with closer propositions
 
 ## 0.5.2
 ### Bug fix : 

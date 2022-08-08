@@ -36,7 +36,61 @@ function getPropositions(countries, countriesFetch) {
     let countriesForPropositions = [
       ...countriesFetch.filter((co) => co.name.common != c.name.common),
     ];
-    countriesForPropositions = getRandom(countriesForPropositions, 4);
+    const sameRegion = getRandom(
+      countriesForPropositions.filter((cp) => cp.subregion === c.subregion),
+      1
+    );
+
+    let sameFirstLetter = [];
+
+    if (
+      countriesForPropositions.filter((cp) =>
+        cp.name.common.startsWith(c.name.common.slice(0, 2))
+      ).length > 0
+    ) {
+      sameFirstLetter = getRandom(
+        countriesForPropositions.filter((cp) =>
+          cp.name.common.startsWith(c.name.common.slice(0, 2))
+        ),
+        1
+      );
+    } else {
+      if (
+        countriesForPropositions.filter((cp) =>
+          cp.name.common.startsWith(c.name.common.charAt(0))
+        ).length > 0
+      ) {
+        sameFirstLetter = getRandom(
+          countriesForPropositions.filter((cp) =>
+            cp.name.common.startsWith(c.name.common.charAt(0))
+          ),
+          1
+        );
+      } else {
+        sameFirstLetter = getRandom(countriesForPropositions, 1);
+      }
+    }
+
+    // SAME POPULATION
+    const populationArray = countriesForPropositions.map(
+      (a) => a.ccn3 != c.ccn3 && a.population
+    );
+
+    const closest = populationArray.reduce(function (prev, curr) {
+      return Math.abs(curr - c.population) < Math.abs(prev - c.population)
+        ? curr
+        : prev;
+    });
+
+    const samePopulation = countriesForPropositions.find(
+      (cp) => cp.population == closest
+    );
+
+    countriesForPropositions = [
+      samePopulation,
+      sameFirstLetter[0],
+      sameRegion[0],
+    ];
     let indexGoodAnswer = Math.floor(Math.random() * (3 - 0 + 1) + 0);
 
     c.borders.forEach((b) => {

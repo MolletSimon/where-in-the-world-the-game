@@ -10,7 +10,7 @@ export function Propositions({
   const bgColor = isThemeDark() ? "#2B3945" : "white";
   const color = isThemeDark() ? "white" : "black";
   return (
-    <div className="flex justify-center items-center mt-32">
+    <div className="flex justify-center items-center mt-24">
       <div className="xl:w-2/3 w-full flex flex-row">
         {countriesInvestigation?.length > 0 &&
           countriesInvestigation[round].propositions.map((c, index) => (
