@@ -20,34 +20,29 @@ export default function FlagGame({
   setScore,
   xpWon,
   setXpWon,
+  hardcore,
+  endless,
 }) {
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
   const [countriesInGame, setCountriesInGame] = useState([]);
+  const [totalCountries, setTotalCountries] = useState([]);
   const [round, setRound] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [numberRound, setNumberRound] = useState(10);
-  const [secondsLeft, setSecondsLeft] = useState(60);
-  const [seconds, setSeconds] = useState(0);
+  const numberRoundTotal = endless ? 40 : 10;
+  const [numberRound, setNumberRound] = useState(numberRoundTotal);
+  const secondsLeftTotal = endless ? 9999 : 50;
+  const [secondsLeft, setSecondsLeft] = useState(secondsLeftTotal);
+  const [seconds, setSeconds] = useState(secondsLeftTotal);
   const [numberPropositions, setNumberPropositions] = useState(4);
 
   const initGame = (data) => {
+    if (hardcore) {
+      setSeconds(25);
+      setSecondsLeft(25);
+    }
     data = getDataByDifficulty(data, difficulty);
 
-    switch (difficulty) {
-      case 2:
-        setSecondsLeft(60);
-        setSeconds(60);
-        break;
-      case 3:
-        setSecondsLeft(50);
-        setSeconds(50);
-        break;
-      default:
-        setSecondsLeft(60);
-        setSeconds(60);
-        break;
-    }
     let countriesArray = prepareCountriesArray(
       data,
       numberRound,
@@ -66,14 +61,45 @@ export default function FlagGame({
       setScore((state) => {
         state = score + 1;
         if (round >= numberRound - 1) {
-          finish(state);
+          if (!endless) {
+            finish(state);
+          } else {
+            setRound(0);
+            setLoading(true);
+            var data = getDataByDifficulty(totalCountries, difficulty);
+
+            let countriesArray = prepareCountriesArray(
+              data,
+              numberRound,
+              numberPropositions,
+              "flag"
+            );
+            setCountriesInGame(countriesArray);
+            setLoading(false);
+          }
         }
         return state;
       });
     } else {
       toast.error("Wrong answer 😔");
+
       if (round >= numberRound - 1) {
-        finish(score);
+        if (!endless) {
+          finish(score);
+        } else {
+          setRound(0);
+          setLoading(true);
+          var data = getDataByDifficulty(totalCountries, difficulty);
+
+          let countriesArray = prepareCountriesArray(
+            data,
+            numberRound,
+            numberPropositions,
+            "flag"
+          );
+          setCountriesInGame(countriesArray);
+          setLoading(false);
+        }
       }
     }
   };
@@ -86,6 +112,7 @@ export default function FlagGame({
   const finish = (_score) => {
     setXpWon((state) => {
       state = _score * (difficulty * 2);
+      if (hardcore) state = state * 2;
       updateLevel(state);
       const game = {
         game: "Flag",
@@ -104,8 +131,8 @@ export default function FlagGame({
   useEffect(() => {
     getCountries()
       .then((data) => {
-        console.log(data);
         initGame(data);
+        setTotalCountries(data);
         setLoading(false);
       })
       .catch((err) => console.error(err));
@@ -150,7 +177,7 @@ export default function FlagGame({
                 </div>
                 <div className="xl:hidden mt-6 w-full flex justify-center items-center">
                   <p className="font-bold text-2xl text-primary dark:text-cyan-800">
-                    {round + 1}/{numberRound}
+                    {numberRound > 10 ? "∞" : `${round + 1}/${numberRound}`}
                   </p>
                 </div>
               </div>

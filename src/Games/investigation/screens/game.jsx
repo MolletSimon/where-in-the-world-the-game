@@ -22,14 +22,16 @@ export default function InvestigationGame({
   score,
   setScore,
   setXpWon,
+  hardcore,
+  endless,
 }) {
   // datas
   const [countriesInvestigation, setCountriesInvestigation] = useState([]);
 
   // game
   const [round, setRound] = useState(0);
-  const seconds = 50;
-  const numberRound = 10;
+  const seconds = endless ? 9999 : hardcore ? 20 : 50;
+  const numberRound = endless ? 20 : 10;
   const [secondsLeft, setSecondsLeft] = useState(60);
 
   // status
@@ -37,7 +39,7 @@ export default function InvestigationGame({
   const [answered, setAnswered] = useState(false);
 
   useEffect(() => {
-    getCountriesInvestigation(10).then((res) => {
+    getCountriesInvestigation(numberRound).then((res) => {
       setCountriesInvestigation(res);
       setLoading(false);
     });
@@ -46,6 +48,7 @@ export default function InvestigationGame({
   const finish = (_score) => {
     setXpWon((state) => {
       state = _score * (difficulty * 2);
+      if (hardcore) state = state * 2;
       updateLevel(state);
       const game = {
         game: "Investigation",
@@ -72,7 +75,17 @@ export default function InvestigationGame({
     } else {
       setAnswered(false);
       if (round < numberRound - 1) setRound(round + 1);
-      else finish(score);
+      else {
+        if (!endless) finish(score);
+        else {
+          setRound(0);
+          setLoading(true);
+          getCountriesInvestigation(numberRound).then((res) => {
+            setCountriesInvestigation(res);
+            setLoading(false);
+          });
+        }
+      }
     }
   };
 
@@ -108,7 +121,12 @@ export default function InvestigationGame({
           submit={submit}
         />
 
-        <FooterInvestigation next={next} seconds={seconds} round={round} />
+        <FooterInvestigation
+          endless={endless}
+          next={next}
+          seconds={seconds}
+          round={round}
+        />
       </div>
     </div>
   );

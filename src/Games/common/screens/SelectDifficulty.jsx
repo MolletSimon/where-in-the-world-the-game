@@ -10,6 +10,10 @@ export default function SelectDifficultyScreen({
   image,
   alt,
   subtitle,
+  endlessMode,
+  setEndlessMode,
+  hardcore,
+  setHardcore,
   ...props
 }) {
   const selectDifficulty = (dif) => {
@@ -35,6 +39,10 @@ export default function SelectDifficultyScreen({
           mediumText={props.mediumText}
           hardText={props.hardText}
           selectDifficulty={selectDifficulty}
+          setEndlessMode={setEndlessMode}
+          endlessMode={endlessMode}
+          hardcore={hardcore}
+          setHardcore={setHardcore}
         />
       </div>
     </div>

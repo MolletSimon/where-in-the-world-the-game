@@ -84,7 +84,6 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
     setNumberTurn(numberTurn + 1);
     newCountry = addBorderNames(newCountry, countries);
     setCurrentCountry(newCountry);
-    console.log(newCountry);
     mapChildRef.current.flyTo(newCountry.latlng[0], newCountry.latlng[1]);
 
     if (newCountry.cca3 == paths[round].end.cca3) {

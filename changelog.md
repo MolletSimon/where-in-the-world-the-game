@@ -1,7 +1,14 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.5.4
+_*Current Version*_ : 0.6.0
 
+## 0.6.0
+### Features : 
+- Add the hardcore mode
+- Add the endless mode
+
+### Bug fixes :
+- remove consolelog
 ## 0.5.4
 ### Bug fixes :
 - Flag game: pass from 2 clicks to 1 clicks

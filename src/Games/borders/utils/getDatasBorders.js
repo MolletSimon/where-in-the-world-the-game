@@ -23,10 +23,6 @@ export default async function getDatasBorders() {
   // take 10
   datas = getRandom(datas, 10);
 
-  datas.forEach((d) => {
-    if (d.start.borders.includes(d.end.cca3)) console.log("one travel");
-  });
-
   return datas;
 }
 

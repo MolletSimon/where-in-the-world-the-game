@@ -26,13 +26,16 @@ export default function PopulationGame({
   setFinished,
   difficulty,
   setXpWon,
+  hardcore,
+  endless,
 }) {
   // game
   const [countriesInGame, setCountriesInGame] = useState([]);
   const [round, setRound] = useState(0);
-  const [secondsLeft, setSecondsLeft] = useState(60);
-  const [seconds, setSeconds] = useState(60);
-  const numberRound = 10;
+  const secondsLeftTotal = endless ? 9999 : hardcore ? 20 : 50;
+  const [secondsLeft, setSecondsLeft] = useState(secondsLeftTotal);
+  const [seconds, setSeconds] = useState(secondsLeftTotal);
+  const numberRound = endless ? 40 : 10;
   const numberPropositions = 4;
 
   // status
@@ -40,21 +43,6 @@ export default function PopulationGame({
   const [answered, setAnswered] = useState(false);
 
   useEffect(() => {
-    switch (difficulty) {
-      case 2:
-        setSecondsLeft(60);
-        setSeconds(60);
-        break;
-      case 3:
-        setSecondsLeft(50);
-        setSeconds(50);
-        break;
-      default:
-        setSecondsLeft(60);
-        setSeconds(60);
-        break;
-    }
-
     getCountries()
       .then((data) => {
         let c = getDataByDifficulty(data, difficulty);
@@ -82,6 +70,7 @@ export default function PopulationGame({
   const finish = () => {
     setXpWon((state) => {
       state = score * (difficulty * 2.6);
+      if (hardcore) state = state * 2;
       const game = {
         game: "Population",
         score: score,
@@ -107,7 +96,25 @@ export default function PopulationGame({
       if (round < numberRound - 1) {
         setRound(round + 1);
       } else {
-        finish();
+        if (!endless) {
+          finish();
+        } else {
+          setLoading(true);
+          setRound(0);
+          getCountries()
+            .then((data) => {
+              let c = getDataByDifficulty(data, difficulty);
+              setCountriesInGame(
+                prepareCountriesPopulationArray(
+                  c,
+                  numberRound,
+                  numberPropositions
+                )
+              );
+              setLoading(false);
+            })
+            .catch((e) => console.error(e));
+        }
       }
     } else {
       toast.error("Please select an answer !");

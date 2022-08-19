@@ -9,6 +9,8 @@ export default function Flag() {
   const [finished, setFinished] = useState(false);
   const [score, setScore] = useState(0);
   const [xpWon, setXpWon] = useState(0);
+  const [endlessMode, setEndlessMode] = useState(false);
+  const [hardcore, setHardcore] = useState(false);
 
   return (
     <>
@@ -30,12 +32,18 @@ export default function Flag() {
           setFinished={setFinished}
           setXpWon={setXpWon}
           xpWon={xpWon}
+          hardcore={hardcore}
+          endless={endlessMode}
         />
       )}
       {!finished && !difficultySelected && (
         <SelectDifficultyScreen
           alt="flag"
+          hardcore={hardcore}
+          setHardcore={setHardcore}
           image="olympic-games"
+          setEndlessMode={setEndlessMode}
+          endlessMode={endlessMode}
           title="Welcome to the flag !"
           setDifficulty={setDifficulty}
           setDifficultySelected={setDifficultySelected}

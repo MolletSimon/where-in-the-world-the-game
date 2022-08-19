@@ -34,6 +34,50 @@ export function ButtonsDifficulty(props) {
             method={() => props.selectDifficulty(3)}
           />
         </div>
+
+        <fieldset>
+          <div className="mt-4 flex items-center">
+            <input
+              type="checkbox"
+              className="italic checked:accent-primary h-4 w-4 rounded-xl mr-6"
+              name="endless"
+              id="endless"
+              checked={props.endlessMode}
+              onChange={(e) => {
+                props.setEndlessMode(e.target.checked);
+                props.setHardcore(false);
+              }}
+            />{" "}
+            <label
+              htmlFor="checkbox"
+              style={{ color: props.endlessMode && "#0E94D7" }}
+              className="font-Oakes mt-1 italic  dark:text-white"
+            >
+              Endless mode (no time, no round, no xp)
+            </label>
+          </div>
+
+          <div className="mt-4 flex items-center">
+            <input
+              type="checkbox"
+              className="italic checked:accent-primary h-4 w-4 rounded-xl mr-6"
+              name="hardcore"
+              checked={props.hardcore}
+              id="hardcore"
+              onChange={(e) => {
+                props.setHardcore(e.target.checked);
+                props.setEndlessMode(false);
+              }}
+            />{" "}
+            <label
+              htmlFor="checkbox"
+              style={{ color: props.hardcore && "#0E94D7" }}
+              className="font-Oakes mt-1 italic dark:text-white"
+            >
+              Hardcore mode (20sec to answer to all questions, xp x2)
+            </label>
+          </div>
+        </fieldset>
       </HeadShake>
     </div>
   );

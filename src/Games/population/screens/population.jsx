@@ -9,6 +9,8 @@ export default function Population() {
   const [finished, setFinished] = useState(false);
   const [score, setScore] = useState(0);
   const [xpWon, setXpWon] = useState(0);
+  const [hardcore, setHardcore] = useState(false);
+  const [endlessMode, setEndlessMode] = useState(false);
 
   return (
     <div>
@@ -16,6 +18,10 @@ export default function Population() {
         <SelectDifficultyScreen
           setDifficulty={setDifficulty}
           setDifficultySelected={setDifficultySelected}
+          setEndlessMode={setEndlessMode}
+          endlessMode={endlessMode}
+          hardcore={hardcore}
+          setHardcore={setHardcore}
           alt="population"
           image="people"
           title="Welcome to the population game !"
@@ -28,6 +34,8 @@ export default function Population() {
           setScore={setScore}
           setFinished={setFinished}
           difficulty={difficulty}
+          endless={endlessMode}
+          hardcore={hardcore}
           setXpWon={setXpWon}
         />
       )}

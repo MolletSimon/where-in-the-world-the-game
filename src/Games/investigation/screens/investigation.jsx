@@ -9,6 +9,8 @@ export default function Investigation() {
   const [finished, setFinished] = useState(false);
   const [score, setScore] = useState(0);
   const [xpWon, setXpWon] = useState(0);
+  const [hardcore, setHardcore] = useState(false);
+  const [endlessMode, setEndlessMode] = useState(false);
 
   return (
     <div>
@@ -18,6 +20,10 @@ export default function Investigation() {
           setDifficultySelected={setDifficultySelected}
           alt="investigation"
           image="search"
+          hardcore={hardcore}
+          setHardcore={setHardcore}
+          setEndlessMode={setEndlessMode}
+          endlessMode={endlessMode}
           title="Welcome to the investigation game !"
           subtitle="Guess the country from the clues given to you"
           easyText="Easy : guess from subregion, capital, languages and many other clues"
@@ -29,6 +35,8 @@ export default function Investigation() {
         <InvestigationGame
           difficulty={difficulty}
           score={score}
+          endless={endlessMode}
+          hardcore={hardcore}
           setFinished={setFinished}
           setScore={setScore}
           setXpWon={setXpWon}
