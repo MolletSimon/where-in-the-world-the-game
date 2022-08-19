@@ -74,7 +74,7 @@ export function ButtonsDifficulty(props) {
               style={{ color: props.hardcore && "#0E94D7" }}
               className="font-Oakes mt-1 italic dark:text-white"
             >
-              Hardcore mode (20sec to answer to all questions, xp x2)
+              Speedrun mode (20sec to answer to all questions, xp x2)
             </label>
           </div>
         </fieldset>
