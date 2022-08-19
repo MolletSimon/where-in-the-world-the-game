@@ -57,14 +57,10 @@ export default function FlagGame({
     setCountriesInGame(countriesArray);
   };
 
-  const select = (index) => {
-    setSelected(index);
-  };
-
-  const submit = () => {
+  const submit = (index) => {
     setSubmitted(true);
     if (
-      countriesInGame[round].propositions.findIndex((p) => p.right) === selected
+      countriesInGame[round].propositions.findIndex((p) => p.right) === index
     ) {
       toast.success("Good answer !");
       setScore((state) => {
@@ -80,7 +76,6 @@ export default function FlagGame({
         finish(score);
       }
     }
-    setSelected(null);
   };
 
   const next = () => {
@@ -141,7 +136,7 @@ export default function FlagGame({
                 <Answers
                   countriesInGame={countriesInGame}
                   round={round}
-                  select={select}
+                  select={submit}
                   selected={selected}
                   submitted={submitted}
                 />
@@ -149,8 +144,8 @@ export default function FlagGame({
                   <Button
                     background="#0E94D7"
                     color="white"
-                    method={submitted ? next : submit}
-                    text={submitted ? "Next" : "Submit"}
+                    method={next}
+                    text={"Next"}
                   />
                 </div>
                 <div className="xl:hidden mt-6 w-full flex justify-center items-center">

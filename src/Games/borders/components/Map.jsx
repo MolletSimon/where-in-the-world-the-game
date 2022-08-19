@@ -26,7 +26,7 @@ export function Map({ paths, secondsLeft, mapChildRef, round }) {
 
         <MapChild ref={mapChildRef} />
       </MapContainer>
-      <Round round={round} numberRound={10} />
+      <Round round={round} numberRound={5} />
     </div>
   );
 }
