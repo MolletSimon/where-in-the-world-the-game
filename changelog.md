@@ -1,6 +1,14 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.6.0
+_*Current Version*_ : 0.7.0
+
+## 0.7.0
+## Games :
+- New game ! Find most countries possible by the first letter
+- Init capital game
+
+## Improvements : 
+- Balance xpwon on borders
 
 ## 0.6.0
 ### Features : 

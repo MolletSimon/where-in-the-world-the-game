@@ -104,7 +104,7 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
   const finishGame = () => {
     setXpWon((state) => {
       state = score;
-      updateLevel(state);
+      updateLevel(state / 10);
       const game = {
         game: "Borders",
         score: score,

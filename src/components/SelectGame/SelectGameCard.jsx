@@ -6,7 +6,7 @@ export function SelectGameCard({ icon, text, border, game }) {
     <Link
       to={`/${game}`}
       className={`cursor-pointer w-full hover:shadow-2xl lg:p-4 border ${border} flex lg:flex-row flex-col 
-      justify-center items-center h-full md:mt-0 md:mb-0 mt-6 mb-6`}
+      justify-center items-center h-full md:mt-0 md:mb-0 mt-6 mb-6 rounded-xl`}
     >
       <Flip left>
         <img
