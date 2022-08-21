@@ -9,6 +9,7 @@ export function Question({
   numberRound,
   secondsLeft,
   seconds,
+  capitalMode,
 }) {
   return (
     <div className="md:w-4/5 w-full xl:justify-center grid xl:grid-cols-3 mb-8">
@@ -25,7 +26,17 @@ export function Question({
         <Timer seconds={seconds} />
       </div>
       <div className="flex justify-center items-center">
-        <Flag countriesInGame={countriesInGame} round={round} />
+        {capitalMode ? (
+          <h2 className="font-semibold text-4xl">
+            Capital:{" "}
+            <span className="text-primary italic">
+              {" "}
+              {countriesInGame[round].capital[0]}
+            </span>
+          </h2>
+        ) : (
+          <Flag countriesInGame={countriesInGame} round={round} />
+        )}
       </div>
       <div className="flex justify-center items-center">
         <Round round={round} numberRound={numberRound}></Round>

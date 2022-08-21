@@ -22,6 +22,7 @@ export default function FlagGame({
   setXpWon,
   hardcore,
   endless,
+  capitalMode,
 }) {
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(null);
@@ -115,7 +116,7 @@ export default function FlagGame({
       if (hardcore) state = state * 2;
       updateLevel(state);
       const game = {
-        game: "Flag",
+        game: capitalMode ? "Capital" : "Flag",
         score: _score,
         difficulty: difficulty,
         time: seconds - secondsLeft,
@@ -158,6 +159,7 @@ export default function FlagGame({
                   countriesInGame={countriesInGame}
                   numberRound={numberRound}
                   round={round}
+                  capitalMode={capitalMode}
                 />
 
                 <Answers

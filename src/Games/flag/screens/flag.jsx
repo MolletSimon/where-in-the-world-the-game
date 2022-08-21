@@ -33,6 +33,7 @@ export default function Flag() {
           setXpWon={setXpWon}
           xpWon={xpWon}
           hardcore={hardcore}
+          capitalMode={false}
           endless={endlessMode}
         />
       )}

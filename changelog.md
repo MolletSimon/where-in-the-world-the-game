@@ -1,6 +1,13 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.7.0
+_*Current Version*_ : 0.8.0
+
+## 0.8.0
+## Games :
+- New game ! Find the country by its capital
+
+## Bug fixes : 
+- Remove console log
 
 ## 0.7.0
 ## Games :

@@ -29,7 +29,6 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
   useEffect(() => {
     setLoading(true);
     getCountriesFromLetter().then((countries) => {
-      console.log(countries);
       setSeconds(countries.length * 6);
       setSecondsLeft(countries.length * 6);
       setCountriesInGame(countries);
