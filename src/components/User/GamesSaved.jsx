@@ -27,7 +27,11 @@ export function GamesSaved(props) {
               </p>
               <p className="text-center">
                 {game.score}
-                <span>{game.game != "Borders" ? "/10" : " pts"}</span>
+                <span>
+                  {game.game != "Borders" && game.game != "Find"
+                    ? "/10"
+                    : " pts"}
+                </span>
               </p>
               <p className="text-center">
                 {game.time}
@@ -66,6 +70,13 @@ function getImageAndColorOfGame(game) {
       color = "bg-pink";
       image = "images/people.png";
       break;
+    case "Capital":
+      color = "bg-fuchsia-400";
+      image = "images/eiffel-tower.png";
+      break;
+    case "Find":
+      color = "bg-violet-400";
+      image = "images/letter.png";
   }
 
   return { image, color };

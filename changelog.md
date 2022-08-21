@@ -1,6 +1,12 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.8.0
+_*Current Version*_ : 0.8.1
+
+## 0.8.1
+## Bug fixes : 
+- add icons to saved games in user
+## Improvements : 
+- Replace rank in user screen
 
 ## 0.8.0
 ## Games :

@@ -45,6 +45,19 @@ export default function User({ auth }) {
       <div className="mt-8">
         <Title text="Last games" />
       </div>
+      <div className="mt-10 w-full justify-center items-center flex ">
+        <div className="p-8 border-2 rounded-2xl w-auto flex items-center">
+          <p className="italic font-regular mr-4">Rank: </p>
+          <h2 className="font-bold text-3xl first-letter:uppercase">
+            {level.rank} -{" "}
+          </h2>
+          <img
+            src={`icons/Ranks/${level.rank}.png`}
+            alt={level.rank}
+            width={100}
+          />
+        </div>
+      </div>
       {user && level && (
         <div className="flex mt-4 lg:mt-20 justify-center items-center lg:mr-8 flex-col w-4/5">
           <p className="mb-6 text-end flex">
@@ -62,20 +75,8 @@ export default function User({ auth }) {
           </p>
         </div>
       )}
+
       <GamesSaved games={games}></GamesSaved>
-      <div className="mt-10 w-full justify-end items-center flex ">
-        <div className="p-4 border-2 rounded-2xl w-auto flex items-center">
-          <p className="italic font-regular mr-4">Rank: </p>
-          <h2 className="font-bold text-3xl first-letter:uppercase">
-            {level.rank} -{" "}
-          </h2>
-          <img
-            src={`icons/Ranks/${level.rank}.png`}
-            alt={level.rank}
-            width={100}
-          />
-        </div>
-      </div>
     </div>
   );
 }
