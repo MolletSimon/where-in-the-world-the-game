@@ -8,6 +8,7 @@ export default function prepareCountriesArray(
 ) {
   let arr = [];
   let countriesArray = [];
+  data = data.filter((d) => d.capital);
 
   while (arr.length < numberRound) {
     var r = Math.floor(Math.random() * data.length - 1) + 1;

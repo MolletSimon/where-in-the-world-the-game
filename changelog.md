@@ -1,7 +1,11 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.8.1
+_*Current Version*_ : 0.8.2
 
+## 0.8.2
+## Bug fixes : 
+- fix bug country that not have capital in capital game
+  
 ## 0.8.1
 ## Bug fixes : 
 - add icons to saved games in user
