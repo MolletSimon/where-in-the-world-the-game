@@ -8,7 +8,7 @@ export function Answers({
   select,
 }) {
   return (
-    <div className="grid grid-rows-4 md:grid-cols-2 md:grid-rows-2 w-4/5 lg:w-3/5 2xl:w-2/5 h-60 gap-4 mb-4">
+    <div className="grid grid-cols-2 grid-rows-2 w-[95%] md:w-4/5 lg:w-3/5 2xl:w-2/5 h-40 md:h-60 gap-2 md:gap-4 mb-4 mt-6">
       {countriesInGame[round].propositions.map((p, index) => (
         <AnswerCard
           key={index}

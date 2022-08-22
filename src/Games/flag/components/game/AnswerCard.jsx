@@ -12,8 +12,8 @@ export function AnswerCard(props) {
           background: props.submitted && props.p.right ? "#3AB795" : bgColor,
           color: props.submitted && props.p.right ? "white" : textColor,
         }}
-        className="border-2 p-6 md:p-4 w-full dark:border-darkInput rounded-2xl mb-4 cursor-pointer 
-                        flex justify-center items-center h-full transition hover:scale-110"
+        className="md:border-2 border-[1px] w-full dark:border-darkInput rounded-2xl mb-4 cursor-pointer 
+                        flex justify-center items-center h-full transition hover:scale-110 text-center"
         key={"nsubmitted" + props.index}
       >
         {props.p.value}

@@ -16,7 +16,7 @@ export function Button({
         color: color,
         padding: padding ? padding : 12,
       }}
-      className={`border-2 w-full rounded-md mb-3 flex 
+      className={`border-2 w-full rounded-md mb-1 md:mb-3 flex 
       justify-center items-center dark:border-darkInput`}
       onClick={() => method()}
     >

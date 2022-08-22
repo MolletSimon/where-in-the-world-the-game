@@ -12,8 +12,8 @@ export function Question({
   capitalMode,
 }) {
   return (
-    <div className="md:w-4/5 w-full xl:justify-center grid xl:grid-cols-3 mb-8">
-      <div className="flex justify-center items-center mb-4">
+    <div className="md:w-4/5 w-full xl:justify-center grid xl:grid-cols-3 md:mb-8">
+      <div className="flex justify-center items-center mb-2 md:mb-4">
         <ProgressBar
           completed={secondsLeft}
           maxCompleted={seconds}
@@ -27,7 +27,7 @@ export function Question({
       </div>
       <div className="flex justify-center items-center">
         {capitalMode ? (
-          <h2 className="font-semibold text-4xl">
+          <h2 className="font-semibold text-4xl mt-4 mb-4">
             Capital:{" "}
             <span className="text-primary italic">
               {" "}

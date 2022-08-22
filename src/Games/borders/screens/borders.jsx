@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import EndScreen from "../../common/screens/endScreen";
@@ -8,6 +8,10 @@ export default function Borders() {
   const [finished, setFinished] = useState(false);
   const [score, setScore] = useState(0);
   const [xpWon, setXpWon] = useState(0);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectDifficultyScreen from "../../common/screens/SelectDifficulty";
 import EndScreenFlag from "../../common/screens/endScreen";
 import FlagGame from "../../flag/screens/game";
@@ -11,6 +11,10 @@ export default function Capital() {
   const [xpWon, setXpWon] = useState(0);
   const [endlessMode, setEndlessMode] = useState(false);
   const [hardcore, setHardcore] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

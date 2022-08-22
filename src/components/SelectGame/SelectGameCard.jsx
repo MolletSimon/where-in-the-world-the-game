@@ -22,7 +22,7 @@ export function SelectGameCard({ icon, text, border, game }) {
           alt="flag"
         />
         <p
-          className="lg:m-0 lg:ml-10 mt-4 md:text-md text-xs lg:text-lg lg:mt-0 xl:text-start 
+          className="lg:m-0 lg:ml-10 mt-4 pl-2 pr-2 md:text-md text-xs lg:text-lg lg:mt-0 xl:text-start 
       text-center whitespace-normal dark:text-lightGray"
         >
           {text}

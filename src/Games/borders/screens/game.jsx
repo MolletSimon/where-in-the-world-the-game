@@ -124,38 +124,50 @@ export default function BorderGame({ score, setScore, setXpWon, setFinished }) {
   };
 
   return (
-    <div className="min-h-[100vh] bg-lightBackground dark:bg-darkBackground">
-      {loading && paths.length === 0 ? (
-        <Loader />
-      ) : (
-        <div className="overflow-x-hidden">
-          <Question
-            currentCountry={currentCountry}
-            paths={paths}
-            round={round}
-          />
+    <>
+      <div className="min-h-[100vh] bg-lightBackground dark:bg-darkBackground sm:block hidden">
+        {loading && paths.length === 0 ? (
+          <Loader />
+        ) : (
+          <div className="overflow-x-hidden">
+            <Question
+              currentCountry={currentCountry}
+              paths={paths}
+              round={round}
+            />
 
-          <PopupBorders
-            numberTurn={numberTurn}
-            goodAnswer={goodAnswer}
-            secondsRound={secondsRound}
-            next={next}
-          ></PopupBorders>
+            <div className="hidden sm:block">
+              <PopupBorders
+                numberTurn={numberTurn}
+                goodAnswer={goodAnswer}
+                secondsRound={secondsRound}
+                next={next}
+              ></PopupBorders>
+            </div>
 
-          <Map
-            mapChildRef={mapChildRef}
-            paths={paths}
-            round={round}
-            secondsLeft={secondsLeft}
-          />
-          <NumberTravel numberTurn={numberTurn}></NumberTravel>
-          <Propositions
-            length={countries.length}
-            currentCountry={currentCountry}
-            answer={answer}
-          ></Propositions>
-        </div>
-      )}
-    </div>
+            <Map
+              mapChildRef={mapChildRef}
+              paths={paths}
+              round={round}
+              secondsLeft={secondsLeft}
+            />
+            <NumberTravel numberTurn={numberTurn}></NumberTravel>
+            <Propositions
+              length={countries.length}
+              currentCountry={currentCountry}
+              answer={answer}
+            ></Propositions>
+          </div>
+        )}
+      </div>
+
+      <div className="block sm:hidden m-4 text-start italic">
+        <h1>
+          For technical reasons, this game is not available on mobile yet. We
+          invite you to try another device if you want to play border games{" "}
+          <br /> we apologize for the inconvenience caused
+        </h1>
+      </div>
+    </>
   );
 }

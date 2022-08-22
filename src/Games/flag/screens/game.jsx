@@ -152,7 +152,7 @@ export default function FlagGame({
         ) : (
           <div>
             {countriesInGame.length > 0 && (
-              <div className="flex justify-center flex-col items-center pt-16">
+              <div className="flex justify-center flex-col items-center pt-4 md:pt-16">
                 <Question
                   secondsLeft={secondsLeft}
                   seconds={seconds}

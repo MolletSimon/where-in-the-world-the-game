@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectDifficultyScreen from "../../common/screens/SelectDifficulty";
 import EndScreenFlag from "../../common/screens/endScreen";
 import PopulationGame from "./game";
@@ -11,6 +11,10 @@ export default function Population() {
   const [xpWon, setXpWon] = useState(0);
   const [hardcore, setHardcore] = useState(false);
   const [endlessMode, setEndlessMode] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>

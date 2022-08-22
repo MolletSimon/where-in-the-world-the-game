@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EndScreen from "../../common/screens/endScreen";
 import SelectDifficultyScreen from "../../common/screens/SelectDifficulty";
 import InvestigationGame from "./game";
@@ -12,8 +12,12 @@ export default function Investigation() {
   const [hardcore, setHardcore] = useState(false);
   const [endlessMode, setEndlessMode] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div>
+    <div className="mt-2">
       {!finished && !difficultySelected && (
         <SelectDifficultyScreen
           setDifficulty={setDifficulty}

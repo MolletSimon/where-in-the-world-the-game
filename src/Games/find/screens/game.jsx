@@ -100,14 +100,14 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
       <ToastContainerTopRight />
       {loading && <Loader />}
       {countriesInGame && countriesInGame.length > 0 && (
-        <div className="mt-12">
+        <div className="sm:mt-12">
           <Subtitle
             text={`Find all the countries that start with the letter 
             ${countriesInGame[0].name.common.substring(0, 1)}`}
           />
           <div className="w-full flex justify-center items-center mt-8">
             <input
-              className="w-3/5 p-4 border-[1px] shadow-lg rounded-xl text-primary"
+              className="sm:w-3/5 w-4/5 p-2 sm:p-4 border-[1px] shadow-lg rounded-xl text-primary"
               type="text"
               onKeyDown={(e) => handleKeyDown(e)}
               value={guess}
@@ -119,26 +119,26 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
             />
             <div
               onClick={search}
-              className="p-4 cursor-pointer bg-primary rounded-xl flex items-center ml-6 border"
+              className="sm:p-4 p-2 cursor-pointer bg-primary rounded-xl flex items-center sm:ml-6 ml-2 border"
             >
               <span className="material-symbols-outlined text-white">done</span>
             </div>
           </div>
 
-          <div className="flex justify-center items-center gap-4 w-4/5 ml-auto mr-auto mt-10 flex-wrap">
+          <div className="flex justify-center items-center gap-4 sm:w-4/5 ml-auto mr-auto mt-10 flex-wrap">
             {countriesInGame.map((country, index) => (
               <div
                 key={index}
-                className="border-2 min-w-52 min-h-28 p-6 flex items-center justify-center rounded-xl text-center"
+                className="border-2 sm:min-w-52 sm:min-h-28 sm:p-6 p-3 flex items-center justify-center rounded-xl text-center"
               >
                 {country.found ? (
                   <Flip>
                     <img
                       src={country.flags.png}
-                      className=" max-h-10 h-10 mr-4 object-cover rounded-md"
+                      className="h-5 max-h-5 sm:max-h-10 sm:h-10 mr-4 object-cover rounded-md"
                       alt="flag"
                     />
-                    <p className="font-semibold text-lg">
+                    <p className="sm:font-semibold text-md sm:text-lg">
                       {country.name.common}
                     </p>
                   </Flip>

@@ -32,7 +32,7 @@ export default function InvestigationGame({
   const [round, setRound] = useState(0);
   const seconds = endless ? 9999 : hardcore ? 20 : 50;
   const numberRound = endless ? 20 : 10;
-  const [secondsLeft, setSecondsLeft] = useState(60);
+  const [secondsLeft, setSecondsLeft] = useState(seconds);
 
   // status
   const [loading, setLoading] = useState(true);

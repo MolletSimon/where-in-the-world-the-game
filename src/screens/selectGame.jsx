@@ -5,13 +5,13 @@ import { SelectGameCard } from "../components/SelectGame/SelectGameCard";
 export default function SelectGame() {
   return (
     <div className="min-h-[100vh]">
-      <div className="min-h-[80vh] w-full flex items-center justify-evenly flex-col">
+      <div className="min-h-[80vh] w-full flex items-center justify-evenly flex-col pt-8 sm:pt-0">
         <RubberBand>
           <Title margin="2" text="Select the game !" />
         </RubberBand>
         <div
-          className="mt-2 w-full h-full sm:w-4/5 gap-4 rounded-lg lg:rounded-3xl
-      md:h-96 grid grid-rows-6 md:grid-cols-3 md:grid-rows-2 items-center dark:border-darkInput"
+          className="mt-2 h-full w-[95%] sm:w-4/5 gap-4 rounded-lg lg:rounded-3xl pt-4 sm:pt-0
+      md:h-96 grid grid-rows-6 grid-cols-2 md:grid-cols-3 md:grid-rows-2 items-center dark:border-darkInput"
         >
           <SelectGameCard
             icon="olympic-games"

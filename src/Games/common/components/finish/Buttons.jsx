@@ -2,7 +2,7 @@ import { Button } from "../../../../components/Utils/Button";
 
 export function Buttons(props) {
   return (
-    <div className="mt-24 md:w-1/3 h-full justify-end">
+    <div className="md:mt-24 md:w-1/3 h-full justify-end">
       <Button
         background="#0E94D7"
         color="white"

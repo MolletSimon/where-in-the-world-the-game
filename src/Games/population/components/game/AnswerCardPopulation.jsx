@@ -8,7 +8,7 @@ export function AnswerCardPopulation(props) {
   const color = isThemeDark() ? "white" : "black";
   return (
     <div
-      className="flex justify-center items-center dark:border-darkInput border-2 flex-col transition hover:scale-110 hover:rounded-lg"
+      className="flex justify-center  items-center dark:border-darkInput border-2  flex-col transition hover:scale-110 hover:rounded-lg"
       style={{
         backgroundColor:
           props.answered && props.isTheRightAnswer(props.index)
@@ -28,7 +28,7 @@ export function AnswerCardPopulation(props) {
         <img
           src={props.c.flags.png}
           alt="flag"
-          width={100}
+          width={80}
           className="block md:hidden rounded-lg"
         />
         <p
@@ -51,7 +51,7 @@ export function AnswerCardPopulation(props) {
       {props.answered && (
         <Tada>
           <p
-            className="text-lg md:text-2xl mt-3 text-center"
+            className="text-md sm:text-lg md:text-2xl mt-3 text-center w-4/5"
             style={{
               color: color,
             }}

@@ -3,7 +3,7 @@ import Pulse from "react-reveal/Pulse";
 
 export function TitleStartScreen({ image, alt, title }) {
   return (
-    <div className="flex justify-evenly items-center m-8 w-4/5">
+    <div className="flex justify-evenly items-center md:m-8 w-4/5">
       <Pulse>
         <img
           src={image}

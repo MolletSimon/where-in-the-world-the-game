@@ -142,7 +142,7 @@ export default function PopulationGame({
         {loading ? (
           <Loader />
         ) : (
-          <div className="min-h-[70vh] grid grid-cols-2 grid-rows-2 justify-center w-full">
+          <div className="min-h-[55vh] sm:min-h-[70vh] grid grid-cols-2 grid-rows-2 justify-center w-full">
             {countriesInGame.length > 0 &&
               countriesInGame[round].map((c, index) => (
                 <AnswerCardPopulation
@@ -179,7 +179,7 @@ export default function PopulationGame({
         </div>
         <div className="xl:hidden w-full flex justify-center items-center">
           <p className="font-bold text-primary">
-            {round + 1}/{numberRound}
+            {round + 1}/{endless ? "∞" : numberRound}
           </p>
         </div>
       </div>
