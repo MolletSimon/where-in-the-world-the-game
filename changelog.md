@@ -1,7 +1,13 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.10.0
+_*Current Version*_ : 0.10.1
 
+## 0.10.1
+
+## Improvements :
+
+- minor improvements for leaderboard
+- responsive leaderboard
 ## 0.10.0
 
 ## Feature :
