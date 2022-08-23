@@ -1,12 +1,17 @@
 import { signOut } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PlayerCard } from "../Home/playerCard";
 import { ClickableIcon } from "./ClickableIcon";
 
 function Header({ darkMode, setDarkmode, auth, user, level }) {
+  const navigate = useNavigate();
   const switchDarkMode = () => {
     setDarkmode(!darkMode);
     localStorage.setItem("theme", darkMode);
+  };
+
+  const leaderboard = () => {
+    navigate("/leaderboard");
   };
 
   const logout = () => {
@@ -21,6 +26,12 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
       <HeaderTitle></HeaderTitle>
 
       <div className="mr-3 cursor-pointer flex md:w-auto  items-center">
+        <ClickableIcon
+          method={leaderboard}
+          icon={"leaderboard"}
+          darkMode={darkMode}
+          title="Leaderboard"
+        />
         <a
           href="https://where-in-the-world-zeta-drab.vercel.app/"
           target="_blank"

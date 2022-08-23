@@ -1,6 +1,12 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.9.0
+_*Current Version*_ : 0.10.0
+
+## 0.10.0
+
+## Feature :
+
+- Add leaderboard !
 
 ## 0.9.0
 
