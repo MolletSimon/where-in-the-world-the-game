@@ -21,6 +21,7 @@ import Investigation from "./Games/investigation/screens/investigation";
 import Borders from "./Games/borders/screens/borders";
 import Capital from "./Games/capital/screens/capital";
 import Find from "./Games/find/screens/find";
+import Leaderboard from "./screens/leaderboard";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -39,6 +40,7 @@ function App() {
         <Route path="/population" element={<Population />} />
         <Route path="/borders" element={<Borders />} />
         <Route path="/findletter" element={<Find />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/capital" element={<Capital />} />
         <Route path="/user" element={<User auth={auth} />} />
       </Route>

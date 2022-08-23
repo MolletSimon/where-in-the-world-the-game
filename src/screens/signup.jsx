@@ -32,7 +32,7 @@ export default function SignUp({ auth }) {
   // auth
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
-  const [updateProfile, _, __] = useUpdateProfile(auth);
+  const [updateProfile, updating, __] = useUpdateProfile(auth);
 
   // router
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ export default function SignUp({ auth }) {
   if (loading) {
     return <Loader />;
   }
-  if (user) {
+  if (user && !updating) {
     toast.success("Yay ! 😍 Your account has been created");
     return <Navigate to="/" />;
   }
