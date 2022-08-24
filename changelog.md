@@ -1,6 +1,12 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.10.1
+_*Current Version*_ : 0.10.2
+
+## 0.10.2
+
+## Fix :
+
+- balance amount of points won on Find game
 
 ## 0.10.1
 
@@ -8,6 +14,7 @@ _*Current Version*_ : 0.10.1
 
 - minor improvements for leaderboard
 - responsive leaderboard
+
 ## 0.10.0
 
 ## Feature :

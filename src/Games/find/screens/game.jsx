@@ -69,11 +69,9 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
       (c) => c.name.common.toLowerCase() == guess.toLowerCase()
     );
     const points =
-      (countriesInGame.findIndex(
+      countriesInGame.findIndex(
         (c) => c.name.common.toLowerCase() == guess.toLowerCase()
-      ) +
-        1) *
-      2;
+      ) + 1;
     if (country && !country.found) {
       country.found = true;
       toast.success(`Yay ! You won ${points}pts !`);
