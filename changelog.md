@@ -1,6 +1,16 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.10.2
+_*Current Version*_ : 0.10.3
+
+## 0.10.3
+
+## Refactor :
+
+- Refacto find game
+
+# Design :
+
+- Add dark theme to find, leaderboard and games saved
 
 ## 0.10.2
 

@@ -2,20 +2,16 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Button } from "../../../components/Utils/Button";
 import Loader from "../../../components/Utils/Loader";
-import Subtitle from "../../../components/Utils/Subtitle";
-import { getCountries } from "../../../services/countries/getCountries";
-import Flip from "react-reveal/Flip";
 import ToastContainerTopRight from "../../../components/Utils/ToastContainerTopRight";
 import getCountriesFromLetter from "../services/getCountriesFromLetter";
 import { toast } from "react-toastify";
-import { useRef } from "react";
 import { useInterval } from "../../../utils/hooks/useInterval";
-import { Timer } from "../../common/components/game/Timer";
-import { Round } from "../../common/components/game/Round";
-import { Buttons } from "../../common/components/finish/Buttons";
 import { updateLevel } from "../../../services/levels/updateLevel";
 import { serverTimestamp } from "firebase/firestore";
 import { saveGame } from "../../../services/user/saveGame";
+import { HeaderTitle } from "../components/HeaderTitle";
+import { AnswerCardFind } from "../components/AnswerCardFind";
+import { FooterFind } from "../components/FooterFind";
 
 export default function Game({ setScore, score, setFinished, setXpWon }) {
   const [countriesInGame, setCountriesInGame] = useState([]);
@@ -26,6 +22,7 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
   const [seconds, setSeconds] = useState(0);
   const [renderState, setRenderState] = useState(false);
 
+  // Get countries and init game
   useEffect(() => {
     setLoading(true);
     getCountriesFromLetter().then((countries) => {
@@ -36,6 +33,7 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
     });
   }, []);
 
+  // Timer
   useInterval(() => {
     if (secondsLeft > 0) setSecondsLeft(secondsLeft - 1);
     else if (!endGame) finish(score);
@@ -99,75 +97,24 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
       {loading && <Loader />}
       {countriesInGame && countriesInGame.length > 0 && (
         <div className="sm:mt-12">
-          <Subtitle
-            text={`Find all the countries that start with the letter 
-            ${countriesInGame[0].name.common.substring(0, 1)}`}
+          <HeaderTitle
+            countriesInGame={countriesInGame}
+            guess={guess}
+            handleKeyDown={handleKeyDown}
+            search={search}
+            setGuess={setGuess}
           />
-          <div className="w-full flex justify-center items-center mt-8">
-            <input
-              className="sm:w-3/5 w-4/5 p-2 sm:p-4 border-[1px] shadow-lg rounded-xl text-primary"
-              type="text"
-              onKeyDown={(e) => handleKeyDown(e)}
-              value={guess}
-              name=""
-              id=""
-              onChange={(e) => {
-                setGuess(e.target.value);
-              }}
-            />
-            <div
-              onClick={search}
-              className="sm:p-4 p-2 cursor-pointer bg-primary rounded-xl flex items-center sm:ml-6 ml-2 border"
-            >
-              <span className="material-symbols-outlined text-white">done</span>
-            </div>
-          </div>
 
           <div className="flex justify-center items-center gap-4 sm:w-4/5 ml-auto mr-auto mt-10 flex-wrap">
             {countriesInGame.map((country, index) => (
-              <div
-                key={index}
-                className="border-2 sm:min-w-52 sm:min-h-28 sm:p-6 p-3 flex items-center justify-center rounded-xl text-center"
-              >
-                {country.found ? (
-                  <Flip>
-                    <img
-                      src={country.flags.png}
-                      className="h-5 max-h-5 sm:max-h-10 sm:h-10 mr-4 object-cover rounded-md"
-                      alt="flag"
-                    />
-                    <p className="sm:font-semibold text-md sm:text-lg">
-                      {country.name.common}
-                    </p>
-                  </Flip>
-                ) : (
-                  <>
-                    <span className="material-symbols-outlined">password</span>
-                  </>
-                )}
-              </div>
+              <AnswerCardFind country={country} index={index} />
             ))}
           </div>
 
           {!endGame ? (
-            <div className="flex justify-evenly w-/5 ml-auto mr-auto mt-20 items-center">
-              <div
-                className="hidden xl:flex justify-center text-center 
-              items-center border-2 shadow-md border-primary dark:border-white
-            shadow-primary dark:shadow-white -skew-x-6 rounded-md h-20 min-w-28 p-8 
-            text-primary dark:text-white font-bold"
-              >
-                <h2 className="font-bold text-primary dark:text-white lg:text-2xl">
-                  Time left : {secondsLeft}sec
-                </h2>
-                <h1 className="m-3">/</h1>
-                <h2 className="font-bold text-primary dark:text-white lg:text-2xl">
-                  Score: {score}pts
-                </h2>
-              </div>
-            </div>
+            <FooterFind score={score} secondsLeft={secondsLeft} />
           ) : (
-            <div className="flex justify-center w-2/5 ml-auto mr-auto mt-20 items-center">
+            <div className="flex justify-center w-2/5 ml-auto mr-auto mt-20 items-center dark:text-lightBackground">
               <Button text={"Finish game !"} method={finishGame} />
             </div>
           )}

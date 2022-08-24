@@ -47,8 +47,10 @@ export default function User({ auth }) {
       </div>
       <div className="mt-10 w-full justify-center items-center flex ">
         <div className="p-8 border-2 rounded-2xl w-auto flex items-center">
-          <p className="italic font-regular mr-4">Rank: </p>
-          <h2 className="font-bold text-3xl first-letter:uppercase">
+          <p className="italic font-regular mr-4 dark:text-lightBackground">
+            Rank:{" "}
+          </p>
+          <h2 className="font-bold text-3xl first-letter:uppercase dark:text-lightBackground">
             {level.rank} -{" "}
           </h2>
           <img
@@ -61,7 +63,9 @@ export default function User({ auth }) {
       {user && level && (
         <div className="flex mt-4 lg:mt-20 justify-center items-center lg:mr-8 flex-col w-4/5">
           <p className="mb-6 text-end flex">
-            <span className="font-normal">Level {level.level}</span>
+            <span className="font-normal dark:text-lightBackground">
+              Level {level.level}
+            </span>
           </p>
           <ProgressBar
             completed={(level.xp / level.xpToNextLevel) * 100}

@@ -23,7 +23,7 @@ export default function Leaderboard() {
     return user.userId === currentUser.uid;
   };
   return (
-    <div>
+    <div className="pt-6">
       {users && currentUser && users.length > 0 ? (
         <div>
           {users.map((user, index) => (
@@ -33,7 +33,7 @@ export default function Leaderboard() {
                 borderColor: userIsCurrentUser(user) && "#0E94D7",
                 borderWidth: userIsCurrentUser(user) && 4,
               }}
-              className="grid grid-cols-5 items-center md:w-4/5 w-full xl:w-3/5 mr-auto ml-auto mt-6 p-6 border-2 rounded-3xl"
+              className="grid grid-cols-5 items-center md:w-4/5 w-full xl:w-3/5 mr-auto ml-auto mb-6 p-6 border-2 rounded-3xl"
             >
               {[0, 1, 2].includes(index) ? (
                 <div>
@@ -57,19 +57,19 @@ export default function Leaderboard() {
               </span>
               <span className="">
                 {user.displayName ? (
-                  <p>
+                  <p className="dark:text-lightBackground">
                     {user.displayName.split(" ")[0]} -{" "}
                     <span className="italic text-primary">
                       #{user.userId.substring(0, 4)}
                     </span>
                   </p>
                 ) : (
-                  <p className="text-sm justify-self-start">
+                  <p className="text-sm justify-self-start dark:text-lightBackground">
                     The user didn't shared his username yet.
                   </p>
                 )}
               </span>
-              <span className="font-semibold italic justify-self-center">
+              <span className="font-semibold italic justify-self-center dark:text-lightBackground">
                 Level :{" "}
                 <span className="text-primary text-2xl"> {user.level}</span>
               </span>

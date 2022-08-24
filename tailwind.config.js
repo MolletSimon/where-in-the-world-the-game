@@ -23,6 +23,7 @@ module.exports = {
         validGreen: "#3AB795",
         wrongRed: "#A40606",
         mandarin: "#EF8354",
+        lightMandarin: "#f5b69a",
         pink: "#EE4B6A",
       },
     },

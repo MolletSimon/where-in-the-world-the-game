@@ -1,6 +1,6 @@
 {
   "name": "where-in-the-world",
-  "version": "0.10.2",
+  "version": "0.10.3",
   "private": true,
   "dependencies": {
     "@ramonak/react-progress-bar": "^5.0.1",

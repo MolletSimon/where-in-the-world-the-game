@@ -1,8 +1,10 @@
+import { isThemeDark } from "../../utils/isThemeDark";
+
 export function GamesSaved(props) {
   return (
     <div className="w-full flex justify-center flex-col">
       <div className="hidden md:block self-center w-2/3">
-        <h3 className="text-end italic">
+        <h3 className="text-end italic dark:text-lightBackground">
           Number of games played : {props.games.length}
         </h3>
       </div>
@@ -22,10 +24,10 @@ export function GamesSaved(props) {
                 alt="game"
                 className="self-start md:ml-10"
               />
-              <p className="text-center font-bold italic md:block hidden">
+              <p className="text-center font-bold italic md:block hidden dark:text-lightBackground">
                 {game.game}
               </p>
-              <p className="text-center">
+              <p className="text-center dark:text-lightBackground">
                 {game.score}
                 <span>
                   {game.game != "Borders" && game.game != "Find"
@@ -33,11 +35,11 @@ export function GamesSaved(props) {
                     : " pts"}
                 </span>
               </p>
-              <p className="text-center">
+              <p className="text-center dark:text-lightBackground">
                 {game.time}
                 {game.game != "Borders" && " sec"}
               </p>
-              <p className="text-center">
+              <p className="text-center dark:text-lightBackground">
                 {" "}
                 {game.difficulty === 1 && "Easy"}
                 {game.difficulty === 2 && "Medium"}
@@ -63,7 +65,7 @@ function getImageAndColorOfGame(game) {
       image = "images/search.png";
       break;
     case "Flag":
-      color = "bg-mandarin";
+      color = isThemeDark() ? "bg-lightMandarin" : "bg-mandarin";
       image = "images/olympic-games.png";
       break;
     case "Population":
