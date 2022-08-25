@@ -28,7 +28,7 @@ function Home({ auth }) {
       if (!user) navigate("/login");
       else {
         getLevels().then((res) => {
-          setLevel(res.data());
+          setLevel(res?.data());
         });
         navigate(location.pathname === "/" ? "select-game" : location.pathname);
       }

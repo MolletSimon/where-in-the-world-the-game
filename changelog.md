@@ -1,6 +1,13 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.10.3
+_*Current Version*_ : 0.11.0
+
+## 0.11.0
+
+## Features :
+
+- Play without account feature
+- Forgot your password feature
 
 ## 0.10.3
 

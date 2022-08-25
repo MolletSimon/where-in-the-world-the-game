@@ -11,6 +11,7 @@ import { Button } from "../Utils/Button";
 import {
   useSignInWithGoogle,
   useSignInWithEmailAndPassword,
+  useSendPasswordResetEmail,
 } from "react-firebase-hooks/auth";
 
 // react
@@ -18,12 +19,26 @@ import { useState, useEffect } from "react";
 
 // router
 import { Navigate, useNavigate } from "react-router-dom";
+import { signInAnonymously } from "firebase/auth";
 
 export default function SignInPanel({ auth }) {
   // auth
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const [signInWithEmailAndPassword, userEmail, loadingEmail, errorEmail] =
     useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail, sending, errorReset] =
+    useSendPasswordResetEmail(auth);
+
+  const signInAnon = () => {
+    signInAnonymously(auth);
+  };
+
+  const handleClickReset = async () => {
+    if (!email) toast.error("You need to enter your email first !");
+    else {
+      await sendPasswordResetEmail(email);
+    }
+  };
 
   //form
   const [email, setEmail] = useState("");
@@ -38,9 +53,15 @@ export default function SignInPanel({ auth }) {
         "Woups ! 😭 it seems that the authentication has failed, please check your credentials and try again"
       );
     }
-  }, [error, errorEmail]);
 
-  if (loading || loadingEmail) {
+    if (errorReset) {
+      toast.error(
+        `Woups ! We failed to send you the reset password email. Reason : ${errorReset.message}`
+      );
+    }
+  }, [error, errorEmail, errorReset]);
+
+  if (loading || loadingEmail || sending) {
     return <Loader />;
   }
   if (user || userEmail) {
@@ -69,6 +90,12 @@ export default function SignInPanel({ auth }) {
           setValue={setPassword}
           borderColor="lightInput"
         />
+        <h1
+          className="text-md self-end mb-2 font-semibold italic hover:underline text-primary cursor-pointer"
+          onClick={handleClickReset}
+        >
+          Forgot password ?
+        </h1>
         <Button
           background="#0E94D7"
           color="white"
@@ -82,6 +109,12 @@ export default function SignInPanel({ auth }) {
           text="Sign in with google"
           icon="icons/google.png"
         ></Button>
+        <h1
+          className="text-md mt-2 font-semibold italic hover:underline text-primary cursor-pointer"
+          onClick={signInAnon}
+        >
+          Play without account
+        </h1>
       </form>
 
       <h4 className="font-normal text-center mt-8">

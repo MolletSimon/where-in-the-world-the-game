@@ -17,6 +17,8 @@ export async function getLevels() {
   const displayName = auth.currentUser.displayName;
   const photoUrl = auth.currentUser.photoURL;
 
+  if (auth.currentUser.isAnonymous) return;
+
   if ((await getDoc(doc(db, "levels", uid))).exists()) {
     var levels = await getDoc(doc(db, "levels", uid));
     var data = levels.data();

@@ -8,6 +8,7 @@ export async function updateLevel(xpWon) {
   const auth = getAuth(app);
   const uid = auth.currentUser.uid;
 
+  if (auth.currentUser.isAnonymous) return;
   await getDoc(doc(db, "levels", uid)).then((res) => {
     let level = res.data();
     let data = {};
