@@ -1,6 +1,13 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.11.0
+_*Current Version*_ : 0.11.1
+
+## 0.11.1
+
+## Bug fixes :
+
+- Minor design fixes
+- Minor responsive fixes
 
 ## 0.11.0
 

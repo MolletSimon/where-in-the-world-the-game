@@ -11,11 +11,11 @@ export function PlayerCard({ user, level }) {
               You are not logged in
             </h1>
           ) : (
-            <Link to="/user" className="ml-6 flex justify-end items-center">
+            <Link to="/user" className="md:ml-6 flex justify-end items-center">
               <img
                 src={user.photoURL ? user.photoURL : "images/avatar.png"}
                 alt="avatar"
-                className="rounded-full lg:mr-8 dark:shadow-white dark:shadow-sm"
+                className="rounded-full lg:mr-8 dark:shadow-white min-w-[30px] dark:shadow-sm"
                 width="50"
                 referrerPolicy="no-referrer"
               />

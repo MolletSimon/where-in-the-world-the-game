@@ -25,7 +25,7 @@ function Header({ darkMode, setDarkmode, auth, user, level }) {
     >
       <HeaderTitle></HeaderTitle>
 
-      <div className="mr-3 cursor-pointer flex md:w-auto  items-center">
+      <div className="md:mr-3 cursor-pointer flex md:w-auto  items-center">
         <ClickableIcon
           method={leaderboard}
           icon={"leaderboard"}

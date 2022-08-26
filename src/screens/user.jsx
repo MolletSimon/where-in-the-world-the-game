@@ -51,7 +51,7 @@ export default function User({ auth }) {
             Rank:{" "}
           </p>
           <h2 className="font-bold text-3xl first-letter:uppercase dark:text-lightBackground">
-            {level.rank} -{" "}
+            {level.rank}{" "}
           </h2>
           <img
             src={`icons/Ranks/${level.rank}.png`}

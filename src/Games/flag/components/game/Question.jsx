@@ -27,7 +27,7 @@ export function Question({
       </div>
       <div className="flex justify-center items-center">
         {capitalMode ? (
-          <h2 className="font-semibold text-4xl mt-4 mb-4">
+          <h2 className="font-semibold text-center text-2xl md:text-4xl mt-4 mb-4">
             Capital:{" "}
             <span className="text-primary italic">
               {" "}
