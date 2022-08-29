@@ -2,7 +2,7 @@
 
 ## Preprod
 
-This project is currently in beta 0.10.3, you already can access to the game at this address : "https://whereintheworld.online"
+This project is currently in beta 0.11.1, you already can access to the game at this address : "https://whereintheworld.online"
 The changelog is here : https://github.com/MolletSimon/where-in-the-world-the-game/blob/master/changelog.md
 
 ## Features 🗒
