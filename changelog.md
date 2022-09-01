@@ -1,8 +1,14 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.11.1
+_*Current Version*_ : 0.11.2
 
-## 0.11.1
+## 0.11.2
+
+## Bug fixes :
+
+- Fix on score find game
+- 
+- ## 0.11.1
 
 ## Bug fixes :
 

@@ -86,6 +86,7 @@ export default function Game({ setScore, score, setFinished, setXpWon }) {
   };
 
   const finishGame = () => {
+    setScore(0);
     setFinished(true);
     setEndGame(false);
   };
