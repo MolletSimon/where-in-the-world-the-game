@@ -1,7 +1,12 @@
 # Where in the world - Changelog
 
-_*Current Version*_ : 0.11.2
+_*Current Version*_ : 0.11.3
 
+## 0.11.3
+
+## Bug fixes :
+
+- Fix endscreen for anonymous
 ## 0.11.2
 
 ## Bug fixes :

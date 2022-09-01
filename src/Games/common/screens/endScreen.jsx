@@ -39,7 +39,7 @@ export default function EndScreen({
 
   return (
     <div className="min-h-[100vh] bg-lightBackground dark:bg-darkBackground">
-      {level.level ? (
+      {level ? (
         <div className="flex flex-col items-center min-h-[80vh] justify-center gap-4 md:gap-0 md:justify-around">
           {level.newLevel && <Confetti width={width} height={height} />}
 
